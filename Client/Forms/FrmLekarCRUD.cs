@@ -1,11 +1,12 @@
-﻿using Client.GuiController;
+﻿using Client.Forms;
+using Client.GuiController;
 using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmLekarCRUD : Form
+    internal partial class FrmLekarCRUD : Form, ICrudForm<Lekar>
     {
-        public Lekar? Lekar { get; set; }
+        internal Lekar? Lekar { get; set; }
 
         public FrmLekarCRUD()
         {
@@ -22,14 +23,13 @@ namespace Client
             btnObrisi.Click += (s, e) => Controller.Instance.Lekari.Obrisi();
             btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmLekarCRUD>();
 
-            List<Sertifikat> sertifikati = Controller.Instance.Sertifikati.Pretrazi().Cast<Sertifikat>().ToList();
-
-            sertifikati.Insert(0, new Sertifikat { Id = -1, Opis = "-- Bez izbora --" });
-
-            cbSertifikati.DataSource = sertifikati;
-            cbSertifikati.ValueMember = "Id";
-            cbSertifikati.DisplayMember = "Prikaz";
-            cbSertifikati.SelectedIndex = 0;
+            ControlInitialisator.InitComboBox(
+                cbSertifikati,
+                Controller.Instance.Sertifikati.Pretrazi().Cast<Sertifikat>(),
+                "Id",
+                "Prikaz",
+                new Sertifikat { Id = -1, Opis = "-- Bez izbora --" }
+            );
 
             btnPlus.Click += (s, e) => Controller.Instance.Lekari.DodajSertifikat();
             btnMinus.Click += (s, e) => Controller.Instance.Lekari.OduzmiSertifikat();
@@ -50,40 +50,9 @@ namespace Client
             btnObrisi.Enabled = true;
         }
 
-        internal bool Validation()
+        public bool Validation()
         {
-            tbIme.BackColor = Color.White;
-            tbPrezime.BackColor = Color.White;
-            tbEmail.BackColor = Color.White;
-            tbSifra.BackColor = Color.White;
-
-            bool isValid = true;
-
-            if (string.IsNullOrEmpty(tbIme.Text))
-            {
-                tbIme.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(tbPrezime.Text))
-            {
-                tbPrezime.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(tbEmail.Text))
-            {
-                tbEmail.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(tbSifra.Text))
-            {
-                tbSifra.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            return isValid;
+            return FormValidator.ValidateTextFields(tbIme, tbPrezime, tbEmail, tbSifra);
         }
     }
 }

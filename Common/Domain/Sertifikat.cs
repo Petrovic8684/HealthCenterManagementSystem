@@ -2,7 +2,7 @@
 
 namespace Common.Domain
 {
-    public class Sertifikat : IEntity
+    public class Sertifikat : ICrudEntity
     {
         public int Id { get; set; }
         public string Opis { get; set; }

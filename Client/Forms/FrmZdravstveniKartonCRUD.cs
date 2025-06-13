@@ -1,12 +1,12 @@
-﻿using Client.GuiController;
+﻿using Client.Forms;
+using Client.GuiController;
 using Common.Domain;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Client
 {
-    public partial class FrmZdravstveniKartonCRUD : Form
+    internal partial class FrmZdravstveniKartonCRUD : Form, ICrudForm<ZdravstveniKarton>
     {
-        public ZdravstveniKarton? ZdravstveniKarton { get; set; }
+        internal ZdravstveniKarton? ZdravstveniKarton { get; set; }
 
         public FrmZdravstveniKartonCRUD()
         {
@@ -22,32 +22,30 @@ namespace Client
 
             btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmZdravstveniKartonCRUD>();
 
-            List<Dijagnoza> dijagnoze = Controller.Instance.Dijagnoze.Pretrazi().Cast<Dijagnoza>().ToList();
+            ControlInitialisator.InitComboBox(
+                cbDijagnoze,
+                Controller.Instance.Dijagnoze.Pretrazi().Cast<Dijagnoza>(),
+                "Id",
+                "Prikaz",
+                new Dijagnoza { Id = -1, Naziv = "-- Bez izbora --" }
+            );
 
-            dijagnoze.Insert(0, new Dijagnoza { Id = -1, Naziv = "-- Bez izbora --" });
+            ControlInitialisator.InitComboBox(
+                cbLekari,
+                Controller.Instance.Lekari.Pretrazi().Cast<Lekar>(),
+                "Id",
+                "Prikaz",
+                new Lekar { Id = -1, Ime = "-- Bez izbora --" }
+            );
 
-            cbDijagnoze.DataSource = dijagnoze;
-            cbDijagnoze.ValueMember = "Id";
-            cbDijagnoze.DisplayMember = "Prikaz";
-            cbDijagnoze.SelectedIndex = 0;
+            ControlInitialisator.InitComboBox(
+                cbPacijenti,
+                Controller.Instance.Pacijenti.Pretrazi().Cast<Pacijent>(),
+                "Id",
+                "Prikaz",
+                new Pacijent { Id = -1, Ime = "-- Bez izbora --" }
+            );
 
-            List<Lekar> lekari = Controller.Instance.Lekari.Pretrazi().Cast<Lekar>().ToList();
-
-            lekari.Insert(0, new Lekar { Id = -1, Ime = "-- Bez izbora --" });
-
-            cbLekari.DataSource = lekari;
-            cbLekari.ValueMember = "Id";
-            cbLekari.DisplayMember = "Prikaz";
-            cbLekari.SelectedIndex = 0;
-
-            List<Pacijent> pacijenti = Controller.Instance.Pacijenti.Pretrazi().Cast<Pacijent>().ToList();
-
-            pacijenti.Insert(0, new Pacijent { Id = -1, Ime = "-- Bez izbora --" });
-
-            cbPacijenti.DataSource = pacijenti;
-            cbPacijenti.ValueMember = "Id";
-            cbPacijenti.DisplayMember = "Prikaz";
-            cbPacijenti.SelectedIndex = 0;
 
             btnPlus.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.DodajStavku();
             btnMinus.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.OduzmiStavku();
@@ -66,33 +64,11 @@ namespace Client
             lbStavke.DataSource = zdravstveniKarton.Stavke;
         }
 
-        internal bool Validation()
+        public bool Validation()
         {
-            cbLekari.BackColor = Color.White;
-            cbPacijenti.BackColor = Color.White;
-            tbNapomena.BackColor = Color.White;
-
-            bool isValid = true;
-
-            if (cbLekari.SelectedIndex == 0)
-            {
-                cbLekari.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            if (cbPacijenti.SelectedIndex == 0)
-            {
-                cbPacijenti.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            if (string.IsNullOrEmpty(tbNapomena.Text))
-            {
-                tbNapomena.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            return isValid;
+            bool validText = FormValidator.ValidateTextFields(tbNapomena);
+            bool validCombos = FormValidator.ValidateComboBoxes(cbLekari, cbPacijenti);
+            return validText && validCombos;
         }
     }
 }

@@ -87,14 +87,6 @@
             ShutdownAllIfLastClosed();
         }
 
-        public void CloseAll()
-        {
-            foreach (var f in openForms.Values.ToList())
-                f.Close();
-
-            openForms.Clear();
-        }
-
         public T? Get<T>() where T : Form
         {
             Type formType = typeof(T);

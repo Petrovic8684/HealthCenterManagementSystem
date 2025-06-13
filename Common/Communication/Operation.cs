@@ -2,6 +2,8 @@
 {
     public enum Operation
     {
+        None,
+
         KreirajZdravstveniKarton,
         PretraziZdravstveniKarton,
         PromeniZdravstveniKarton,

@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmSertifikat : Form, ICriteriaForm
+    internal partial class FrmSertifikat : Form, IForm
     {
         public FrmSertifikat()
         {

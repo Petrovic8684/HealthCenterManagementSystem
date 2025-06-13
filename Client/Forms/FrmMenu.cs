@@ -2,7 +2,7 @@
 
 namespace Client
 {
-    public partial class FrmMenu : Form
+    internal partial class FrmMenu : Form
     {
         public FrmMenu()
         {

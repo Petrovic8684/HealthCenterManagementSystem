@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmPacijent : Form, ICriteriaForm
+    internal partial class FrmPacijent : Form, IForm
     {
         public FrmPacijent()
         {
@@ -21,14 +21,13 @@ namespace Client
             });
             btnDetalji.Click += (s, e) => Controller.Instance.Pacijenti.PrikaziDetalje();
 
-            List<Mesto> mesta = Controller.Instance.Mesta.Pretrazi().Cast<Mesto>().ToList();
-
-            mesta.Insert(0, new Mesto { Id = -1, Naziv = "-- Bez izbora --" });
-
-            cbMesta.DataSource = mesta;
-            cbMesta.ValueMember = "Id";
-            cbMesta.DisplayMember = "Prikaz";
-            cbMesta.SelectedIndex = 0;
+            ControlInitialisator.InitComboBox(
+                cbMesta,
+                Controller.Instance.Mesta.Pretrazi().Cast<Mesto>(),
+                "Id",
+                "Prikaz",
+                new Mesto { Id = -1, Naziv = "-- Bez izbora --" }
+            );
         }
 
         public string ConstructCriteria()

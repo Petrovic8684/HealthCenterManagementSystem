@@ -2,7 +2,7 @@
 
 namespace Common.Domain
 {
-    public class ZdravstveniKarton : IEntity
+    public class ZdravstveniKarton : ICrudEntity
     {
         public int Id { get; set; }
         public DateTime? DatumOtvaranja { get; set; }

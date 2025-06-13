@@ -16,7 +16,7 @@ namespace Client.GuiController.Criteria
         internal DijagnozaCriteriaBuilder WithOpis(string opis)
         {
             if (!string.IsNullOrWhiteSpace(opis))
-                kriterijumi.Naziv = opis.Trim();
+                kriterijumi.Opis = opis.Trim();
             return this;
         }
 

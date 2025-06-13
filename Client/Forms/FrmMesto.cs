@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmMesto : Form, ICriteriaForm
+    internal partial class FrmMesto : Form, IForm
     {
         public FrmMesto()
         {

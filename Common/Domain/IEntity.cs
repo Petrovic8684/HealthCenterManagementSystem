@@ -8,5 +8,11 @@ public interface IEntity
     string PrimaryKey { get; }
     string PrimaryKeyCondition { get; }
     string Prikaz { get; }
+    string Criteria { get; }
     List<IEntity> GetReaderList(SqlDataReader reader);
+}
+
+public interface ICrudEntity : IEntity
+{
+    int Id { get; set; }
 }

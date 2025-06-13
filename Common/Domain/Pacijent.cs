@@ -2,7 +2,7 @@
 
 namespace Common.Domain
 {
-    public class Pacijent : IEntity
+    public class Pacijent : ICrudEntity
     {
         public int Id { get; set; }
         public string Ime { get; set; }

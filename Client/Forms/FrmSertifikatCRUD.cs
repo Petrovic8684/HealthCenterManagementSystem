@@ -1,11 +1,12 @@
-﻿using Client.GuiController;
+﻿using Client.Forms;
+using Client.GuiController;
 using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmSertifikatCRUD : Form
+    internal partial class FrmSertifikatCRUD : Form, ICrudForm<Sertifikat>
     {
-        public Sertifikat? Sertifikat { get; set; }
+        internal Sertifikat? Sertifikat { get; set; }
 
         public FrmSertifikatCRUD()
         {
@@ -33,19 +34,9 @@ namespace Client
             btnObrisi.Enabled = true;
         }
 
-        internal bool Validation()
+        public bool Validation()
         {
-            tbOpis.BackColor = Color.White;
-
-            bool isValid = true;
-
-            if (string.IsNullOrEmpty(tbOpis.Text))
-            {
-                tbOpis.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            return isValid;
+            return FormValidator.ValidateTextFields(tbOpis);
         }
     }
 }

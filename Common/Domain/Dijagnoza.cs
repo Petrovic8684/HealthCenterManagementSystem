@@ -2,7 +2,7 @@
 
 namespace Common.Domain
 {
-    public class Dijagnoza : IEntity
+    public class Dijagnoza : ICrudEntity
     {
         public int Id { get; set; }
         public string Naziv { get; set; }

@@ -3,8 +3,49 @@ using Common.Domain;
 
 namespace Client.GuiController.Services
 {
-    internal class LekarService : IEntityService<Lekar>
+    internal class LekarService : BaseEntityService<Lekar, FrmLekar, FrmLekarCRUD>
     {
+        protected override Operation CreateOperation => Operation.KreirajLekar;
+        protected override Operation UpdateOperation => Operation.PromeniLekar;
+        protected override Operation DeleteOperation => Operation.ObrisiLekar;
+        protected override Operation SearchOperation => Operation.PretraziLekar;
+
+        protected override FrmLekar GetSearchForm() => FormManager.Instance.Get<FrmLekar>() ?? new FrmLekar();
+
+        protected override FrmLekarCRUD GetCrudForm() => FormManager.Instance.Get<FrmLekarCRUD>();
+
+        protected override Lekar CreateEntityFromForm(FrmLekarCRUD form) => new Lekar
+        {
+            Id = form.Lekar?.Id ?? 0,
+            Ime = form.tbIme.Text.Trim(),
+            Prezime = form.tbPrezime.Text.Trim(),
+            Email = form.tbEmail.Text.Trim(),
+            Sifra = form.tbSifra.Text.Trim(),
+            Sertifikati = form.lbSertifikati.Items.Cast<Sertifikat>().ToList()
+        };
+
+        protected override void FillFormWithEntity(FrmLekarCRUD form, Lekar entity)
+        {
+            form.PrikaziDetalje(entity);
+        }
+
+        protected override string GetSearchCriteria(FrmLekar form) => form.ConstructCriteria();
+
+        protected override void BindSearchResults(FrmLekar form, List<Lekar> results)
+        {
+            form.dgvLekari.DataSource = results;
+
+            foreach (DataGridViewColumn col in form.dgvLekari.Columns)
+            {
+                col.Visible = col.Name == nameof(Lekar.Id)
+                           || col.Name == nameof(Lekar.Ime)
+                           || col.Name == nameof(Lekar.Prezime)
+                           || col.Name == nameof(Lekar.Email)
+                           || col.Name == nameof(Lekar.Sifra)
+                           || col.Name == nameof(Lekar.Sertifikati);
+            }
+        }
+
         internal void Prijavi()
         {
             try
@@ -49,161 +90,6 @@ namespace Client.GuiController.Services
             {
                 MessageBox.Show("Ne može da se otvori glavna forma i meni.\n\n(" + ex.Message + ")", "Greška");
             }
-        }
-
-        public void Kreiraj()
-        {
-            try
-            {
-                FrmLekarCRUD frm = FormManager.Instance.Get<FrmLekarCRUD>();
-
-                if (!frm.Validation())
-                    throw new Exception("Sva polja moraju biti popunjena.");
-
-                Lekar lekar = new Lekar
-                {
-                    Ime = frm.tbIme.Text.Trim(),
-                    Prezime = frm.tbPrezime.Text.Trim(),
-                    Email = frm.tbEmail.Text.Trim(),
-                    Sifra = frm.tbSifra.Text.Trim(),
-
-                    Sertifikati = frm.lbSertifikati.Items.Cast<Sertifikat>().ToList()
-                };
-
-                Response response = Communication.Instance.SendRequest<Lekar, Lekar>(lekar, Operation.KreirajLekar);
-
-                if (response.ExceptionType != null)
-                    throw new Exception(response.ExceptionMessage);
-
-                MessageBox.Show("Sistem je zapamtio lekara.");
-                FormManager.Instance.Close<FrmLekarCRUD>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sistem ne može da zapamti lekara.\n\n(" + ex.Message + ")", "Greška");
-            }
-        }
-
-        public List<Lekar> Pretrazi()
-        {
-            try
-            {
-                FrmLekar? frm = FormManager.Instance.Get<FrmLekar>();
-
-                if (frm == null) frm = new();
-                string kriterijum = frm.ConstructCriteria();
-
-                Response response = Communication.Instance.SendRequestList<string, Lekar>(kriterijum, Operation.PretraziLekar);
-
-                if (response.ExceptionType != null)
-                    throw new Exception(response.ExceptionMessage);
-
-                MessageBox.Show("Sistem je našao lekare po zadatim kriterijumima.");
-                frm.dgvLekari.DataSource = response.Result;
-
-                foreach (DataGridViewColumn col in frm.dgvLekari.Columns)
-                    if (col.Name != nameof(Lekar.Id) && col.Name != nameof(Lekar.Ime) && col.Name != nameof(Lekar.Prezime) && col.Name != nameof(Lekar.Email) && col.Name != nameof(Lekar.Sifra) && col.Name != nameof(Lekar.Sertifikati))
-                        col.Visible = false;
-
-                return response.Result as List<Lekar>;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sistem ne može da pronađe lekare.\n\n(" + ex.Message + ")", "Greška");
-                return null;
-            }
-        }
-
-        public void PrikaziDetalje()
-        {
-            try
-            {
-                FrmLekar frm = FormManager.Instance.Get<FrmLekar>();
-
-                if (frm.dgvLekari.SelectedRows.Count == 0)
-                    throw new Exception("Nijedan lekar nije selektovan.");
-
-                Lekar selektovani = frm.dgvLekari.SelectedRows[0].DataBoundItem as Lekar;
-
-                if (selektovani == null)
-                    throw new Exception();
-
-                MessageBox.Show("Sistem je našao lekara.");
-
-                FormManager.Instance.Open<FrmLekarCRUD>(f =>
-                {
-                    f.PrikaziDetalje(selektovani);
-                    f.FormClosed += (s, e) => Pretrazi();
-                });
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sistem ne može da nađe lekara.\n\n(" + ex.Message + ")", "Greška");
-            }
-        }
-
-        public void Promeni()
-        {
-            try
-            {
-                FrmLekarCRUD frm = FormManager.Instance.Get<FrmLekarCRUD>();
-
-                if (!frm.Validation())
-                    throw new Exception("Sva polja moraju biti popunjena.");
-
-                Lekar lekar = new Lekar
-                {
-                    Id = frm.Lekar.Id,
-                    Ime = frm.tbIme.Text.Trim(),
-                    Prezime = frm.tbPrezime.Text.Trim(),
-                    Email = frm.tbEmail.Text.Trim(),
-                    Sifra = frm.tbSifra.Text.Trim(),
-
-                    Sertifikati = frm.lbSertifikati.Items.Cast<Sertifikat>().ToList()
-                };
-
-                Response response = Communication.Instance.SendRequest<Lekar, Lekar>(lekar, Operation.PromeniLekar);
-
-                if (response.ExceptionType != null)
-                    throw new Exception(response.ExceptionMessage);
-
-                MessageBox.Show("Sistem je uspešno izmenio lekara.");
-                FormManager.Instance.Close<FrmLekarCRUD>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sistem ne može da izmeni lekara.\n\n(" + ex.Message + ")", "Greška");
-            }
-        }
-
-        public void Obrisi()
-        {
-            try
-            {
-                FrmLekarCRUD frm = FormManager.Instance.Get<FrmLekarCRUD>();
-
-                Lekar lekar = new Lekar
-                {
-                    Id = frm.Lekar.Id
-                };
-
-                Response response = Communication.Instance.SendRequest<Lekar, Lekar>(lekar, Operation.ObrisiLekar);
-
-                if (response.ExceptionType != null)
-                    throw new Exception(response.ExceptionMessage);
-
-                MessageBox.Show("Lekar je uspešno obrisan.");
-                FormManager.Instance.Close<FrmLekarCRUD>();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Sistem ne može da obriše lekara.\n\n(" + ex.Message + ")", "Greška");
-            }
-        }
-
-        private List<Sertifikat> GetSertifikatiList(ListBox lb)
-        {
-            return lb.DataSource as List<Sertifikat> ?? lb.Items.OfType<Sertifikat>().ToList();
         }
 
         internal void DodajSertifikat()
@@ -255,5 +141,9 @@ namespace Client.GuiController.Services
             }
         }
 
+        private List<Sertifikat> GetSertifikatiList(ListBox lb)
+        {
+            return lb.DataSource as List<Sertifikat> ?? lb.Items.OfType<Sertifikat>().ToList();
+        }
     }
 }

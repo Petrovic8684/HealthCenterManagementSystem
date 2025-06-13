@@ -2,7 +2,7 @@
 
 namespace Common.Domain
 {
-    public class Mesto : IEntity
+    public class Mesto : ICrudEntity
     {
         public int Id { get; set; }
         public string Naziv { get; set; }

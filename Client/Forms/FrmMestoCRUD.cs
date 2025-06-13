@@ -1,11 +1,12 @@
-﻿using Client.GuiController;
+﻿using Client.Forms;
+using Client.GuiController;
 using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmMestoCRUD : Form
+    internal partial class FrmMestoCRUD : Form, ICrudForm<Mesto>
     {
-        public Mesto? Mesto { get; set; }
+        internal Mesto? Mesto { get; set; }
 
         public FrmMestoCRUD()
         {
@@ -34,26 +35,9 @@ namespace Client
             btnObrisi.Enabled = true;
         }
 
-        internal bool Validation()
+        public bool Validation()
         {
-            tbNaziv.BackColor = Color.White;
-            tbPostanskiBroj.BackColor = Color.White;
-
-            bool isValid = true;
-
-            if (string.IsNullOrEmpty(tbNaziv.Text))
-            {
-                tbNaziv.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            if(string.IsNullOrEmpty(tbPostanskiBroj.Text))
-            {
-                tbPostanskiBroj.BackColor = Color.FromArgb(255, 220, 220);
-                isValid = false;
-            }
-
-            return isValid;
+            return FormValidator.ValidateTextFields(tbNaziv, tbPostanskiBroj);
         }
     }
 }

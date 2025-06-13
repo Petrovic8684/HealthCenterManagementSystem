@@ -1,11 +1,10 @@
 ﻿using Client.Forms;
 using Client.GuiController;
 using Client.GuiController.Criteria;
-using Common.Domain;
 
 namespace Client
 {
-    public partial class FrmDijagnoza : Form, ICriteriaForm
+    internal partial class FrmDijagnoza : Form, IForm
     {
         public FrmDijagnoza()
         {

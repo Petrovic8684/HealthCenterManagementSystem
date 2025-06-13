@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class FrmOProgramu : Form
+    internal partial class FrmOProgramu : Form
     {
         public FrmOProgramu()
         {
