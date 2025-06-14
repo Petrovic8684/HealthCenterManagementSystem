@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Common.Domain
 {
@@ -8,43 +9,64 @@ namespace Common.Domain
         public string Opis { get; set; }
 
         public string TableName => "sertifikat";
-        public string Values => $"'{Opis}'";
-        public string SetClause => $"opis = '{Opis}'";
-        public string PrimaryKey => $"idSertifikat";
-        public string PrimaryKeyCondition => $"idSertifikat = {Id}";
-        public string Prikaz => $"{Opis}";
 
-        public string Criteria
+        public string Columns => "opis";
+
+        public string ValuesClause => "@Opis";
+
+        public string SetClause => "opis = @Opis";
+
+        public string PrimaryKey => "idSertifikat";
+
+        public string PrimaryKeyCondition => "idSertifikat = @Id";
+
+        public string Prikaz => Opis;
+
+        public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
-            get
+            var conditions = new List<string>();
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(Opis))
             {
-                var criteria = new List<string>();
-
-                if (!string.IsNullOrWhiteSpace(Opis))
-                    criteria.Add($"opis LIKE '%{Opis}%'");
-
-                return criteria.Count > 0 ? string.Join(" AND ", criteria) : "1=1";
+                conditions.Add("opis LIKE @Opis");
+                parameters.Add(new SqlParameter("@Opis", $"%{Opis}%"));
             }
+
+            return (conditions.Count > 0 ? string.Join(" AND ", conditions) : "1=1", parameters);
         }
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
-            List<IEntity> sertifikati = new List<IEntity>();
+            var lista = new List<IEntity>();
             while (reader.Read())
             {
-                Sertifikat sertifikat = new Sertifikat
+                lista.Add(new Sertifikat
                 {
                     Id = (int)reader["idSertifikat"],
-                    Opis = (string)reader["opis"],
-                };
-                sertifikati.Add(sertifikat);
+                    Opis = (string)reader["opis"]
+                });
             }
-            return sertifikati;
+            return lista;
         }
 
-        public override string ToString()
+        public List<SqlParameter> GetSqlParameters()
         {
-            return $"{Prikaz}";
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id),
+                new SqlParameter("@Opis", Opis)
+            };
         }
+
+        public List<SqlParameter> GetPrimaryKeyParameters()
+        {
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id)
+            };
+        }
+
+        public override string ToString() => Prikaz;
     }
 }

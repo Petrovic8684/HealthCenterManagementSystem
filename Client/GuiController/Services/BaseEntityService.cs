@@ -5,7 +5,7 @@ using Client.Forms;
 
 internal abstract class BaseEntityService<T, TForm, TCrudForm>
     where T : class, ICrudEntity, new()
-    where TForm : Form, IForm, new()
+    where TForm : Form, IForm<T>, new()
     where TCrudForm : Form, ICrudForm<T>, new()
 {
     protected abstract Operation CreateOperation { get; }
@@ -17,7 +17,7 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
     protected abstract TForm GetSearchForm();
     protected abstract T CreateEntityFromForm(TCrudForm form);
     protected abstract void FillFormWithEntity(TCrudForm form, T entity);
-    protected abstract string GetSearchCriteria(TForm form);
+    protected abstract T GetSearchCriteria(TForm form);
     protected abstract void BindSearchResults(TForm form, List<T> results);
 
     public void Kreiraj()
@@ -90,9 +90,9 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         try
         {
             var form = GetSearchForm();
-            string criteria = GetSearchCriteria(form);
+            T criteria = GetSearchCriteria(form);
 
-            var response = Communication.Instance.SendRequestList<string, T>(criteria, SearchOperation);
+            var response = Communication.Instance.SendRequestList<T, T>(criteria, SearchOperation);
             CheckResponse(response);
 
             var result = response.Result as List<T>;

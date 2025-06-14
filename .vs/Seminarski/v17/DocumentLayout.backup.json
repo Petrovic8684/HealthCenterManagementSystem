@@ -3,28 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\ientity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\ientity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\server\\systemoperations\\zdravstvenikartonso\\promenizdravstvenikartonso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|solutionrelative:server\\systemoperations\\zdravstvenikartonso\\promenizdravstvenikartonso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\dijagnoza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\dijagnoza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\stavkazdravstvenogkartona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\stavkazdravstvenogkartona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\les.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\les.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\lekar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\lekar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\server\\systemoperations\\lekarso\\promenilekarso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|solutionrelative:server\\systemoperations\\lekarso\\promenilekarso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\client\\guicontroller\\services\\dijagnozaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|solutionrelative:client\\guicontroller\\services\\dijagnozaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\client\\forms\\frmdijagnozacrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|solutionrelative:client\\forms\\frmdijagnozacrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49F8900F-91CD-402C-80FC-A54B299DA717}|DBBroker\\DBBroker.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49F8900F-91CD-402C-80FC-A54B299DA717}|DBBroker\\DBBroker.csproj|solutionrelative:dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,80 +34,67 @@
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StavkaZdravstvenogKartona.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\StavkaZdravstvenogKartona.cs",
+              "RelativeDocumentMoniker": "Common\\Domain\\StavkaZdravstvenogKartona.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\StavkaZdravstvenogKartona.cs",
+              "RelativeToolTip": "Common\\Domain\\StavkaZdravstvenogKartona.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAkwBQAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T14:49:41.036Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "LeS.cs",
               "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\LeS.cs",
               "RelativeDocumentMoniker": "Common\\Domain\\LeS.cs",
               "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\LeS.cs",
               "RelativeToolTip": "Common\\Domain\\LeS.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAqwCkAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAIwDwAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:38.561Z",
+              "WhenOpened": "2025-06-14T14:48:19.042Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Lekar.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Lekar.cs",
-              "RelativeDocumentMoniker": "Common\\Domain\\Lekar.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Lekar.cs",
-              "RelativeToolTip": "Common\\Domain\\Lekar.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAuwD4AAAABAAAAAAAAAA==",
+              "Title": "PromeniLekarSO.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\LekarSO\\PromeniLekarSO.cs",
+              "RelativeDocumentMoniker": "Server\\SystemOperations\\LekarSO\\PromeniLekarSO.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\LekarSO\\PromeniLekarSO.cs",
+              "RelativeToolTip": "Server\\SystemOperations\\LekarSO\\PromeniLekarSO.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAAACAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:33.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Dijagnoza.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Dijagnoza.cs",
-              "RelativeDocumentMoniker": "Common\\Domain\\Dijagnoza.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Dijagnoza.cs",
-              "RelativeToolTip": "Common\\Domain\\Dijagnoza.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA/wBIAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:26.435Z",
+              "WhenOpened": "2025-06-14T14:41:34.119Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IEntity.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\IEntity.cs",
-              "RelativeDocumentMoniker": "Common\\Domain\\IEntity.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\IEntity.cs",
-              "RelativeToolTip": "Common\\Domain\\IEntity.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAcAAAAAAAAAA==",
+              "Title": "PromeniZdravstveniKartonSO.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\ZdravstveniKartonSO\\PromeniZdravstveniKartonSO.cs",
+              "RelativeDocumentMoniker": "Server\\SystemOperations\\ZdravstveniKartonSO\\PromeniZdravstveniKartonSO.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\ZdravstveniKartonSO\\PromeniZdravstveniKartonSO.cs",
+              "RelativeToolTip": "Server\\SystemOperations\\ZdravstveniKartonSO\\PromeniZdravstveniKartonSO.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAwwBQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:17.251Z",
+              "WhenOpened": "2025-06-14T14:41:12.069Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "DijagnozaService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\GuiController\\Services\\DijagnozaService.cs",
-              "RelativeDocumentMoniker": "Client\\GuiController\\Services\\DijagnozaService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\GuiController\\Services\\DijagnozaService.cs",
-              "RelativeToolTip": "Client\\GuiController\\Services\\DijagnozaService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
+              "Title": "Broker.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\DBBroker\\Broker.cs",
+              "RelativeDocumentMoniker": "DBBroker\\Broker.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\DBBroker\\Broker.cs",
+              "RelativeToolTip": "DBBroker\\Broker.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAEwHkAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:31:53.237Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FrmDijagnozaCRUD.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "RelativeDocumentMoniker": "Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "RelativeToolTip": "Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:31:06.217Z",
+              "WhenOpened": "2025-06-14T14:22:03.943Z",
               "EditorCaption": ""
             }
           ]

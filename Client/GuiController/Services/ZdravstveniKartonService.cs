@@ -28,7 +28,7 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
         form.PrikaziDetalje(entity);
     }
 
-    protected override string GetSearchCriteria(FrmZdravstveniKarton form) => form.ConstructCriteria();
+    protected override ZdravstveniKarton GetSearchCriteria(FrmZdravstveniKarton form) => form.ConstructCriteria();
 
     protected override void BindSearchResults(FrmZdravstveniKarton form, List<ZdravstveniKarton> results)
     {

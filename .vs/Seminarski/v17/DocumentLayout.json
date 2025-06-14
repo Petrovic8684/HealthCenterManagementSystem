@@ -1,122 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{49F8900F-91CD-402C-80FC-A54B299DA717}|DBBroker\\DBBroker.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49F8900F-91CD-402C-80FC-A54B299DA717}|DBBroker\\DBBroker.csproj|solutionrelative:dbbroker\\broker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\lekar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\lekar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\dijagnoza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\dijagnoza.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\les.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\les.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\client\\guicontroller\\services\\dijagnozaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|solutionrelative:client\\guicontroller\\services\\dijagnozaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\client\\forms\\frmdijagnozacrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5B20F173-1DC8-4057-BB5E-E935301C9C7C}|Client\\Client.csproj|solutionrelative:client\\forms\\frmdijagnozacrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Broker.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\DBBroker\\Broker.cs",
-              "RelativeDocumentMoniker": "DBBroker\\Broker.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\DBBroker\\Broker.cs",
-              "RelativeToolTip": "DBBroker\\Broker.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAwwGEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:42:33.938Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LeS.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\LeS.cs",
-              "RelativeDocumentMoniker": "Common\\Domain\\LeS.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\LeS.cs",
-              "RelativeToolTip": "Common\\Domain\\LeS.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAqwCkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:38.561Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Lekar.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Lekar.cs",
-              "RelativeDocumentMoniker": "Common\\Domain\\Lekar.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Lekar.cs",
-              "RelativeToolTip": "Common\\Domain\\Lekar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:33.542Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Dijagnoza.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Dijagnoza.cs",
-              "RelativeDocumentMoniker": "Common\\Domain\\Dijagnoza.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Dijagnoza.cs",
-              "RelativeToolTip": "Common\\Domain\\Dijagnoza.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA/wBIAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:40:26.435Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DijagnozaService.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\GuiController\\Services\\DijagnozaService.cs",
-              "RelativeDocumentMoniker": "Client\\GuiController\\Services\\DijagnozaService.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\GuiController\\Services\\DijagnozaService.cs",
-              "RelativeToolTip": "Client\\GuiController\\Services\\DijagnozaService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:31:53.237Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "FrmDijagnozaCRUD.cs",
-              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "RelativeDocumentMoniker": "Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "RelativeToolTip": "Client\\Forms\\FrmDijagnozaCRUD.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-13T20:31:06.217Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

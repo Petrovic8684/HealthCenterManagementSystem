@@ -29,7 +29,7 @@ namespace Client.GuiController.Services
             form.PrikaziDetalje(entity);
         }
 
-        protected override string GetSearchCriteria(FrmLekar form) => form.ConstructCriteria();
+        protected override Lekar GetSearchCriteria(FrmLekar form) => form.ConstructCriteria();
 
         protected override void BindSearchResults(FrmLekar form, List<Lekar> results)
         {

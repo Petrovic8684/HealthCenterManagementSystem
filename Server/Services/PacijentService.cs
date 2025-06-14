@@ -10,7 +10,7 @@ namespace Server.Services
             new KreirajPacijentSO(pacijent).ExecuteTemplate();
         }
 
-        public List<Pacijent> Pretrazi(string kriterijum)
+        public List<Pacijent> Pretrazi(Pacijent kriterijum)
         {
             var so = new PretraziPacijentSO(kriterijum);
             so.ExecuteTemplate();

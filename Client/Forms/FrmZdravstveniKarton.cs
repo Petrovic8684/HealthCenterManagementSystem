@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmZdravstveniKarton : Form, IForm
+    internal partial class FrmZdravstveniKarton : Form, IForm<ZdravstveniKarton>
     {
         public FrmZdravstveniKarton()
         {
@@ -30,14 +30,14 @@ namespace Client
             );
         }
 
-        public string ConstructCriteria()
+        public ZdravstveniKarton ConstructCriteria()
         {
             return new ZdravstveniKartonCriteriaBuilder()
                 .WithDatumOtvaranjaAfter(mcOtvorenNakon.SelectionStart)
                 .WithImeLekara(tbLekar.Text)
                 .WithImePacijenta(tbPacijent.Text)
                 .WithDijagnoza((Dijagnoza)cbDijagnoze.SelectedItem)
-                .Build().Criteria;
+                .Build();
         }
     }
 }

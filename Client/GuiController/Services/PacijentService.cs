@@ -29,7 +29,7 @@ namespace Client.GuiController.Services
             form.PrikaziDetalje(entity);
         }
 
-        protected override string GetSearchCriteria(FrmPacijent form) => form.ConstructCriteria();
+        protected override Pacijent GetSearchCriteria(FrmPacijent form) => form.ConstructCriteria();
 
         protected override void BindSearchResults(FrmPacijent form, List<Pacijent> results)
         {
@@ -44,7 +44,5 @@ namespace Client.GuiController.Services
                            || col.Name == nameof(Pacijent.Mesto);
             }
         }
-
-        // Brisanje?
     }
 }

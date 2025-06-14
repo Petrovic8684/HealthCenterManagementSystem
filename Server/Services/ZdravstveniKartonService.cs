@@ -10,7 +10,7 @@ namespace Server.Services
             new KreirajZdravstveniKartonSO(zdravstveniKarton).ExecuteTemplate();
         }
 
-        public List<ZdravstveniKarton> Pretrazi(string kriterijum)
+        public List<ZdravstveniKarton> Pretrazi(ZdravstveniKarton kriterijum)
         {
             var so = new PretraziZdravstveniKartonSO(kriterijum);
             so.ExecuteTemplate();

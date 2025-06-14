@@ -57,7 +57,7 @@ namespace Server
                         Controller.Instance.ZdravstveniKartoni.Kreiraj(serializer.ReadType<ZdravstveniKarton>(req.Argument));
                         break;
                     case Operation.PretraziZdravstveniKarton:
-                        r.Result = Controller.Instance.ZdravstveniKartoni.Pretrazi(serializer.ReadType<string>(req.Argument));
+                        r.Result = Controller.Instance.ZdravstveniKartoni.Pretrazi(serializer.ReadType<ZdravstveniKarton>(req.Argument));
                         break;
                     case Operation.PromeniZdravstveniKarton:
                         Controller.Instance.ZdravstveniKartoni.Promeni(serializer.ReadType<ZdravstveniKarton>(req.Argument));
@@ -71,7 +71,7 @@ namespace Server
                         Controller.Instance.Pacijenti.Kreiraj(serializer.ReadType<Pacijent>(req.Argument));
                         break;
                     case Operation.PretraziPacijent:
-                        r.Result = Controller.Instance.Pacijenti.Pretrazi(serializer.ReadType<string>(req.Argument));
+                        r.Result = Controller.Instance.Pacijenti.Pretrazi(serializer.ReadType<Pacijent>(req.Argument));
                         break;
                     case Operation.PromeniPacijent:
                         Controller.Instance.Pacijenti.Promeni(serializer.ReadType<Pacijent>(req.Argument));
@@ -90,7 +90,7 @@ namespace Server
                         Controller.Instance.Lekari.Kreiraj(serializer.ReadType<Lekar>(req.Argument));
                         break;
                     case Operation.PretraziLekar:
-                        r.Result = Controller.Instance.Lekari.Pretrazi(serializer.ReadType<string>(req.Argument));
+                        r.Result = Controller.Instance.Lekari.Pretrazi(serializer.ReadType<Lekar>(req.Argument));
                         break;
                     case Operation.PromeniLekar:
                         Controller.Instance.Lekari.Promeni(serializer.ReadType<Lekar>(req.Argument));
@@ -106,7 +106,7 @@ namespace Server
                         Controller.Instance.Dijagnoze.Kreiraj(serializer.ReadType<Dijagnoza>(req.Argument));
                         break;
                     case Operation.PretraziDijagnoza:
-                        r.Result = Controller.Instance.Dijagnoze.Pretrazi(serializer.ReadType<string>(req.Argument));
+                        r.Result = Controller.Instance.Dijagnoze.Pretrazi(serializer.ReadType<Dijagnoza>(req.Argument));
                         break;
                     case Operation.PromeniDijagnoza:
                         Controller.Instance.Dijagnoze.Promeni(serializer.ReadType<Dijagnoza>(req.Argument));
@@ -123,7 +123,7 @@ namespace Server
                         Controller.Instance.Mesta.Kreiraj(serializer.ReadType<Mesto>(req.Argument));
                         break;
                     case Operation.PretraziMesto:
-                        r.Result = Controller.Instance.Mesta.Pretrazi(serializer.ReadType<string>(req.Argument));
+                        r.Result = Controller.Instance.Mesta.Pretrazi(serializer.ReadType<Mesto>(req.Argument));
                         break;
                     case Operation.PromeniMesto:
                         Controller.Instance.Mesta.Promeni(serializer.ReadType<Mesto>(req.Argument));
@@ -139,7 +139,7 @@ namespace Server
                         Controller.Instance.Sertifikati.Kreiraj(serializer.ReadType<Sertifikat>(req.Argument));
                         break;
                     case Operation.PretraziSertifikat:
-                        r.Result = Controller.Instance.Sertifikati.Pretrazi(serializer.ReadType<string>(req.Argument));
+                        r.Result = Controller.Instance.Sertifikati.Pretrazi(serializer.ReadType<Sertifikat>(req.Argument));
                         break;
                     case Operation.PromeniSertifikat:
                         Controller.Instance.Sertifikati.Promeni(serializer.ReadType<Sertifikat>(req.Argument));

@@ -3,7 +3,7 @@ using Client.GuiController;
 
 namespace Client
 {
-    internal partial class FrmLogin : Form, IForm
+    internal partial class FrmLogin : Form
     {
         public FrmLogin()
         {
@@ -18,7 +18,5 @@ namespace Client
             bool validText = FormValidator.ValidateTextFields(tbEmail, tbSifra);
             return validText;
         }
-
-        public string ConstructCriteria() { throw new NotImplementedException(); }
     }
 }

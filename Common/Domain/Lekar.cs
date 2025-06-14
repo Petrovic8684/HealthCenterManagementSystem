@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Common.Domain
 {
@@ -9,55 +10,117 @@ namespace Common.Domain
         public string Prezime { get; set; }
         public string Email { get; set; }
         public string Sifra { get; set; }
-        public List<Sertifikat> Sertifikati { get; set; }
+        public List<Sertifikat> Sertifikati { get; set; } = new List<Sertifikat>();
 
         public string TableName => "lekar";
-        public string Values => $"'{Ime}', '{Prezime}', '{Email}', '{Sifra}'";
-        public string SetClause => $"ime = '{Ime}', prezime = '{Prezime}', email = '{Email}', sifra = '{Sifra}'";
-        public string PrimaryKey => $"idLekar";
-        public string PrimaryKeyCondition => $"idLekar = {Id}";
+
+        public string Columns => "ime, prezime, email, sifra";
+
+        public string ValuesClause => "@Ime, @Prezime, @Email, @Sifra";
+
+        public string SetClause => "ime = @Ime, prezime = @Prezime, email = @Email, sifra = @Sifra";
+
+        public string PrimaryKey => "idLekar";
+
+        public string PrimaryKeyCondition => "idLekar = @Id";
+
         public string Prikaz => $"{Ime} {Prezime}";
 
-        public string Criteria
+        public string JoinTableName =>
+            "lekar l " +
+            "LEFT JOIN les les ON l.idLekar = les.idLekar " +
+            "LEFT JOIN sertifikat s ON les.idSertifikat = s.idSertifikat";
+
+        public string SelectClause =>
+            "l.idLekar, l.ime, l.prezime, l.email, l.sifra, " +
+            "s.idSertifikat AS SertifikatId, s.opis AS SertifikatOpis";
+
+        public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
-            get
+            var conditions = new List<string>();
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(Ime))
             {
-                var criteria = new List<string>();
-
-                if (!string.IsNullOrWhiteSpace(Ime))
-                    criteria.Add($"ime LIKE '%{Ime}%'");
-
-                if (!string.IsNullOrWhiteSpace(Prezime))
-                    criteria.Add($"prezime LIKE '%{Prezime}%'");
-
-                if (Sertifikati?.Count > 0)
-                    criteria.Add($"idLekar IN (SELECT idLekar FROM LeS WHERE idSertifikat = {Sertifikati[0]?.Id})");
-
-                return criteria.Count > 0 ? string.Join(" AND ", criteria) : "1=1";
+                conditions.Add("l.ime LIKE @Ime");
+                parameters.Add(new SqlParameter("@Ime", $"%{Ime}%"));
             }
+
+            if (!string.IsNullOrWhiteSpace(Prezime))
+            {
+                conditions.Add("l.prezime LIKE @Prezime");
+                parameters.Add(new SqlParameter("@Prezime", $"%{Prezime}%"));
+            }
+
+            if (Sertifikati?.Count > 0 && Sertifikati[0]?.Id > 0)
+            {
+                conditions.Add("l.idLekar IN (SELECT idLekar FROM les WHERE idSertifikat = @IdSertifikat)");
+                parameters.Add(new SqlParameter("@IdSertifikat", Sertifikati[0].Id));
+            }
+
+            return (conditions.Count > 0 ? string.Join(" AND ", conditions) : "1=1", parameters);
         }
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
-            List<IEntity> lekari = new List<IEntity>();
+            var lekari = new List<IEntity>();
+            var lekarDict = new Dictionary<int, Lekar>();
+
             while (reader.Read())
             {
-                Lekar lekar = new Lekar
+                int idLekar = (int)reader["idLekar"];
+
+                if (!lekarDict.TryGetValue(idLekar, out var lekar))
                 {
-                    Id = (int)reader["idLekar"],
-                    Ime = (string)reader["ime"],
-                    Prezime = (string)reader["prezime"],
-                    Email = (string)reader["email"],
-                    Sifra = (string)reader["sifra"],
-                };
-                lekari.Add(lekar);
+                    lekar = new Lekar
+                    {
+                        Id = idLekar,
+                        Ime = (string)reader["ime"],
+                        Prezime = (string)reader["prezime"],
+                        Email = (string)reader["email"],
+                        Sifra = (string)reader["sifra"],
+                        Sertifikati = new List<Sertifikat>()
+                    };
+                    lekarDict[idLekar] = lekar;
+                }
+
+                if (reader["SertifikatId"] != DBNull.Value)
+                {
+                    var sertifikat = new Sertifikat
+                    {
+                        Id = (int)reader["SertifikatId"],
+                        Opis = (string)reader["SertifikatOpis"]
+                    };
+
+                    if (!lekar.Sertifikati.Exists(s => s.Id == sertifikat.Id))
+                        lekar.Sertifikati.Add(sertifikat);
+                }
             }
+
+            lekari.AddRange(lekarDict.Values);
             return lekari;
         }
 
-        public override string ToString()
+        public List<SqlParameter> GetSqlParameters()
         {
-            return $"{Prikaz}";
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id),
+                new SqlParameter("@Ime", Ime),
+                new SqlParameter("@Prezime", Prezime),
+                new SqlParameter("@Email", Email),
+                new SqlParameter("@Sifra", Sifra),
+            };
         }
+
+        public List<SqlParameter> GetPrimaryKeyParameters()
+        {
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id)
+            };
+        }
+
+        public override string ToString() => Prikaz;
     }
 }

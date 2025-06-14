@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmPacijent : Form, IForm
+    internal partial class FrmPacijent : Form, IForm<Pacijent>
     {
         public FrmPacijent()
         {
@@ -30,13 +30,13 @@ namespace Client
             );
         }
 
-        public string ConstructCriteria()
+        public Pacijent ConstructCriteria()
         {
             return new PacijentCriteriaBuilder()
                 .WithIme(tbIme.Text)
                 .WithPrezime(tbPrezime.Text)
                 .WithMesto((Mesto)cbMesta.SelectedItem)
-                .Build().Criteria;
+                .Build();
         }
     }
 }

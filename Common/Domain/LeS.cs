@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
+using System;
 
 namespace Common.Domain
 {
@@ -9,34 +11,75 @@ namespace Common.Domain
         public DateTime DatumIzdavanja { get; set; }
 
         public string TableName => "les";
-        public string Values => $"{IdLekar}, {IdSertifikat}, '{DatumIzdavanja}'";
-        public string SetClause => $"idLekar = {IdLekar}, idSertifikat = {IdSertifikat}, datumIzdavanja = '{DatumIzdavanja}'";
-        public string PrimaryKey => $"idLekar, idSertifikat";
 
-        public string PrimaryKeyCondition => $"idLekar = {IdLekar} AND idSertifikat = {IdSertifikat}";
-        public string Prikaz => $"{DatumIzdavanja}";
+        public string Columns => "idLekar, idSertifikat, datumIzdavanja";
 
-        public string Criteria { get; }
+        public string ValuesClause => "@IdLekar, @IdSertifikat, @DatumIzdavanja";
+
+        public string SetClause => "datumIzdavanja = @DatumIzdavanja";
+
+        public string PrimaryKey => "idLekar AND idSertifikat";
+
+        public string PrimaryKeyCondition => "idLekar = @IdLekar AND idSertifikat = @IdSertifikat";
+
+        public string Prikaz => DatumIzdavanja.ToShortDateString();
+
+        public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
+        {
+            var conditions = new List<string>();
+            var parameters = new List<SqlParameter>();
+
+            if (IdLekar > 0)
+            {
+                conditions.Add("idLekar = @IdLekar");
+                parameters.Add(new SqlParameter("@IdLekar", IdLekar));
+            }
+
+            if (IdSertifikat > 0)
+            {
+                conditions.Add("idSertifikat = @IdSertifikat");
+                parameters.Add(new SqlParameter("@IdSertifikat", IdSertifikat));
+            }
+
+            string whereClause = conditions.Count > 0 ? string.Join(" AND ", conditions) : "1=1";
+
+            return (whereClause, parameters);
+        }
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
-            List<IEntity> lesLista = new List<IEntity>();
+            var lista = new List<IEntity>();
             while (reader.Read())
             {
-                LeS les = new LeS
+                lista.Add(new LeS
                 {
                     IdLekar = (int)reader["idLekar"],
                     IdSertifikat = (int)reader["idSertifikat"],
                     DatumIzdavanja = (DateTime)reader["datumIzdavanja"],
-                };
-                lesLista.Add(les);
+                });
             }
-            return lesLista;
+            return lista;
         }
 
-        public override string ToString()
+        public List<SqlParameter> GetSqlParameters()
         {
-            return $"{Prikaz}";
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@IdLekar", IdLekar),
+                new SqlParameter("@IdSertifikat", IdSertifikat),
+                new SqlParameter("@DatumIzdavanja", DatumIzdavanja),
+            };
         }
+
+        public List<SqlParameter> GetPrimaryKeyParameters()
+        {
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@IdLekar", IdLekar),
+                new SqlParameter("@IdSertifikat", IdSertifikat)
+            };
+        }
+
+        public override string ToString() => Prikaz;
     }
 }

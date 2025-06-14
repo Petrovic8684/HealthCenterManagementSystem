@@ -1,10 +1,11 @@
 ﻿using Client.Forms;
 using Client.GuiController;
 using Client.GuiController.Criteria;
+using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmDijagnoza : Form, IForm
+    internal partial class FrmDijagnoza : Form, IForm<Dijagnoza>
     {
         public FrmDijagnoza()
         {
@@ -21,12 +22,12 @@ namespace Client
             btnDetalji.Click += (s, e) => Controller.Instance.Dijagnoze.PrikaziDetalje();
         }
 
-        public string ConstructCriteria()
+        public Dijagnoza ConstructCriteria()
         {
             return new DijagnozaCriteriaBuilder()
                 .WithNaziv(tbNaziv.Text)
                 .WithOpis(tbOpis.Text)
-                .Build().Criteria;
+                .Build();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Server.Services
             new KreirajDijagnozaSO(dijagnoza).ExecuteTemplate();
         }
 
-        public List<Dijagnoza> Pretrazi(string kriterijum)
+        public List<Dijagnoza> Pretrazi(Dijagnoza kriterijum)
         {
             var so = new PretraziDijagnozaSO(kriterijum);
             so.ExecuteTemplate();

@@ -10,7 +10,7 @@ namespace Server.Services
             new KreirajMestoSO(mesto).ExecuteTemplate();
         }
 
-        public List<Mesto> Pretrazi(string kriterijum)
+        public List<Mesto> Pretrazi(Mesto kriterijum)
         {
             var so = new PretraziMestoSO(kriterijum);
             so.ExecuteTemplate();

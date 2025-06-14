@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmSertifikat : Form, IForm
+    internal partial class FrmSertifikat : Form, IForm<Sertifikat>
     {
         public FrmSertifikat()
         {
@@ -22,11 +22,11 @@ namespace Client
             btnDetalji.Click += (s, e) => Controller.Instance.Sertifikati.PrikaziDetalje();
         }
 
-        public string ConstructCriteria()
+        public Sertifikat ConstructCriteria()
         {
             return new SertifikatCriteriaBuilder()
                 .WithOpis(tbOpis.Text)
-                .Build().Criteria;
+                .Build();
         }
     }
 }

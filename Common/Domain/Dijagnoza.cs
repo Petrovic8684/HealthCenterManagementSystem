@@ -1,57 +1,84 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Common.Domain
 {
     public class Dijagnoza : ICrudEntity
     {
         public int Id { get; set; }
-        public string Naziv { get; set; }
+        public string Naziv {  get; set; }
         public string Opis { get; set; }
-        public double BazniSkor { get; set; }
+        public Double BazniSkor {  get; set; }
 
         public string TableName => "dijagnoza";
-        public string Values => $"'{Naziv}', '{Opis}', '{BazniSkor}'";
-        public string SetClause => $"naziv = '{Naziv}', opis = '{Opis}', bazniSkor = '{BazniSkor}'";
-        public string PrimaryKey => $"idDijagnoza";
-        public string PrimaryKeyCondition => $"idDijagnoza = {Id}";
-        public string Prikaz => $"{Naziv}";
 
-        public string Criteria
+        public string Columns => "naziv, opis, bazniSkor";
+
+        public string ValuesClause => "@Naziv, @Opis, @BazniSkor";
+
+        public string SetClause => "naziv = @Naziv, opis = @Opis, bazniSkor = @BazniSkor";
+
+        public string PrimaryKey => "idDijagnoza";
+
+        public string PrimaryKeyCondition => "idDijagnoza = @Id";
+
+        public string Prikaz => Naziv;
+
+        public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
-            get
+            var conditions = new List<string>();
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(Naziv))
             {
-                var criteria = new List<string>();
-
-                if (!string.IsNullOrWhiteSpace(Naziv))
-                    criteria.Add($"naziv LIKE '%{Naziv}%'");
-
-                if (!string.IsNullOrWhiteSpace(Opis))
-                    criteria.Add($"opis LIKE '%{Opis}%'");
-
-                return criteria.Count > 0 ? string.Join(" AND ", criteria) : "1=1";
+                conditions.Add("naziv LIKE @Naziv");
+                parameters.Add(new SqlParameter("@Naziv", $"%{Naziv}%"));
             }
+
+            if (!string.IsNullOrWhiteSpace(Opis))
+            {
+                conditions.Add("opis LIKE @Opis");
+                parameters.Add(new SqlParameter("@Opis", $"%{Opis}%"));
+            }
+
+            return (conditions.Count > 0 ? string.Join(" AND ", conditions) : "1=1", parameters);
         }
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
-            List<IEntity> dijagnoze = new List<IEntity>();
+            var lista = new List<IEntity>();
             while (reader.Read())
             {
-                Dijagnoza dijagnoza = new Dijagnoza
+                lista.Add(new Dijagnoza
                 {
                     Id = (int)reader["idDijagnoza"],
                     Naziv = (string)reader["naziv"],
                     Opis = (string)reader["opis"],
-                    BazniSkor = (double)reader["bazniSkor"],
-                };
-                dijagnoze.Add(dijagnoza);
+                    BazniSkor = (double)(reader["bazniSkor"])
+                });
             }
-            return dijagnoze;
+            return lista;
         }
 
-        public override string ToString()
+        public List<SqlParameter> GetSqlParameters()
         {
-            return $"{Prikaz}";
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id),
+                new SqlParameter("@Naziv", Naziv),
+                new SqlParameter("@Opis", Opis),
+                new SqlParameter("@BazniSkor", BazniSkor)
+            };
         }
+
+        public List<SqlParameter> GetPrimaryKeyParameters()
+        {
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id)
+            };
+        }
+
+        public override string ToString() => Prikaz;
     }
 }

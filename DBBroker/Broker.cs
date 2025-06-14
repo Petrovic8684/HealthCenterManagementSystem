@@ -41,15 +41,40 @@ namespace DBBroker
         public void Add(IEntity obj)
         {
             SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO {obj.TableName} VALUES({obj.Values} )";
+            cmd.CommandText = $"INSERT INTO {obj.TableName} ({obj.Columns}) VALUES ({obj.ValuesClause})";
+
+            foreach (var param in obj.GetSqlParameters())
+                cmd.Parameters.Add(param);
+
             cmd.ExecuteNonQuery();
             cmd.Dispose();
+        }
+
+        public int AddWithReturnId(IEntity entity)
+        {
+            using SqlCommand cmd = connection.CreateCommand();
+
+            cmd.CommandText = $"INSERT INTO {entity.TableName} ({entity.Columns}) OUTPUT INSERTED.{entity.PrimaryKey} VALUES ({entity.ValuesClause})";
+
+            foreach (var param in entity.GetSqlParameters())
+                cmd.Parameters.Add(param);
+
+            int id = (int)cmd.ExecuteScalar();
+            return id;
         }
 
         public void Update(IEntity obj)
         {
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = $"UPDATE {obj.TableName} SET {obj.SetClause} WHERE {obj.PrimaryKeyCondition}";
+
+            foreach (var param in obj.GetSqlParameters())
+                cmd.Parameters.Add(param);
+
+            foreach (var param in obj.GetPrimaryKeyParameters())
+                if (!cmd.Parameters.Contains(param.ParameterName))
+                    cmd.Parameters.Add(param);
+
             cmd.ExecuteNonQuery();
             cmd.Dispose();
         }
@@ -58,40 +83,42 @@ namespace DBBroker
         {
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = $"DELETE FROM {obj.TableName} WHERE {obj.PrimaryKeyCondition}";
+
+            foreach (var param in obj.GetPrimaryKeyParameters())
+                cmd.Parameters.Add(param);
+
             cmd.ExecuteNonQuery();
             cmd.Dispose();
         }
 
+
         public List<IEntity> GetAll(IEntity entity)
         {
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM {entity.TableName}";
-            using SqlDataReader reader = command.ExecuteReader();
-            List<IEntity> list = entity.GetReaderList(reader);
-            command.Dispose();
-            return list;
+            using SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = $"SELECT * FROM {entity.TableName}";
+            using SqlDataReader reader = cmd.ExecuteReader();
+            return entity.GetReaderList(reader);
         }
 
-        public List<IEntity> GetByCondition(IEntity entity, string condition)
+        public List<IEntity> GetByCondition(IEntity entity)
         {
-            SqlCommand command = connection.CreateCommand();
-            command.CommandText = $"SELECT * FROM {entity.TableName} WHERE {condition}";
-            using SqlDataReader reader = command.ExecuteReader();
-            List<IEntity> list = entity.GetReaderList(reader);
-            command.Dispose();
-            return list;
+            using SqlCommand cmd = connection.CreateCommand();
+
+            var (whereClause, parameters) = entity.GetWhereClauseWithParameters();
+
+            string tableName = !string.IsNullOrEmpty(entity.JoinTableName)
+                ? entity.JoinTableName
+                : entity.TableName;
+
+            string selectClause = entity.SelectClause ?? "*";
+
+            cmd.CommandText = $"SELECT {selectClause} FROM {tableName} WHERE {whereClause}";
+
+            foreach (var param in parameters)
+                cmd.Parameters.Add(param);
+
+            using SqlDataReader reader = cmd.ExecuteReader();
+            return entity.GetReaderList(reader);
         }
-
-        public int AddWithReturnId(IEntity entity)
-        {
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = $"INSERT INTO {entity.TableName} OUTPUT INSERTED.{entity.PrimaryKey} VALUES ({entity.Values})";
-
-            int id = (int)cmd.ExecuteScalar();
-            cmd.Dispose();
-
-            return id;
-        }
-
     }
 }

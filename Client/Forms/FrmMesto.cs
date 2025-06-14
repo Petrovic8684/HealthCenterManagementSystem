@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmMesto : Form, IForm
+    internal partial class FrmMesto : Form, IForm<Mesto>
     {
         public FrmMesto()
         {
@@ -22,12 +22,12 @@ namespace Client
             btnDetalji.Click += (s, e) => Controller.Instance.Mesta.PrikaziDetalje();
         }
 
-        public string ConstructCriteria()
+        public Mesto ConstructCriteria()
         {
             return new MestoCriteriaBuilder()
                 .WithNaziv(tbNaziv.Text)
                 .WithPostanskiBroj(tbPostanskiBroj.Text)
-                .Build().Criteria;
+                .Build();
         }
     }
 }

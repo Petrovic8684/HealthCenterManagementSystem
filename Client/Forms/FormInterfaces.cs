@@ -2,9 +2,9 @@
 
 namespace Client.Forms
 {
-    internal interface IForm
+    internal interface IForm<T> where T : IEntity, new()
     {
-        string ConstructCriteria();
+        T ConstructCriteria();
     }
 
     internal interface ICrudForm<T> where T : ICrudEntity, new()

@@ -27,7 +27,7 @@ namespace Client.GuiController.Services
             form.PrikaziDetalje(entity);
         }
 
-        protected override string GetSearchCriteria(FrmMesto form) => form.ConstructCriteria();
+        protected override Mesto GetSearchCriteria(FrmMesto form) => form.ConstructCriteria();
 
         protected override void BindSearchResults(FrmMesto form, List<Mesto> results)
         {

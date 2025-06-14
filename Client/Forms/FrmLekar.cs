@@ -5,7 +5,7 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmLekar : Form, IForm
+    internal partial class FrmLekar : Form, IForm<Lekar>
     {
         public FrmLekar()
         {
@@ -30,13 +30,13 @@ namespace Client
             );
         }
 
-        public string ConstructCriteria()
+        public Lekar ConstructCriteria()
         {
             return new LekarCriteriaBuilder()
                 .WithIme(tbIme.Text)
                 .WithPrezime(tbPrezime.Text)
                 .WithSertifikat((Sertifikat)cbSertifikati.SelectedItem)
-                .Build().Criteria;
+                .Build();
         }
     }
 }

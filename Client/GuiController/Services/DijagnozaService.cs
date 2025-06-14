@@ -26,7 +26,7 @@ internal class DijagnozaService : BaseEntityService<Dijagnoza, FrmDijagnoza, Frm
         form.PrikaziDetalje(entity);
     }
 
-    protected override string GetSearchCriteria(FrmDijagnoza form) => form.ConstructCriteria();
+    protected override Dijagnoza GetSearchCriteria(FrmDijagnoza form) => form.ConstructCriteria();
 
     protected override void BindSearchResults(FrmDijagnoza form, List<Dijagnoza> results)
     {

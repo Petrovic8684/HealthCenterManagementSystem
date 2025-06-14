@@ -14,8 +14,13 @@ namespace Server.SystemOperations.LekarSO
 
         protected override void ExecuteConcreteOperation()
         {
-            string condition = $"email = '{lekar.Email}' AND sifra = '{lekar.Sifra}'";
-            List<IEntity> lista = broker.GetByCondition(lekar, condition);
+            Lekar kriterijum = new Lekar
+            {
+                Email = lekar.Email,
+                Sifra = lekar.Sifra,
+            };
+
+            List<IEntity> lista = broker.GetByCondition(kriterijum);
 
             Result = lista.Cast<Lekar>().FirstOrDefault();
 

@@ -4,17 +4,17 @@ namespace Server.SystemOperations.MestoSO
 {
     internal class PretraziMestoSO : SystemOperationBase
     {
-        private readonly string kriterijumi;
+        private readonly Mesto kriterijumi;
         internal List<Mesto> Result { get; private set; }
 
-        internal PretraziMestoSO(string kriterijumi)
+        internal PretraziMestoSO(Mesto kriterijumi)
         {
             this.kriterijumi = kriterijumi;
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            List<IEntity> lista = broker.GetByCondition(new Mesto(), kriterijumi);
+            List<IEntity> lista = broker.GetByCondition(kriterijumi);
             Result = lista.OfType<Mesto>().ToList();
         }
     }

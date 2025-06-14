@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Common.Domain
 {
@@ -9,47 +10,72 @@ namespace Common.Domain
         public string PostanskiBroj { get; set; }
 
         public string TableName => "mesto";
-        public string Values => $"'{Naziv}', '{PostanskiBroj}'";
-        public string SetClause => $"naziv = '{Naziv}', postanskiBroj = '{PostanskiBroj}'";
-        public string PrimaryKey => $"idMesto";
-        public string PrimaryKeyCondition => $"idMesto = {Id}";
+
+        public string Columns => "naziv, postanskiBroj";
+
+        public string ValuesClause => "@Naziv, @PostanskiBroj";
+
+        public string SetClause => "naziv = @Naziv, postanskiBroj = @PostanskiBroj";
+
+        public string PrimaryKey => "idMesto";
+
+        public string PrimaryKeyCondition => "idMesto = @Id";
+
         public string Prikaz => $"{Naziv}";
 
-        public string Criteria
+        public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
-            get
+            var conditions = new List<string>();
+            var parameters = new List<SqlParameter>();
+
+            if (!string.IsNullOrWhiteSpace(Naziv))
             {
-                var criteria = new List<string>();
-
-                if (!string.IsNullOrWhiteSpace(Naziv))
-                    criteria.Add($"naziv LIKE '%{Naziv}%'");
-
-                if (!string.IsNullOrWhiteSpace(PostanskiBroj))
-                    criteria.Add($"postanskiBroj LIKE '%{PostanskiBroj}%'");
-
-                return criteria.Count > 0 ? string.Join(" AND ", criteria) : "1=1";
+                conditions.Add("naziv LIKE @Naziv");
+                parameters.Add(new SqlParameter("@Naziv", $"%{Naziv}%"));
             }
+
+            if (!string.IsNullOrWhiteSpace(PostanskiBroj))
+            {
+                conditions.Add("postanskiBroj LIKE @PostanskiBroj");
+                parameters.Add(new SqlParameter("@PostanskiBroj", $"%{PostanskiBroj}%"));
+            }
+
+            return (conditions.Count > 0 ? string.Join(" AND ", conditions) : "1=1", parameters);
         }
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
-            List<IEntity> mesta = new List<IEntity>();
+            var lista = new List<IEntity>();
             while (reader.Read())
             {
-                Mesto mesto= new Mesto
+                lista.Add(new Mesto
                 {
                     Id = (int)reader["idMesto"],
                     Naziv = (string)reader["naziv"],
-                    PostanskiBroj = (string)reader["postanskiBroj"]
-                };
-                mesta.Add(mesto);
+                    PostanskiBroj = (string)reader["postanskiBroj"],
+                });
             }
-            return mesta;
+            return lista;
         }
 
-        public override string ToString()
+        public List<SqlParameter> GetSqlParameters()
         {
-            return $"{Prikaz}";
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id),
+                new SqlParameter("@Naziv", Naziv),
+                new SqlParameter("@PostanskiBroj", PostanskiBroj),
+            };
         }
+
+        public List<SqlParameter> GetPrimaryKeyParameters()
+        {
+            return new List<SqlParameter>
+            {
+                new SqlParameter("@Id", Id)
+            };
+        }
+
+        public override string ToString() => Prikaz;
     }
 }

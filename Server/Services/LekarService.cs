@@ -17,7 +17,7 @@ namespace Server.Services
             new KreirajLekarSO(lekar).ExecuteTemplate();
         }
 
-        public List<Lekar> Pretrazi(string kriterijum)
+        public List<Lekar> Pretrazi(Lekar kriterijum)
         {
             var so = new PretraziLekarSO(kriterijum);
             so.ExecuteTemplate();

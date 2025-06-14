@@ -15,13 +15,19 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
         {
             broker.Update(zdravstveniKarton);
 
-            List<StavkaZdravstvenogKartona> stavke = broker.GetByCondition(new StavkaZdravstvenogKartona(), $"idZdravstveniKarton = {zdravstveniKarton.Id}").Cast<StavkaZdravstvenogKartona>().ToList();
+            StavkaZdravstvenogKartona kriterijum = new StavkaZdravstvenogKartona();
+            kriterijum.ZdravstveniKarton.Id = zdravstveniKarton.Id;
+
+            List<StavkaZdravstvenogKartona> stavke = broker.GetByCondition(kriterijum).Cast<StavkaZdravstvenogKartona>().ToList();
 
             foreach (StavkaZdravstvenogKartona stavka in stavke)
                 broker.Delete(stavka);
 
             foreach (StavkaZdravstvenogKartona stavka in zdravstveniKarton.Stavke)
+            {
+                stavka.ZdravstveniKarton.Id = zdravstveniKarton.Id;
                 broker.Add(stavka);
+            }
         }
     }
 }

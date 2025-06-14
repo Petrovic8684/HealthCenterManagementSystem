@@ -15,7 +15,12 @@ namespace Server.SystemOperations.LekarSO
         {
             broker.Update(lekar);
 
-            List<LeS> lesLista = broker.GetByCondition(new LeS(), $"idLekar = {lekar.Id}").Cast<LeS>().ToList();
+            LeS kriterijum = new LeS
+            {
+                IdLekar = lekar.Id
+            };
+
+            List<LeS> lesLista = broker.GetByCondition(kriterijum).Cast<LeS>().ToList();
 
             foreach (LeS les in lesLista)
                 broker.Delete(les);

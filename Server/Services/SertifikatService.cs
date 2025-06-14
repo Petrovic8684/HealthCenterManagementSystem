@@ -10,7 +10,7 @@ namespace Server.Services
             new UbaciSertifikatSO(sertifikat).ExecuteTemplate();
         }
 
-        public List<Sertifikat> Pretrazi(string kriterijum)
+        public List<Sertifikat> Pretrazi(Sertifikat kriterijum)
         {
             var so = new PretraziSertifikatSO(kriterijum);
             so.ExecuteTemplate();
