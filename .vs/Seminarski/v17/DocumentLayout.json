@@ -1,12 +1,122 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\config\\passwordutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\config\\passwordutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\server\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|solutionrelative:server\\clienthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\server\\systemoperations\\lekarso\\prijavilekarso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|solutionrelative:server\\systemoperations\\lekarso\\prijavilekarso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\server\\services\\lekarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|solutionrelative:server\\services\\lekarservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\common\\domain\\lekar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3277ECCC-870B-482D-B29D-0DA227CA736B}|Common\\Common.csproj|solutionrelative:common\\domain\\lekar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|c:\\users\\hp\\desktop\\fakultet\\projektovanje softvera\\seminarski\\server\\systemoperations\\lekarso\\pretrazilekarso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A92EBE1-5BAA-4F31-A159-51E43C75E994}|Server\\Server.csproj|solutionrelative:server\\systemoperations\\lekarso\\pretrazilekarso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PasswordUtility.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Config\\PasswordUtility.cs",
+              "RelativeDocumentMoniker": "Common\\Config\\PasswordUtility.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Config\\PasswordUtility.cs",
+              "RelativeToolTip": "Common\\Config\\PasswordUtility.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAwwCEAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T17:02:43.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Lekar.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Lekar.cs",
+              "RelativeDocumentMoniker": "Common\\Domain\\Lekar.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Domain\\Lekar.cs",
+              "RelativeToolTip": "Common\\Domain\\Lekar.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAiwD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T16:54:06.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PretraziLekarSO.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\LekarSO\\PretraziLekarSO.cs",
+              "RelativeDocumentMoniker": "Server\\SystemOperations\\LekarSO\\PretraziLekarSO.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\LekarSO\\PretraziLekarSO.cs",
+              "RelativeToolTip": "Server\\SystemOperations\\LekarSO\\PretraziLekarSO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T16:51:50.742Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ClientHandler.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\ClientHandler.cs",
+              "RelativeDocumentMoniker": "Server\\ClientHandler.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\ClientHandler.cs",
+              "RelativeToolTip": "Server\\ClientHandler.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAEwB8AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T16:47:12.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PrijaviLekarSO.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\LekarSO\\PrijaviLekarSO.cs",
+              "RelativeDocumentMoniker": "Server\\SystemOperations\\LekarSO\\PrijaviLekarSO.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\SystemOperations\\LekarSO\\PrijaviLekarSO.cs",
+              "RelativeToolTip": "Server\\SystemOperations\\LekarSO\\PrijaviLekarSO.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwBAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T16:26:50.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LekarService.cs",
+              "DocumentMoniker": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\Services\\LekarService.cs",
+              "RelativeDocumentMoniker": "Server\\Services\\LekarService.cs",
+              "ToolTip": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\Services\\LekarService.cs",
+              "RelativeToolTip": "Server\\Services\\LekarService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIAxwBIAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-14T16:24:54.337Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

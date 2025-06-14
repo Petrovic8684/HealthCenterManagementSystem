@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPacijent));
             gbKriterijumi = new GroupBox();
+            cbMesta = new ComboBox();
             tbPrezime = new TextBox();
             lblPrezime = new Label();
             lblMesto = new Label();
@@ -39,7 +40,6 @@
             btnDetalji = new Button();
             btnPretrazi = new Button();
             btnKreirajNovog = new Button();
-            cbMesta = new ComboBox();
             dgvPacijenti = new DataGridView();
             gbKriterijumi.SuspendLayout();
             gbAkcije.SuspendLayout();
@@ -57,16 +57,26 @@
             gbKriterijumi.Location = new Point(102, 48);
             gbKriterijumi.Name = "gbKriterijumi";
             gbKriterijumi.Size = new Size(375, 258);
-            gbKriterijumi.TabIndex = 23;
+            gbKriterijumi.TabIndex = 0;
             gbKriterijumi.TabStop = false;
             gbKriterijumi.Text = "Kriterijumi pretrage";
+            // 
+            // cbMesta
+            // 
+            cbMesta.BackColor = Color.White;
+            cbMesta.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbMesta.FormattingEnabled = true;
+            cbMesta.Location = new Point(55, 191);
+            cbMesta.Name = "cbMesta";
+            cbMesta.Size = new Size(234, 28);
+            cbMesta.TabIndex = 2;
             // 
             // tbPrezime
             // 
             tbPrezime.Location = new Point(55, 127);
             tbPrezime.Name = "tbPrezime";
             tbPrezime.Size = new Size(234, 27);
-            tbPrezime.TabIndex = 27;
+            tbPrezime.TabIndex = 1;
             // 
             // lblPrezime
             // 
@@ -91,7 +101,7 @@
             tbIme.Location = new Point(55, 63);
             tbIme.Name = "tbIme";
             tbIme.Size = new Size(234, 27);
-            tbIme.TabIndex = 25;
+            tbIme.TabIndex = 0;
             // 
             // lblIme
             // 
@@ -110,7 +120,7 @@
             gbAkcije.Location = new Point(518, 48);
             gbAkcije.Name = "gbAkcije";
             gbAkcije.Size = new Size(272, 258);
-            gbAkcije.TabIndex = 22;
+            gbAkcije.TabIndex = 1;
             gbAkcije.TabStop = false;
             gbAkcije.Text = "Akcije";
             // 
@@ -126,7 +136,7 @@
             btnDetalji.Location = new Point(79, 184);
             btnDetalji.Name = "btnDetalji";
             btnDetalji.Size = new Size(113, 35);
-            btnDetalji.TabIndex = 19;
+            btnDetalji.TabIndex = 5;
             btnDetalji.Text = "Detalji";
             btnDetalji.UseVisualStyleBackColor = false;
             // 
@@ -142,7 +152,7 @@
             btnPretrazi.Location = new Point(79, 55);
             btnPretrazi.Name = "btnPretrazi";
             btnPretrazi.Size = new Size(113, 35);
-            btnPretrazi.TabIndex = 17;
+            btnPretrazi.TabIndex = 3;
             btnPretrazi.Text = "Pretraži";
             btnPretrazi.UseVisualStyleBackColor = false;
             // 
@@ -158,24 +168,15 @@
             btnKreirajNovog.Location = new Point(79, 120);
             btnKreirajNovog.Name = "btnKreirajNovog";
             btnKreirajNovog.Size = new Size(113, 35);
-            btnKreirajNovog.TabIndex = 18;
+            btnKreirajNovog.TabIndex = 4;
             btnKreirajNovog.Text = "Kreiraj novog";
             btnKreirajNovog.UseVisualStyleBackColor = false;
-            // 
-            // cbMesta
-            // 
-            cbMesta.BackColor = Color.White;
-            cbMesta.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbMesta.FormattingEnabled = true;
-            cbMesta.Location = new Point(55, 191);
-            cbMesta.Name = "cbMesta";
-            cbMesta.Size = new Size(234, 28);
-            cbMesta.TabIndex = 28;
             // 
             // dgvPacijenti
             // 
             dgvPacijenti.AllowUserToAddRows = false;
             dgvPacijenti.AllowUserToDeleteRows = false;
+            dgvPacijenti.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvPacijenti.BackgroundColor = Color.White;
             dgvPacijenti.BorderStyle = BorderStyle.None;
             dgvPacijenti.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -185,6 +186,7 @@
             dgvPacijenti.RowHeadersWidth = 51;
             dgvPacijenti.Size = new Size(688, 272);
             dgvPacijenti.TabIndex = 30;
+            dgvPacijenti.TabStop = false;
             // 
             // FrmPacijent
             // 

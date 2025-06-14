@@ -13,6 +13,8 @@ namespace Common.Domain
         public List<Sertifikat> Sertifikati { get; set; } = new List<Sertifikat>();
 
         public string TableName => "lekar";
+        public string ImeKlaseAkuzativJednine => "lekara";
+        public string ImeKlaseAkuzativMnozine => "lekare";
 
         public string Columns => "ime, prezime, email, sifra";
 
@@ -50,6 +52,12 @@ namespace Common.Domain
             {
                 conditions.Add("l.prezime LIKE @Prezime");
                 parameters.Add(new SqlParameter("@Prezime", $"%{Prezime}%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(Email))
+            {
+                conditions.Add("l.email = @Email");
+                parameters.Add(new SqlParameter("@Email", Email));
             }
 
             if (Sertifikati?.Count > 0 && Sertifikati[0]?.Id > 0)

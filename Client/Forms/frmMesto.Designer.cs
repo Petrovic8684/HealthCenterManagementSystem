@@ -52,7 +52,7 @@
             gbAkcije.Location = new Point(475, 30);
             gbAkcije.Name = "gbAkcije";
             gbAkcije.Size = new Size(272, 258);
-            gbAkcije.TabIndex = 24;
+            gbAkcije.TabIndex = 1;
             gbAkcije.TabStop = false;
             gbAkcije.Text = "Akcije";
             // 
@@ -68,7 +68,7 @@
             btnDetalji.Location = new Point(79, 184);
             btnDetalji.Name = "btnDetalji";
             btnDetalji.Size = new Size(113, 35);
-            btnDetalji.TabIndex = 19;
+            btnDetalji.TabIndex = 4;
             btnDetalji.Text = "Detalji";
             btnDetalji.UseVisualStyleBackColor = false;
             // 
@@ -84,7 +84,7 @@
             btnPretrazi.Location = new Point(79, 55);
             btnPretrazi.Name = "btnPretrazi";
             btnPretrazi.Size = new Size(113, 35);
-            btnPretrazi.TabIndex = 17;
+            btnPretrazi.TabIndex = 2;
             btnPretrazi.Text = "Pretraži";
             btnPretrazi.UseVisualStyleBackColor = false;
             // 
@@ -100,7 +100,7 @@
             btnKreirajNovo.Location = new Point(79, 120);
             btnKreirajNovo.Name = "btnKreirajNovo";
             btnKreirajNovo.Size = new Size(113, 35);
-            btnKreirajNovo.TabIndex = 18;
+            btnKreirajNovo.TabIndex = 3;
             btnKreirajNovo.Text = "Kreiraj novo";
             btnKreirajNovo.UseVisualStyleBackColor = false;
             // 
@@ -113,7 +113,7 @@
             gbKriterijumi.Location = new Point(59, 30);
             gbKriterijumi.Name = "gbKriterijumi";
             gbKriterijumi.Size = new Size(375, 258);
-            gbKriterijumi.TabIndex = 26;
+            gbKriterijumi.TabIndex = 0;
             gbKriterijumi.TabStop = false;
             gbKriterijumi.Text = "Kriterijumi pretrage";
             // 
@@ -122,7 +122,7 @@
             tbNaziv.Location = new Point(55, 78);
             tbNaziv.Name = "tbNaziv";
             tbNaziv.Size = new Size(234, 27);
-            tbNaziv.TabIndex = 15;
+            tbNaziv.TabIndex = 0;
             // 
             // lblPostanskiBroj
             // 
@@ -138,7 +138,7 @@
             tbPostanskiBroj.Location = new Point(55, 158);
             tbPostanskiBroj.Name = "tbPostanskiBroj";
             tbPostanskiBroj.Size = new Size(234, 27);
-            tbPostanskiBroj.TabIndex = 13;
+            tbPostanskiBroj.TabIndex = 1;
             // 
             // lblNaziv
             // 
@@ -153,6 +153,7 @@
             // 
             dgvMesta.AllowUserToAddRows = false;
             dgvMesta.AllowUserToDeleteRows = false;
+            dgvMesta.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvMesta.BackgroundColor = Color.White;
             dgvMesta.BorderStyle = BorderStyle.None;
             dgvMesta.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -162,6 +163,7 @@
             dgvMesta.RowHeadersWidth = 51;
             dgvMesta.Size = new Size(688, 272);
             dgvMesta.TabIndex = 30;
+            dgvMesta.TabStop = false;
             // 
             // FrmMesto
             // 

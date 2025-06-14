@@ -11,6 +11,8 @@ namespace Common.Domain
         public Double BazniSkor {  get; set; }
 
         public string TableName => "dijagnoza";
+        public string ImeKlaseAkuzativJednine => "dijagnozu";
+        public string ImeKlaseAkuzativMnozine => "dijagnoze";
 
         public string Columns => "naziv, opis, bazniSkor";
 

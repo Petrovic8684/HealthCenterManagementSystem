@@ -57,7 +57,7 @@ namespace Client
             gbAkcije.Location = new Point(520, 55);
             gbAkcije.Name = "gbAkcije";
             gbAkcije.Size = new Size(272, 258);
-            gbAkcije.TabIndex = 24;
+            gbAkcije.TabIndex = 1;
             gbAkcije.TabStop = false;
             gbAkcije.Text = "Akcije";
             // 
@@ -73,7 +73,7 @@ namespace Client
             btnDetalji.Location = new Point(79, 184);
             btnDetalji.Name = "btnDetalji";
             btnDetalji.Size = new Size(113, 35);
-            btnDetalji.TabIndex = 19;
+            btnDetalji.TabIndex = 4;
             btnDetalji.Text = "Detalji";
             btnDetalji.UseVisualStyleBackColor = false;
             // 
@@ -89,7 +89,7 @@ namespace Client
             btnPretrazi.Location = new Point(79, 55);
             btnPretrazi.Name = "btnPretrazi";
             btnPretrazi.Size = new Size(113, 35);
-            btnPretrazi.TabIndex = 17;
+            btnPretrazi.TabIndex = 2;
             btnPretrazi.Text = "Pretraži";
             btnPretrazi.UseVisualStyleBackColor = false;
             // 
@@ -105,7 +105,7 @@ namespace Client
             btnKreirajNovu.Location = new Point(79, 120);
             btnKreirajNovu.Name = "btnKreirajNovu";
             btnKreirajNovu.Size = new Size(113, 35);
-            btnKreirajNovu.TabIndex = 18;
+            btnKreirajNovu.TabIndex = 3;
             btnKreirajNovu.Text = "Kreiraj novu";
             btnKreirajNovu.UseVisualStyleBackColor = false;
             // 
@@ -118,7 +118,7 @@ namespace Client
             gbKriterijumi.Location = new Point(104, 55);
             gbKriterijumi.Name = "gbKriterijumi";
             gbKriterijumi.Size = new Size(375, 258);
-            gbKriterijumi.TabIndex = 26;
+            gbKriterijumi.TabIndex = 0;
             gbKriterijumi.TabStop = false;
             gbKriterijumi.Text = "Kriterijumi pretrage";
             // 
@@ -128,14 +128,14 @@ namespace Client
             tbOpis.Multiline = true;
             tbOpis.Name = "tbOpis";
             tbOpis.Size = new Size(263, 63);
-            tbOpis.TabIndex = 24;
+            tbOpis.TabIndex = 1;
             // 
             // tbNaziv
             // 
             tbNaziv.Location = new Point(55, 78);
             tbNaziv.Name = "tbNaziv";
             tbNaziv.Size = new Size(234, 27);
-            tbNaziv.TabIndex = 12;
+            tbNaziv.TabIndex = 0;
             // 
             // lblOpis
             // 
@@ -159,6 +159,7 @@ namespace Client
             // 
             dgvDijagnoze.AllowUserToAddRows = false;
             dgvDijagnoze.AllowUserToDeleteRows = false;
+            dgvDijagnoze.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvDijagnoze.BackgroundColor = Color.White;
             dgvDijagnoze.BorderStyle = BorderStyle.None;
             dgvDijagnoze.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -168,6 +169,7 @@ namespace Client
             dgvDijagnoze.RowHeadersWidth = 51;
             dgvDijagnoze.Size = new Size(688, 272);
             dgvDijagnoze.TabIndex = 31;
+            dgvDijagnoze.TabStop = false;
             // 
             // FrmDijagnoza
             // 

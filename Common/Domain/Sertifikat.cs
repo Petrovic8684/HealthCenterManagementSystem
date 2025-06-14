@@ -9,6 +9,8 @@ namespace Common.Domain
         public string Opis { get; set; }
 
         public string TableName => "sertifikat";
+        public string ImeKlaseAkuzativJednine => "sertifikat";
+        public string ImeKlaseAkuzativMnozine => "sertifikate";
 
         public string Columns => "opis";
 

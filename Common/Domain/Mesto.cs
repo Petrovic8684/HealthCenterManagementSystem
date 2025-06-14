@@ -10,6 +10,8 @@ namespace Common.Domain
         public string PostanskiBroj { get; set; }
 
         public string TableName => "mesto";
+        public string ImeKlaseAkuzativJednine => "mesto";
+        public string ImeKlaseAkuzativMnozine => "mesta";
 
         public string Columns => "naziv, postanskiBroj";
 

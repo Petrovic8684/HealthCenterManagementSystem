@@ -22,4 +22,6 @@ public interface IEntity
 public interface ICrudEntity : IEntity
 {
     int Id { get; set; }
+    string ImeKlaseAkuzativJednine { get; }
+    string ImeKlaseAkuzativMnozine { get; }
 }

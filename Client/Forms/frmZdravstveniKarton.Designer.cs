@@ -36,13 +36,13 @@
             tbPacijent = new TextBox();
             lblOtvorenNakon = new Label();
             gbKriterijumi = new GroupBox();
+            cbDijagnoze = new ComboBox();
             mcOtvorenNakon = new MonthCalendar();
             btnPretrazi = new Button();
             btnKreirajNovi = new Button();
             gbAkcije = new GroupBox();
             btnDetalji = new Button();
             dgvZdravstveniKartoni = new DataGridView();
-            cbDijagnoze = new ComboBox();
             gbKriterijumi.SuspendLayout();
             gbAkcije.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvZdravstveniKartoni).BeginInit();
@@ -80,14 +80,14 @@
             tbLekar.Location = new Point(328, 63);
             tbLekar.Name = "tbLekar";
             tbLekar.Size = new Size(234, 27);
-            tbLekar.TabIndex = 11;
+            tbLekar.TabIndex = 1;
             // 
             // tbPacijent
             // 
             tbPacijent.Location = new Point(328, 147);
             tbPacijent.Name = "tbPacijent";
             tbPacijent.Size = new Size(234, 27);
-            tbPacijent.TabIndex = 12;
+            tbPacijent.TabIndex = 2;
             // 
             // lblOtvorenNakon
             // 
@@ -111,15 +111,25 @@
             gbKriterijumi.Location = new Point(79, 38);
             gbKriterijumi.Name = "gbKriterijumi";
             gbKriterijumi.Size = new Size(610, 299);
-            gbKriterijumi.TabIndex = 16;
+            gbKriterijumi.TabIndex = 0;
             gbKriterijumi.TabStop = false;
             gbKriterijumi.Text = "Kriterijumi pretrage";
+            // 
+            // cbDijagnoze
+            // 
+            cbDijagnoze.BackColor = Color.White;
+            cbDijagnoze.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbDijagnoze.FormattingEnabled = true;
+            cbDijagnoze.Location = new Point(328, 230);
+            cbDijagnoze.Name = "cbDijagnoze";
+            cbDijagnoze.Size = new Size(234, 28);
+            cbDijagnoze.TabIndex = 3;
             // 
             // mcOtvorenNakon
             // 
             mcOtvorenNakon.Location = new Point(31, 63);
             mcOtvorenNakon.Name = "mcOtvorenNakon";
-            mcOtvorenNakon.TabIndex = 16;
+            mcOtvorenNakon.TabIndex = 0;
             // 
             // btnPretrazi
             // 
@@ -133,7 +143,7 @@
             btnPretrazi.Location = new Point(79, 55);
             btnPretrazi.Name = "btnPretrazi";
             btnPretrazi.Size = new Size(113, 35);
-            btnPretrazi.TabIndex = 17;
+            btnPretrazi.TabIndex = 4;
             btnPretrazi.Text = "Pretraži";
             btnPretrazi.UseVisualStyleBackColor = false;
             // 
@@ -149,7 +159,7 @@
             btnKreirajNovi.Location = new Point(79, 139);
             btnKreirajNovi.Name = "btnKreirajNovi";
             btnKreirajNovi.Size = new Size(113, 35);
-            btnKreirajNovi.TabIndex = 18;
+            btnKreirajNovi.TabIndex = 5;
             btnKreirajNovi.Text = "Kreiraj novi";
             btnKreirajNovi.UseVisualStyleBackColor = false;
             // 
@@ -161,7 +171,7 @@
             gbAkcije.Location = new Point(733, 38);
             gbAkcije.Name = "gbAkcije";
             gbAkcije.Size = new Size(275, 299);
-            gbAkcije.TabIndex = 21;
+            gbAkcije.TabIndex = 1;
             gbAkcije.TabStop = false;
             gbAkcije.Text = "Akcije";
             // 
@@ -177,7 +187,7 @@
             btnDetalji.Location = new Point(79, 223);
             btnDetalji.Name = "btnDetalji";
             btnDetalji.Size = new Size(113, 35);
-            btnDetalji.TabIndex = 19;
+            btnDetalji.TabIndex = 6;
             btnDetalji.Text = "Detalji";
             btnDetalji.UseVisualStyleBackColor = false;
             // 
@@ -185,6 +195,7 @@
             // 
             dgvZdravstveniKartoni.AllowUserToAddRows = false;
             dgvZdravstveniKartoni.AllowUserToDeleteRows = false;
+            dgvZdravstveniKartoni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvZdravstveniKartoni.BackgroundColor = Color.White;
             dgvZdravstveniKartoni.BorderStyle = BorderStyle.None;
             dgvZdravstveniKartoni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -194,16 +205,7 @@
             dgvZdravstveniKartoni.RowHeadersWidth = 51;
             dgvZdravstveniKartoni.Size = new Size(929, 272);
             dgvZdravstveniKartoni.TabIndex = 30;
-            // 
-            // cbDijagnoze
-            // 
-            cbDijagnoze.BackColor = Color.White;
-            cbDijagnoze.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbDijagnoze.FormattingEnabled = true;
-            cbDijagnoze.Location = new Point(328, 230);
-            cbDijagnoze.Name = "cbDijagnoze";
-            cbDijagnoze.Size = new Size(234, 28);
-            cbDijagnoze.TabIndex = 17;
+            dgvZdravstveniKartoni.TabStop = false;
             // 
             // FrmZdravstveniKarton
             // 

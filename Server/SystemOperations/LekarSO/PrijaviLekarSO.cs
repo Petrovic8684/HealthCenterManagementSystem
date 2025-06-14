@@ -16,8 +16,7 @@ namespace Server.SystemOperations.LekarSO
         {
             Lekar kriterijum = new Lekar
             {
-                Email = lekar.Email,
-                Sifra = lekar.Sifra,
+                Email = lekar.Email
             };
 
             List<IEntity> lista = broker.GetByCondition(kriterijum);

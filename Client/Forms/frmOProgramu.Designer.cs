@@ -80,7 +80,7 @@
             linkLblUndraw.Location = new Point(436, 300);
             linkLblUndraw.Name = "linkLblUndraw";
             linkLblUndraw.Size = new Size(60, 20);
-            linkLblUndraw.TabIndex = 15;
+            linkLblUndraw.TabIndex = 0;
             linkLblUndraw.TabStop = true;
             linkLblUndraw.Text = "unDraw";
             linkLblUndraw.LinkClicked += linkLblUndraw_LinkClicked;

@@ -13,6 +13,8 @@ namespace Common.Domain
         public Mesto Mesto { get; set; }
 
         public string TableName => "pacijent";
+        public string ImeKlaseAkuzativJednine => "pacijenta";
+        public string ImeKlaseAkuzativMnozine => "pacijente";
 
         public string Columns => "ime, prezime, email, idMesto";
 

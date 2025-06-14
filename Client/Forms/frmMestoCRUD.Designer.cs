@@ -44,7 +44,7 @@
             tbNaziv.Location = new Point(70, 79);
             tbNaziv.Name = "tbNaziv";
             tbNaziv.Size = new Size(234, 27);
-            tbNaziv.TabIndex = 19;
+            tbNaziv.TabIndex = 0;
             // 
             // lblPostanskiBroj
             // 
@@ -60,7 +60,7 @@
             tbPostanskiBroj.Location = new Point(70, 159);
             tbPostanskiBroj.Name = "tbPostanskiBroj";
             tbPostanskiBroj.Size = new Size(234, 27);
-            tbPostanskiBroj.TabIndex = 17;
+            tbPostanskiBroj.TabIndex = 1;
             // 
             // lblNaziv
             // 
@@ -84,7 +84,7 @@
             btnObrisi.Location = new Point(355, 117);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(113, 35);
-            btnObrisi.TabIndex = 45;
+            btnObrisi.TabIndex = 3;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = false;
             // 
@@ -100,7 +100,7 @@
             btnOdustani.Location = new Point(355, 174);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 35);
-            btnOdustani.TabIndex = 43;
+            btnOdustani.TabIndex = 4;
             btnOdustani.Text = "Odustani";
             btnOdustani.UseVisualStyleBackColor = false;
             // 
@@ -116,7 +116,7 @@
             btnZapamti.Location = new Point(355, 56);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 35);
-            btnZapamti.TabIndex = 42;
+            btnZapamti.TabIndex = 2;
             btnZapamti.Text = "Zapamti";
             btnZapamti.UseVisualStyleBackColor = false;
             // 

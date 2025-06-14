@@ -58,7 +58,7 @@
             btnZapamti.Location = new Point(116, 391);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 38);
-            btnZapamti.TabIndex = 20;
+            btnZapamti.TabIndex = 7;
             btnZapamti.Text = "Zapamti";
             btnZapamti.UseVisualStyleBackColor = false;
             // 
@@ -74,7 +74,7 @@
             btnOdustani.Location = new Point(522, 391);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 38);
-            btnOdustani.TabIndex = 21;
+            btnOdustani.TabIndex = 8;
             btnOdustani.Text = "Odustani";
             btnOdustani.UseVisualStyleBackColor = false;
             // 
@@ -93,7 +93,7 @@
             tbNapomena.Multiline = true;
             tbNapomena.Name = "tbNapomena";
             tbNapomena.Size = new Size(263, 170);
-            tbNapomena.TabIndex = 23;
+            tbNapomena.TabIndex = 1;
             // 
             // lblLekar
             // 
@@ -130,6 +130,7 @@
             lbStavke.ScrollAlwaysVisible = true;
             lbStavke.Size = new Size(226, 104);
             lbStavke.TabIndex = 30;
+            lbStavke.TabStop = false;
             // 
             // btnPlus
             // 
@@ -144,7 +145,7 @@
             btnPlus.Location = new Point(641, 199);
             btnPlus.Name = "btnPlus";
             btnPlus.Size = new Size(28, 28);
-            btnPlus.TabIndex = 31;
+            btnPlus.TabIndex = 5;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = false;
             // 
@@ -161,7 +162,7 @@
             btnMinus.Location = new Point(641, 237);
             btnMinus.Name = "btnMinus";
             btnMinus.Size = new Size(28, 28);
-            btnMinus.TabIndex = 32;
+            btnMinus.TabIndex = 6;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = false;
             // 
@@ -170,7 +171,7 @@
             tbPonder.Location = new Point(473, 204);
             tbPonder.Name = "tbPonder";
             tbPonder.Size = new Size(162, 27);
-            tbPonder.TabIndex = 33;
+            tbPonder.TabIndex = 4;
             // 
             // lblPonder
             // 
@@ -189,7 +190,7 @@
             cbLekari.Location = new Point(116, 98);
             cbLekari.Name = "cbLekari";
             cbLekari.Size = new Size(234, 28);
-            cbLekari.TabIndex = 35;
+            cbLekari.TabIndex = 0;
             // 
             // cbPacijenti
             // 
@@ -199,7 +200,7 @@
             cbPacijenti.Location = new Point(409, 98);
             cbPacijenti.Name = "cbPacijenti";
             cbPacijenti.Size = new Size(226, 28);
-            cbPacijenti.TabIndex = 36;
+            cbPacijenti.TabIndex = 2;
             // 
             // cbDijagnoze
             // 
@@ -209,7 +210,7 @@
             cbDijagnoze.Location = new Point(409, 171);
             cbDijagnoze.Name = "cbDijagnoze";
             cbDijagnoze.Size = new Size(226, 28);
-            cbDijagnoze.TabIndex = 37;
+            cbDijagnoze.TabIndex = 3;
             // 
             // lblZdravstveniKartonId
             // 

@@ -17,6 +17,9 @@ namespace Common.Domain
 
         public string TableName => "ZdravstveniKarton";
 
+        public string ImeKlaseAkuzativJednine => "zdravstveni karton";
+        public string ImeKlaseAkuzativMnozine => "zdravstvene kartone";
+
         public string JoinTableName =>
             @"ZdravstveniKarton zk
               JOIN Lekar l ON zk.idLekar = l.idLekar

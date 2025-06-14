@@ -48,14 +48,14 @@
             tbPrezime.Location = new Point(77, 148);
             tbPrezime.Name = "tbPrezime";
             tbPrezime.Size = new Size(220, 27);
-            tbPrezime.TabIndex = 7;
+            tbPrezime.TabIndex = 1;
             // 
             // tbIme
             // 
             tbIme.Location = new Point(77, 73);
             tbIme.Name = "tbIme";
             tbIme.Size = new Size(220, 27);
-            tbIme.TabIndex = 6;
+            tbIme.TabIndex = 0;
             // 
             // lblPrezime
             // 
@@ -80,7 +80,7 @@
             tbEmail.Location = new Point(77, 224);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(220, 27);
-            tbEmail.TabIndex = 10;
+            tbEmail.TabIndex = 2;
             // 
             // lblMesto
             // 
@@ -112,7 +112,7 @@
             btnOdustani.Location = new Point(357, 295);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 35);
-            btnOdustani.TabIndex = 35;
+            btnOdustani.TabIndex = 6;
             btnOdustani.Text = "Odustani";
             btnOdustani.UseVisualStyleBackColor = false;
             // 
@@ -128,7 +128,7 @@
             btnZapamti.Location = new Point(357, 69);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 35);
-            btnZapamti.TabIndex = 34;
+            btnZapamti.TabIndex = 4;
             btnZapamti.Text = "Zapamti";
             btnZapamti.UseVisualStyleBackColor = false;
             // 
@@ -145,7 +145,7 @@
             btnObrisi.Location = new Point(357, 118);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(113, 35);
-            btnObrisi.TabIndex = 37;
+            btnObrisi.TabIndex = 5;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = false;
             // 
@@ -157,7 +157,7 @@
             cbMesta.Location = new Point(77, 299);
             cbMesta.Name = "cbMesta";
             cbMesta.Size = new Size(220, 28);
-            cbMesta.TabIndex = 38;
+            cbMesta.TabIndex = 3;
             // 
             // lblPacijentId
             // 

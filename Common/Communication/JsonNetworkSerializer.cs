@@ -39,7 +39,16 @@ namespace Common.Communication
 
         public T ReadType<T>(object data) where T : class
         {
-            return data == null ? null : JsonSerializer.Deserialize<T>((JsonElement)data);
+            if (data == null)
+                return null;
+
+            if (data is JsonElement jsonElement)
+            {
+                var json = jsonElement.GetRawText();
+                return JsonSerializer.Deserialize<T>(json);
+            }
+
+            return JsonSerializer.Deserialize<T>(data.ToString());
         }
 
         public void Close()

@@ -41,7 +41,6 @@ namespace Client.GuiController.Services
                            || col.Name == nameof(Lekar.Ime)
                            || col.Name == nameof(Lekar.Prezime)
                            || col.Name == nameof(Lekar.Email)
-                           || col.Name == nameof(Lekar.Sifra)
                            || col.Name == nameof(Lekar.Sertifikati);
             }
         }
@@ -90,6 +89,14 @@ namespace Client.GuiController.Services
             {
                 MessageBox.Show("Ne može da se otvori glavna forma i meni.\n\n(" + ex.Message + ")", "Greška");
             }
+        }
+
+        protected override void ValidateBeforeOperation(Lekar entity)
+        {
+            if (Session.CurrentLekar != null && Session.CurrentLekar.Id == entity.Id)
+                return;
+
+            throw new UnauthorizedAccessException("Ne možete izvesti ovu operaciju nad drugim lekarom.");
         }
 
         internal void DodajSertifikat()

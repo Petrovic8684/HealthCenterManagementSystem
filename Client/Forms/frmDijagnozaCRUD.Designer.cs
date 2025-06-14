@@ -47,14 +47,14 @@
             tbOpis.Multiline = true;
             tbOpis.Name = "tbOpis";
             tbOpis.Size = new Size(263, 63);
-            tbOpis.TabIndex = 28;
+            tbOpis.TabIndex = 1;
             // 
             // tbNaziv
             // 
             tbNaziv.Location = new Point(75, 73);
             tbNaziv.Name = "tbNaziv";
             tbNaziv.Size = new Size(234, 27);
-            tbNaziv.TabIndex = 27;
+            tbNaziv.TabIndex = 0;
             // 
             // lblOpis
             // 
@@ -79,7 +79,7 @@
             tbBazniSkor.Location = new Point(75, 276);
             tbBazniSkor.Name = "tbBazniSkor";
             tbBazniSkor.Size = new Size(234, 27);
-            tbBazniSkor.TabIndex = 30;
+            tbBazniSkor.TabIndex = 2;
             // 
             // lblBazniSkor
             // 
@@ -103,7 +103,7 @@
             btnObrisi.Location = new Point(417, 123);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(113, 35);
-            btnObrisi.TabIndex = 41;
+            btnObrisi.TabIndex = 4;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = false;
             // 
@@ -119,7 +119,7 @@
             btnOdustani.Location = new Point(417, 272);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 35);
-            btnOdustani.TabIndex = 39;
+            btnOdustani.TabIndex = 5;
             btnOdustani.Text = "Odustani";
             btnOdustani.UseVisualStyleBackColor = false;
             // 
@@ -135,7 +135,7 @@
             btnZapamti.Location = new Point(417, 69);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 35);
-            btnZapamti.TabIndex = 38;
+            btnZapamti.TabIndex = 3;
             btnZapamti.Text = "Zapamti";
             btnZapamti.UseVisualStyleBackColor = false;
             // 

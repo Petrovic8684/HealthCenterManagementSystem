@@ -54,7 +54,7 @@
             gbAkcije.Location = new Point(517, 45);
             gbAkcije.Name = "gbAkcije";
             gbAkcije.Size = new Size(272, 258);
-            gbAkcije.TabIndex = 24;
+            gbAkcije.TabIndex = 1;
             gbAkcije.TabStop = false;
             gbAkcije.Text = "Akcije";
             // 
@@ -70,7 +70,7 @@
             btnDetalji.Location = new Point(79, 184);
             btnDetalji.Name = "btnDetalji";
             btnDetalji.Size = new Size(113, 35);
-            btnDetalji.TabIndex = 19;
+            btnDetalji.TabIndex = 5;
             btnDetalji.Text = "Detalji";
             btnDetalji.UseVisualStyleBackColor = false;
             // 
@@ -86,7 +86,7 @@
             btnPretrazi.Location = new Point(79, 55);
             btnPretrazi.Name = "btnPretrazi";
             btnPretrazi.Size = new Size(113, 35);
-            btnPretrazi.TabIndex = 17;
+            btnPretrazi.TabIndex = 3;
             btnPretrazi.Text = "Pretraži";
             btnPretrazi.UseVisualStyleBackColor = false;
             // 
@@ -102,7 +102,7 @@
             btnKreirajNovog.Location = new Point(79, 120);
             btnKreirajNovog.Name = "btnKreirajNovog";
             btnKreirajNovog.Size = new Size(113, 35);
-            btnKreirajNovog.TabIndex = 18;
+            btnKreirajNovog.TabIndex = 4;
             btnKreirajNovog.Text = "Kreiraj novog";
             btnKreirajNovog.UseVisualStyleBackColor = false;
             // 
@@ -117,7 +117,7 @@
             gbKriterijumi.Location = new Point(101, 45);
             gbKriterijumi.Name = "gbKriterijumi";
             gbKriterijumi.Size = new Size(375, 258);
-            gbKriterijumi.TabIndex = 26;
+            gbKriterijumi.TabIndex = 0;
             gbKriterijumi.TabStop = false;
             gbKriterijumi.Text = "Kriterijumi pretrage";
             // 
@@ -126,7 +126,7 @@
             tbPrezime.Location = new Point(55, 129);
             tbPrezime.Name = "tbPrezime";
             tbPrezime.Size = new Size(234, 27);
-            tbPrezime.TabIndex = 15;
+            tbPrezime.TabIndex = 1;
             // 
             // lblPrezime
             // 
@@ -145,14 +145,14 @@
             cbSertifikati.Location = new Point(55, 197);
             cbSertifikati.Name = "cbSertifikati";
             cbSertifikati.Size = new Size(234, 28);
-            cbSertifikati.TabIndex = 13;
+            cbSertifikati.TabIndex = 2;
             // 
             // tbIme
             // 
             tbIme.Location = new Point(55, 65);
             tbIme.Name = "tbIme";
             tbIme.Size = new Size(234, 27);
-            tbIme.TabIndex = 12;
+            tbIme.TabIndex = 0;
             // 
             // lblPosedujeSertifikat
             // 
@@ -176,6 +176,7 @@
             // 
             dgvLekari.AllowUserToAddRows = false;
             dgvLekari.AllowUserToDeleteRows = false;
+            dgvLekari.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvLekari.BackgroundColor = Color.White;
             dgvLekari.BorderStyle = BorderStyle.None;
             dgvLekari.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -185,6 +186,7 @@
             dgvLekari.RowHeadersWidth = 51;
             dgvLekari.Size = new Size(688, 272);
             dgvLekari.TabIndex = 29;
+            dgvLekari.TabStop = false;
             // 
             // FrmLekar
             // 

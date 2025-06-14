@@ -44,8 +44,8 @@
             btnZapamti = new Button();
             btnObrisi = new Button();
             lblLekarId = new Label();
-            tbSifra = new TextBox();
             lblSifra = new Label();
+            tbSifra = new TextBox();
             SuspendLayout();
             // 
             // tbEmail
@@ -53,7 +53,7 @@
             tbEmail.Location = new Point(76, 236);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(220, 27);
-            tbEmail.TabIndex = 16;
+            tbEmail.TabIndex = 2;
             // 
             // lblEmail
             // 
@@ -69,14 +69,14 @@
             tbPrezime.Location = new Point(76, 160);
             tbPrezime.Name = "tbPrezime";
             tbPrezime.Size = new Size(220, 27);
-            tbPrezime.TabIndex = 14;
+            tbPrezime.TabIndex = 1;
             // 
             // tbIme
             // 
             tbIme.Location = new Point(76, 82);
             tbIme.Name = "tbIme";
             tbIme.Size = new Size(220, 27);
-            tbIme.TabIndex = 13;
+            tbIme.TabIndex = 0;
             // 
             // lblPrezime
             // 
@@ -109,7 +109,7 @@
             btnMinus.Location = new Point(593, 116);
             btnMinus.Name = "btnMinus";
             btnMinus.Size = new Size(28, 28);
-            btnMinus.TabIndex = 37;
+            btnMinus.TabIndex = 6;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = false;
             // 
@@ -126,7 +126,7 @@
             btnPlus.Location = new Point(593, 82);
             btnPlus.Name = "btnPlus";
             btnPlus.Size = new Size(28, 28);
-            btnPlus.TabIndex = 36;
+            btnPlus.TabIndex = 5;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = false;
             // 
@@ -138,6 +138,7 @@
             lbSertifikati.ScrollAlwaysVisible = true;
             lbSertifikati.Size = new Size(226, 224);
             lbSertifikati.TabIndex = 35;
+            lbSertifikati.TabStop = false;
             // 
             // cbSertifikati
             // 
@@ -146,7 +147,7 @@
             cbSertifikati.Location = new Point(361, 82);
             cbSertifikati.Name = "cbSertifikati";
             cbSertifikati.Size = new Size(226, 28);
-            cbSertifikati.TabIndex = 34;
+            cbSertifikati.TabIndex = 4;
             // 
             // lblSertifikati
             // 
@@ -169,7 +170,7 @@
             btnOdustani.Location = new Point(474, 403);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 38);
-            btnOdustani.TabIndex = 39;
+            btnOdustani.TabIndex = 9;
             btnOdustani.Text = "Odustani";
             btnOdustani.UseVisualStyleBackColor = false;
             // 
@@ -185,7 +186,7 @@
             btnZapamti.Location = new Point(76, 403);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 38);
-            btnZapamti.TabIndex = 38;
+            btnZapamti.TabIndex = 7;
             btnZapamti.Text = "Zapamti";
             btnZapamti.UseVisualStyleBackColor = false;
             // 
@@ -202,7 +203,7 @@
             btnObrisi.Location = new Point(207, 403);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(113, 38);
-            btnObrisi.TabIndex = 41;
+            btnObrisi.TabIndex = 8;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = false;
             // 
@@ -216,13 +217,6 @@
             lblLekarId.TabIndex = 50;
             lblLekarId.Text = "Unos novog lekara";
             // 
-            // tbSifra
-            // 
-            tbSifra.Location = new Point(76, 313);
-            tbSifra.Name = "tbSifra";
-            tbSifra.Size = new Size(220, 27);
-            tbSifra.TabIndex = 52;
-            // 
             // lblSifra
             // 
             lblSifra.AutoSize = true;
@@ -231,6 +225,14 @@
             lblSifra.Size = new Size(42, 20);
             lblSifra.TabIndex = 51;
             lblSifra.Text = "Sifra:";
+            // 
+            // tbSifra
+            // 
+            tbSifra.Location = new Point(76, 313);
+            tbSifra.Name = "tbSifra";
+            tbSifra.Size = new Size(220, 27);
+            tbSifra.TabIndex = 3;
+            tbSifra.UseSystemPasswordChar = true;
             // 
             // FrmLekarCRUD
             // 
@@ -275,12 +277,12 @@
         private Button btnZapamti;
         private Button btnObrisi;
         private Label lblLekarId;
-        internal TextBox tbSifra;
         private Label lblSifra;
         internal TextBox tbEmail;
         internal TextBox tbPrezime;
         internal TextBox tbIme;
         internal ListBox lbSertifikati;
         internal ComboBox cbSertifikati;
+        internal TextBox tbSifra;
     }
 }
