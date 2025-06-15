@@ -8,9 +8,9 @@ namespace DBBroker
     public class Broker
     {
         private DBConnection connection;
-        public Broker()
+        public Broker(string connectionString)
         {
-            connection = new DBConnection();
+            connection = new DBConnection(connectionString);
         }
 
         public void OpenConnection()

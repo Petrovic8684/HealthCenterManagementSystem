@@ -13,7 +13,7 @@ namespace Client
 
             FormManager.Instance.Open<FrmLogin>();
 
-            Communication.Instance.Connect();
+            Communication.Instance.Connect(ConfigManager.ServerIP, ConfigManager.ServerPort);
 
             Application.Run(FormManager.Instance.Open<FrmMain>());
         }

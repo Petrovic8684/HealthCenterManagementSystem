@@ -1,5 +1,4 @@
-﻿using Common.Config;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 
 namespace DBBroker
 {
@@ -8,9 +7,9 @@ namespace DBBroker
         private SqlConnection connection;
         private SqlTransaction transaction;
 
-        public DBConnection()
+        public DBConnection(string connectionString)
         {
-            connection = new SqlConnection(ConfigManager.DbConnectionString);
+            connection = new SqlConnection(connectionString);
         }
 
         public void OpenConnection()

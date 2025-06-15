@@ -1,4 +1,6 @@
 ﻿
+using Client.Forms;
+using Client.GuiController;
 using Common.Communication;
 using Common.Config;
 using Common.Domain;
@@ -17,18 +19,21 @@ namespace Client
         private Socket socket;
         private JsonNetworkSerializer serializer;
 
-        internal void Connect()
+        internal void Connect(string ip, int port)
         {
             try
             {
                 socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                socket.Connect(ConfigManager.ServerIP, ConfigManager.ServerPort);
+                socket.Connect(ip, port);
                 serializer = new JsonNetworkSerializer(socket);
+
+                MessageBox.Show("Konekcija sa serverom je uspešno uspostavljena.");
+                FormManager.Instance.Close<FrmPodesavanja>();
             }
             catch (SocketException)
             {
                 MessageBox.Show("Došlo je do greške prilikom uspostavljanja konekcije sa serverom.", "Greška");
-                return;
+                FormManager.Instance.Open<FrmPodesavanja>();
             }
         }
 
@@ -52,33 +57,47 @@ namespace Client
         internal Response SendRequest<TRequest, TResponse>(TRequest argument, Operation operation)
             where TResponse : class, IEntity
         {
-            var request = new Request
+            try
             {
-                Argument = argument,
-                Operation = operation
-            };
+                var request = new Request
+                {
+                    Argument = argument,
+                    Operation = operation
+                };
 
-            serializer.Send(request);
+                serializer.Send(request);
 
-            var response = serializer.Receive<Response>();
-            response.Result = serializer.ReadType<TResponse>(response.Result);
-            return response;
+                var response = serializer.Receive<Response>();
+                response.Result = serializer.ReadType<TResponse>(response.Result);
+                return response;
+            }
+            catch
+            {
+                throw new Exception("Verovatno je problem u konekciji sa serverom.");
+            }
         }
 
         internal Response SendRequestList<TRequest, TResponse>(TRequest argument, Operation operation)
             where TResponse : class, IEntity, new()
         {
-            var request = new Request
+            try
             {
-                Argument = argument,
-                Operation = operation
-            };
+                var request = new Request
+                {
+                    Argument = argument,
+                    Operation = operation
+                };
 
-            serializer.Send(request);
+                serializer.Send(request);
 
-            var response = serializer.Receive<Response>();
-            response.Result = serializer.ReadType<List<TResponse>>(response.Result);
-            return response;
+                var response = serializer.Receive<Response>();
+                response.Result = serializer.ReadType<List<TResponse>>(response.Result);
+                return response;
+            }
+            catch
+            {
+                throw new Exception("Verovatno je problem u konekciji sa serverom.");
+            }
         }
     }
 }

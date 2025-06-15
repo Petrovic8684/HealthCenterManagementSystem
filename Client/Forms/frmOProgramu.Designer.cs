@@ -54,7 +54,7 @@
             lblDetalji.BackColor = Color.White;
             lblDetalji.Font = new Font("Segoe UI", 10F);
             lblDetalji.ForeColor = Color.FromArgb(64, 64, 64);
-            lblDetalji.Location = new Point(41, 126);
+            lblDetalji.Location = new Point(41, 118);
             lblDetalji.Name = "lblDetalji";
             lblDetalji.Size = new Size(508, 228);
             lblDetalji.TabIndex = 14;
@@ -67,7 +67,7 @@
             lblOProgramu.BackColor = Color.White;
             lblOProgramu.Font = new Font("Segoe UI", 14F);
             lblOProgramu.ImageAlign = ContentAlignment.MiddleLeft;
-            lblOProgramu.Location = new Point(41, 75);
+            lblOProgramu.Location = new Point(41, 67);
             lblOProgramu.Name = "lblOProgramu";
             lblOProgramu.Size = new Size(144, 32);
             lblOProgramu.TabIndex = 13;
@@ -77,9 +77,10 @@
             // linkLblUndraw
             // 
             linkLblUndraw.AutoSize = true;
-            linkLblUndraw.Location = new Point(436, 300);
+            linkLblUndraw.Font = new Font("Segoe UI", 10F);
+            linkLblUndraw.Location = new Point(434, 290);
             linkLblUndraw.Name = "linkLblUndraw";
-            linkLblUndraw.Size = new Size(60, 20);
+            linkLblUndraw.Size = new Size(69, 23);
             linkLblUndraw.TabIndex = 0;
             linkLblUndraw.TabStop = true;
             linkLblUndraw.Text = "unDraw";

@@ -12,6 +12,7 @@ C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Seminarski\Server
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Seminarski\Server\obj\Debug\net8.0-windows\Server.pdb
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Seminarski\Server\obj\Debug\net8.0-windows\Server.genruntimeconfig.cache
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Seminarski\Server\obj\Debug\net8.0-windows\ref\Server.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\.env
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Server.exe
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Server.deps.json
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Server.runtimeconfig.json
@@ -19,11 +20,14 @@ C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Server.pdb
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Azure.Core.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Azure.Identity.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\DotNetEnv.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Bcl.Cryptography.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
@@ -37,6 +41,7 @@ C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Tokens.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\Sprache.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\System.ClientModel.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\System.Configuration.ConfigurationManager.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Server\bin\Debug\net8.0-windows\System.Diagnostics.EventLog.dll

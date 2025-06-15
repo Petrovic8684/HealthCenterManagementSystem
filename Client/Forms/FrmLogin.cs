@@ -10,6 +10,7 @@ namespace Client
             InitializeComponent();
 
             btnPrijava.Click += (s, e) => Controller.Instance.Lekari.Prijavi();
+            podešavanjaSoftverskogSistemaToolStripMenuItem.Click += (s, e) => FormManager.Instance.Open<FrmPodesavanja>();
             oProgramuToolStripMenuItem.Click += (s,e) => FormManager.Instance.Open<FrmOProgramu>();
         }
 

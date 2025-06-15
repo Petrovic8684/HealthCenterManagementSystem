@@ -8,7 +8,7 @@ namespace Server.SystemOperations
 
         internal SystemOperationBase()
         {
-            broker = new Broker();
+            broker = new Broker(ConfigManager.DBConnectionString);
         }
 
         internal void ExecuteTemplate()

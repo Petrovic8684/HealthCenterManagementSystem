@@ -24,7 +24,7 @@ namespace Server
 
         internal void Start()
         {
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(ConfigManager.ServerIP), ConfigManager.ServerPort);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, ConfigManager.Port);
 
             socket.Bind(endPoint);
             socket.Listen(5);

@@ -1,3 +1,4 @@
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\.env
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Client.exe
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Client.deps.json
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Client.runtimeconfig.json
@@ -5,11 +6,14 @@ C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Client.pdb
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Azure.Core.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Azure.Identity.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\DotNetEnv.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Bcl.Cryptography.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
@@ -23,6 +27,7 @@ C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Tokens.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Microsoft.SqlServer.Server.dll
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\Sprache.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\System.ClientModel.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\System.Configuration.ConfigurationManager.dll
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\bin\Debug\net8.0-windows\System.Diagnostics.EventLog.dll
@@ -63,6 +68,7 @@ C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.FrmOProgramu.resources
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.FrmPacijent.resources
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.FrmPacijentCRUD.resources
+C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.Forms.FrmPodesavanja.resources
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.FrmSertifikat.resources
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.FrmSertifikatCRUD.resources
 C:\Users\HP\Desktop\Fakultet\Projektovanje softvera\Seminarski\Client\obj\Debug\net8.0-windows\Client.FrmZdravstveniKarton.resources
