@@ -4,18 +4,18 @@ namespace Server.SystemOperations.SertifikatSO
 {
     internal class PretraziSertifikatSO : SystemOperationBase
     {
-        private readonly Sertifikat kriterijumi;
-        internal List<Sertifikat> Result { get; private set; }
+        private readonly Sertifikat sertifikat;
+        internal Sertifikat Result { get; private set; }
 
-        internal PretraziSertifikatSO(Sertifikat kriterijumi)
+        internal PretraziSertifikatSO(Sertifikat sertifikat)
         {
-            this.kriterijumi = kriterijumi;
+            this.sertifikat = sertifikat;
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            List<IEntity> lista = broker.GetByCondition(kriterijumi);
-            Result = lista.OfType<Sertifikat>().ToList();
+            var kriterijum = new Sertifikat { Id = sertifikat.Id };
+            Result = broker.GetByCondition(kriterijum).OfType<Sertifikat>().FirstOrDefault();
         }
     }
 }

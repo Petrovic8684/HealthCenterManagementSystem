@@ -1,6 +1,5 @@
 ﻿using Client.Forms;
 using Client.GuiController;
-using Client.GuiController.Criteria;
 using Common.Domain;
 
 namespace Client
@@ -11,32 +10,23 @@ namespace Client
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.Lekari.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.Lekari.VratiListu();
             btnKreirajNovog.Click += (s, e) => FormManager.Instance.Open<FrmLekarCRUD>(f =>
             {
                 f.FormClosed += (s, e) =>
                 {
-                    Controller.Instance.Lekari.Pretrazi();
+                    Controller.Instance.Lekari.VratiListuSvi();
                 };
             });
-            btnDetalji.Click += (s, e) => Controller.Instance.Lekari.PrikaziDetalje();
+            btnDetalji.Click += (s, e) => Controller.Instance.Lekari.Pretrazi();
 
             ControlInitialisator.InitComboBox(
                 cbSertifikati,
-                Controller.Instance.Sertifikati.Pretrazi().Cast<Sertifikat>(),
+                Controller.Instance.Sertifikati.VratiListuSvi().Cast<Sertifikat>(),
                 "Id",
                 "Prikaz",
                 new Sertifikat { Id = -1, Opis = "-- Bez izbora --" }
             );
-        }
-
-        public Lekar ConstructCriteria()
-        {
-            return new LekarCriteriaBuilder()
-                .WithIme(tbIme.Text)
-                .WithPrezime(tbPrezime.Text)
-                .WithSertifikat((Sertifikat)cbSertifikati.SelectedItem)
-                .Build();
         }
     }
 }

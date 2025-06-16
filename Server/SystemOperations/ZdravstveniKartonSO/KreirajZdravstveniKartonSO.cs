@@ -5,6 +5,7 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
     internal class KreirajZdravstveniKartonSO : SystemOperationBase
     {
         private readonly ZdravstveniKarton zdravstveniKarton;
+        internal ZdravstveniKarton Result { get; private set; }
 
         internal KreirajZdravstveniKartonSO(ZdravstveniKarton zdravstveniKarton)
         {
@@ -21,6 +22,9 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
 
             foreach (var stavka in zdravstveniKarton.Stavke)
                 broker.Add(stavka);
+
+            var kriterijum = new ZdravstveniKarton { Id = generatedId };
+            Result = broker.GetByCondition(kriterijum).OfType<ZdravstveniKarton>().FirstOrDefault();
         }
     }
 }

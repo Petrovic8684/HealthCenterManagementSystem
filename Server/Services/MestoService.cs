@@ -1,30 +1,54 @@
 ﻿using Common.Domain;
 using Server.SystemOperations.MestoSO;
+using Server.SystemOperations.PacijentSO;
 
 namespace Server.Services
 {
     internal class MestoService : IEntityService<Mesto>
     {
-        public void Kreiraj(Mesto mesto)
+        public Mesto Kreiraj(Mesto entity)
         {
-            new KreirajMestoSO(mesto).ExecuteTemplate();
-        }
-
-        public List<Mesto> Pretrazi(Mesto kriterijum)
-        {
-            var so = new PretraziMestoSO(kriterijum);
+            var so = new KreirajMestoSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public void Promeni(Mesto mesto)
+        public Mesto Pretrazi(Mesto entity)
         {
-            new PromeniMestoSO(mesto).ExecuteTemplate();
+            var so = new PretraziMestoSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
         }
 
-        public void Obrisi(Mesto mesto)
+        public Mesto Promeni(Mesto entity)
         {
-            new ObrisiMestoSO(mesto).ExecuteTemplate();
+            var so = new PromeniMestoSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public Mesto Obrisi(Mesto entity)
+        {
+            var so = new ObrisiMestoSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<Mesto> VratiListuSvi()
+        {
+            var so = new VratiListuSviMestoSO(new List<Mesto>());
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<Mesto> VratiListu(IEntity criterion)
+        {
+            if (criterion is not Mesto mestoCriterion)
+                throw new ArgumentException("Kriterijum mora biti tipa Mesto.");
+
+            var so = new VratiListuMestoSO(mestoCriterion, new List<Mesto>());
+            so.ExecuteTemplate();
+            return so.Result;
         }
     }
 }

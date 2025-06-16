@@ -1,10 +1,13 @@
 ﻿namespace Server.Services
 {
-    internal interface IEntityService<T> where T : class, IEntity
+    internal interface IEntityService<T> 
+        where T : class, IEntity, new()
     {
-        void Kreiraj(T entitet);
-        List<T> Pretrazi(T kriterijum);
-        void Promeni(T entitet);
-        void Obrisi(T entitet);
+        T Kreiraj(T entity);
+        T Pretrazi(T entity);
+        T Promeni(T entity);
+        T Obrisi(T entity);
+        List<T> VratiListuSvi();
+        List<T> VratiListu(IEntity criterion);
     }
 }

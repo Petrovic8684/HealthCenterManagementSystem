@@ -11,33 +11,23 @@ namespace Client
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.VratiListu();
             btnKreirajNovi.Click += (s, e) => FormManager.Instance.Open<FrmZdravstveniKartonCRUD>(f =>
             {
                 f.FormClosed += (s, e) =>
                 {
-                    Controller.Instance.ZdravstveniKartoni.Pretrazi();
+                    Controller.Instance.ZdravstveniKartoni.VratiListuSvi();
                 };
             });
-            btnDetalji.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.PrikaziDetalje();
+            btnDetalji.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Pretrazi();
 
             ControlInitialisator.InitComboBox(
                 cbDijagnoze,
-                Controller.Instance.Dijagnoze.Pretrazi().Cast<Dijagnoza>(),
+                Controller.Instance.Dijagnoze.VratiListuSvi().Cast<Dijagnoza>(),
                 "Id",
                 "Prikaz",
                 new Dijagnoza { Id = -1, Naziv = "-- Bez izbora --" }
             );
-        }
-
-        public ZdravstveniKarton ConstructCriteria()
-        {
-            return new ZdravstveniKartonCriteriaBuilder()
-                .WithDatumOtvaranjaAfter(mcOtvorenNakon.SelectionStart)
-                .WithImeLekara(tbLekar.Text)
-                .WithImePacijenta(tbPacijent.Text)
-                .WithDijagnoza((Dijagnoza)cbDijagnoze.SelectedItem)
-                .Build();
         }
     }
 }

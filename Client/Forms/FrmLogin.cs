@@ -16,7 +16,7 @@ namespace Client
 
         public bool Validation()
         {
-            bool validText = FormValidator.ValidateTextFields(tbEmail, tbSifra);
+            bool validText = FormValidator.ValidateTextFields(tbKorisnickoIme, tbSifra);
             return validText;
         }
     }

@@ -5,6 +5,7 @@ namespace Server.SystemOperations.MestoSO
     internal class PromeniMestoSO : SystemOperationBase
     {
         private readonly Mesto mesto;
+        internal Mesto Result { get; private set; }
 
         internal PromeniMestoSO(Mesto mesto)
         {
@@ -14,6 +15,9 @@ namespace Server.SystemOperations.MestoSO
         protected override void ExecuteConcreteOperation()
         {
             broker.Update(mesto);
+
+            var kriterijum = new Mesto { Id = mesto.Id };
+            Result = broker.GetByCondition(kriterijum).OfType<Mesto>().FirstOrDefault();
         }
     }
 }

@@ -5,6 +5,8 @@ namespace Server.SystemOperations.MestoSO
     internal class ObrisiMestoSO : SystemOperationBase
     {
         private readonly Mesto mesto;
+        internal Mesto Result { get; private set; }
+
 
         internal ObrisiMestoSO(Mesto mesto)
         {
@@ -13,6 +15,7 @@ namespace Server.SystemOperations.MestoSO
 
         protected override void ExecuteConcreteOperation()
         {
+            Result = mesto;
             broker.Delete(mesto);
         }
     }

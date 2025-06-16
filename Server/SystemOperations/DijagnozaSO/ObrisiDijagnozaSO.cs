@@ -5,6 +5,7 @@ namespace Server.SystemOperations.DijagnozaSO
     internal class ObrisiDijagnozaSO : SystemOperationBase
     {
         private readonly Dijagnoza dijagnoza;
+        internal Dijagnoza Result { get; private set; }
 
         internal ObrisiDijagnozaSO(Dijagnoza dijagnoza)
         {
@@ -13,6 +14,7 @@ namespace Server.SystemOperations.DijagnozaSO
 
         protected override void ExecuteConcreteOperation()
         {
+            Result = dijagnoza;
             broker.Delete(dijagnoza);
         }
     }

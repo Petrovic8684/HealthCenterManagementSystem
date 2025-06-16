@@ -1,6 +1,7 @@
 ﻿using Common.Communication;
 using Common.Domain;
 using Client.Forms;
+using Client.GuiController.Criteria;
 
 namespace Client.GuiController.Services
 {
@@ -10,7 +11,7 @@ namespace Client.GuiController.Services
         protected override Operation UpdateOperation => Operation.PromeniPacijent;
         protected override Operation DeleteOperation => Operation.ObrisiPacijent;
         protected override Operation SearchOperation => Operation.PretraziPacijent;
-
+        protected override Operation RetreiveAllListOperation => Operation.VratiListuSviPacijent;
         protected override FrmPacijent GetSearchForm() => FormManager.Instance.Get<FrmPacijent>() ?? new FrmPacijent();
 
         protected override FrmPacijentCRUD GetCrudForm() => FormManager.Instance.Get<FrmPacijentCRUD>();
@@ -29,8 +30,6 @@ namespace Client.GuiController.Services
             form.PrikaziDetalje(entity);
         }
 
-        protected override Pacijent GetSearchCriteria(FrmPacijent form) => form.ConstructCriteria();
-
         protected override void BindSearchResults(FrmPacijent form, List<Pacijent> results)
         {
             form.dgvPacijenti.DataSource = results;
@@ -43,6 +42,15 @@ namespace Client.GuiController.Services
                            || col.Name == nameof(Pacijent.Email)
                            || col.Name == nameof(Pacijent.Mesto);
             }
+        }
+
+        protected override List<Pacijent> BuildListResults(FrmPacijent form)
+        {
+            return new PacijentCriteriaBuilder()
+                .WithIme(form.tbIme.Text)
+                .WithPrezime(form.tbPrezime.Text)
+                .WithMesto((Mesto)form.cbMesta.SelectedItem)
+                .Build();
         }
     }
 }

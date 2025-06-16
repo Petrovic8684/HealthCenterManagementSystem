@@ -28,7 +28,7 @@ namespace Common.Domain
 
             if (ZdravstveniKarton != null && ZdravstveniKarton.Id > 0)
             {
-                conditions.Add("idZdravstveniKarton = @IdZdravstveniKarton");
+                conditions.Add("idZdravstveniKarton IN (SELECT idZdravstveniKarton FROM ZdravstveniKarton WHERE idZdravstveniKarton = @IdZdravstveniKarton)");
                 parameters.Add(new SqlParameter("@IdZdravstveniKarton", ZdravstveniKarton.Id));
             }
 

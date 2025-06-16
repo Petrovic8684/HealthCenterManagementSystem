@@ -12,12 +12,13 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
     protected abstract Operation UpdateOperation { get; }
     protected abstract Operation DeleteOperation { get; }
     protected abstract Operation SearchOperation { get; }
+    protected abstract Operation RetreiveAllListOperation { get; }
 
     protected abstract TCrudForm GetCrudForm();
+    protected abstract List<T> BuildListResults(TForm form);
     protected abstract TForm GetSearchForm();
     protected abstract T CreateEntityFromForm(TCrudForm form);
     protected abstract void FillFormWithEntity(TCrudForm form, T entity);
-    protected abstract T GetSearchCriteria(TForm form);
     protected abstract void BindSearchResults(TForm form, List<T> results);
 
     public void Kreiraj()
@@ -89,43 +90,25 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         }
     }
 
-    public List<T> Pretrazi()
-    {
-        try
-        {
-            var form = GetSearchForm();
-            T criteria = GetSearchCriteria(form);
-
-            var response = Communication.Instance.SendRequestList<T, T>(criteria, SearchOperation);
-            CheckResponse(response);
-
-            var result = response.Result as List<T>;
-            BindSearchResults(form, result);
-
-            MessageBox.Show("Sistem je našao " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.");
-            return result;
-        }
-        catch (Exception ex)
-        {
-            ShowError("Sistem ne može da nađe " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.", ex);
-            return null;
-        }
-    }
-
-    public void PrikaziDetalje()
+    public void Pretrazi()
     {
         try
         {
             var form = GetSearchForm();
             var selected = GetSelectedEntity(form);
 
-            MessageBox.Show("Sistem je pronašao " + new T().ImeKlaseAkuzativJednine + ".");
+            var response = Communication.Instance.SendRequest<T, T>(selected, SearchOperation);
+            CheckResponse(response);
+
+            var result = response.Result as T;
+
+            MessageBox.Show("Sistem je pronašao " + result.ImeKlaseAkuzativJednine + ".");
 
             FormManager.Instance.Open<TCrudForm>(form =>
             {
                 form.Tag = selected;
                 FillFormWithEntity(form, selected);
-                form.FormClosed += (s, e) => Pretrazi();
+                form.FormClosed += (s, e) => VratiListuSvi();
             });
         }
         catch (Exception ex)
@@ -134,9 +117,55 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         }
     }
 
+    public virtual List<T> VratiListuSvi()
+    {
+        try
+        {
+            var form = GetSearchForm();
+
+            var response = Communication.Instance.SendRequestList<object, T>(null, RetreiveAllListOperation);
+            CheckResponse(response);
+
+            var result = response.Result as List<T>;
+            BindSearchResults(form, result);
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    public List<T> VratiListu(bool showMessages = true)
+    {
+        try
+        {
+            var form = GetSearchForm();
+            var results = BuildListResults(form);
+
+            if (showMessages)
+            {
+                if (results == null || results.Count == 0)
+                    MessageBox.Show("Sistem ne može da nađe " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.");
+                else
+                    MessageBox.Show("Sistem je našao " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.");
+            }
+
+            BindSearchResults(form, results);
+            return results;
+        }
+        catch (Exception ex)
+        {
+            if (showMessages)
+                ShowError("Sistem ne može da nađe " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.", ex);
+            return null;
+        }
+    }
+
     protected virtual bool ValidateForm(Form form) => (form as ICrudForm<T>)?.Validation() == true;
 
-    protected virtual void ValidateBeforeOperation(T entity) {    }
+    protected virtual void ValidateBeforeOperation(T entity) {  }
 
     protected virtual T GetSelectedEntity(TForm form)
     {

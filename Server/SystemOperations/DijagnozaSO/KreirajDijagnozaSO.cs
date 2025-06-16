@@ -5,6 +5,7 @@ namespace Server.SystemOperations.DijagnozaSO
     internal class KreirajDijagnozaSO : SystemOperationBase
     {
         private readonly Dijagnoza dijagnoza;
+        internal Dijagnoza Result { get; private set; }
 
         internal KreirajDijagnozaSO(Dijagnoza dijagnoza)
         {
@@ -13,7 +14,10 @@ namespace Server.SystemOperations.DijagnozaSO
 
         protected override void ExecuteConcreteOperation()
         {
-            broker.Add(dijagnoza);
+            int id = broker.AddWithReturnId(dijagnoza);
+
+            var kriterijum = new Dijagnoza { Id = id };
+            Result = broker.GetByCondition(kriterijum).OfType<Dijagnoza>().FirstOrDefault();
         }
     }
 }

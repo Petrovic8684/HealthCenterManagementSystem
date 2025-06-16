@@ -5,6 +5,7 @@ namespace Server.SystemOperations.PacijentSO
     internal class PromeniPacijentSO : SystemOperationBase
     {
         private readonly Pacijent pacijent;
+        internal Pacijent Result { get; private set; }
 
         internal PromeniPacijentSO(Pacijent pacijent)
         {
@@ -14,6 +15,9 @@ namespace Server.SystemOperations.PacijentSO
         protected override void ExecuteConcreteOperation()
         {
             broker.Update(pacijent);
+
+            var kriterijum = new Pacijent { Id = pacijent.Id };
+            Result = broker.GetByCondition(kriterijum).OfType<Pacijent>().FirstOrDefault();
         }
     }
 }

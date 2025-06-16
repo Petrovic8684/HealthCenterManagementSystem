@@ -46,11 +46,13 @@
             lblLekarId = new Label();
             lblSifra = new Label();
             tbSifra = new TextBox();
+            tbKorisnickoIme = new TextBox();
+            lblKorisnickoIme = new Label();
             SuspendLayout();
             // 
             // tbEmail
             // 
-            tbEmail.Location = new Point(76, 236);
+            tbEmail.Location = new Point(76, 228);
             tbEmail.Name = "tbEmail";
             tbEmail.Size = new Size(220, 27);
             tbEmail.TabIndex = 2;
@@ -58,7 +60,7 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(76, 213);
+            lblEmail.Location = new Point(76, 205);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(49, 20);
             lblEmail.TabIndex = 15;
@@ -66,7 +68,7 @@
             // 
             // tbPrezime
             // 
-            tbPrezime.Location = new Point(76, 160);
+            tbPrezime.Location = new Point(76, 156);
             tbPrezime.Name = "tbPrezime";
             tbPrezime.Size = new Size(220, 27);
             tbPrezime.TabIndex = 1;
@@ -81,7 +83,7 @@
             // lblPrezime
             // 
             lblPrezime.AutoSize = true;
-            lblPrezime.Location = new Point(76, 137);
+            lblPrezime.Location = new Point(76, 133);
             lblPrezime.Name = "lblPrezime";
             lblPrezime.Size = new Size(65, 20);
             lblPrezime.TabIndex = 12;
@@ -136,7 +138,7 @@
             lbSertifikati.Location = new Point(361, 116);
             lbSertifikati.Name = "lbSertifikati";
             lbSertifikati.ScrollAlwaysVisible = true;
-            lbSertifikati.Size = new Size(226, 224);
+            lbSertifikati.Size = new Size(226, 284);
             lbSertifikati.TabIndex = 35;
             lbSertifikati.TabStop = false;
             // 
@@ -167,7 +169,7 @@
             btnOdustani.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
             btnOdustani.FlatStyle = FlatStyle.Flat;
             btnOdustani.ForeColor = SystemColors.ControlText;
-            btnOdustani.Location = new Point(474, 403);
+            btnOdustani.Location = new Point(474, 454);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 38);
             btnOdustani.TabIndex = 9;
@@ -183,7 +185,7 @@
             btnZapamti.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
             btnZapamti.FlatStyle = FlatStyle.Flat;
             btnZapamti.ForeColor = SystemColors.ControlText;
-            btnZapamti.Location = new Point(76, 403);
+            btnZapamti.Location = new Point(76, 454);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 38);
             btnZapamti.TabIndex = 7;
@@ -200,7 +202,7 @@
             btnObrisi.FlatAppearance.MouseOverBackColor = Color.FromArgb(255, 192, 192);
             btnObrisi.FlatStyle = FlatStyle.Flat;
             btnObrisi.ForeColor = SystemColors.ControlText;
-            btnObrisi.Location = new Point(207, 403);
+            btnObrisi.Location = new Point(207, 454);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(113, 38);
             btnObrisi.TabIndex = 8;
@@ -211,7 +213,7 @@
             // 
             lblLekarId.AutoSize = true;
             lblLekarId.ForeColor = SystemColors.ControlDarkDark;
-            lblLekarId.Location = new Point(12, 488);
+            lblLekarId.Location = new Point(12, 543);
             lblLekarId.Name = "lblLekarId";
             lblLekarId.Size = new Size(132, 20);
             lblLekarId.TabIndex = 50;
@@ -220,26 +222,44 @@
             // lblSifra
             // 
             lblSifra.AutoSize = true;
-            lblSifra.Location = new Point(76, 290);
+            lblSifra.Location = new Point(76, 347);
             lblSifra.Name = "lblSifra";
             lblSifra.Size = new Size(42, 20);
             lblSifra.TabIndex = 51;
-            lblSifra.Text = "Sifra:";
+            lblSifra.Text = "Šifra:";
             // 
             // tbSifra
             // 
-            tbSifra.Location = new Point(76, 313);
+            tbSifra.Location = new Point(76, 370);
             tbSifra.Name = "tbSifra";
             tbSifra.Size = new Size(220, 27);
             tbSifra.TabIndex = 3;
             tbSifra.UseSystemPasswordChar = true;
+            // 
+            // tbKorisnickoIme
+            // 
+            tbKorisnickoIme.Location = new Point(76, 299);
+            tbKorisnickoIme.Name = "tbKorisnickoIme";
+            tbKorisnickoIme.Size = new Size(220, 27);
+            tbKorisnickoIme.TabIndex = 52;
+            // 
+            // lblKorisnickoIme
+            // 
+            lblKorisnickoIme.AutoSize = true;
+            lblKorisnickoIme.Location = new Point(76, 276);
+            lblKorisnickoIme.Name = "lblKorisnickoIme";
+            lblKorisnickoIme.Size = new Size(109, 20);
+            lblKorisnickoIme.TabIndex = 53;
+            lblKorisnickoIme.Text = "Korisničko ime:";
             // 
             // FrmLekarCRUD
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(669, 517);
+            ClientSize = new Size(669, 572);
+            Controls.Add(tbKorisnickoIme);
+            Controls.Add(lblKorisnickoIme);
             Controls.Add(tbSifra);
             Controls.Add(lblSifra);
             Controls.Add(lblLekarId);
@@ -284,5 +304,7 @@
         internal ListBox lbSertifikati;
         internal ComboBox cbSertifikati;
         internal TextBox tbSifra;
+        internal TextBox tbKorisnickoIme;
+        private Label lblKorisnickoIme;
     }
 }

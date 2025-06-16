@@ -4,18 +4,18 @@ namespace Server.SystemOperations.DijagnozaSO
 {
     internal class PretraziDijagnozaSO : SystemOperationBase
     {
-        private readonly Dijagnoza kriterijumi;
-        internal List<Dijagnoza> Result { get; private set; }
+        private readonly Dijagnoza dijagnoza;
+        internal Dijagnoza Result { get; private set; }
 
-        internal PretraziDijagnozaSO(Dijagnoza kriterijumi)
+        internal PretraziDijagnozaSO(Dijagnoza dijagnoza)
         {
-            this.kriterijumi = kriterijumi;
+            this.dijagnoza = dijagnoza;
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            List<IEntity> lista = broker.GetByCondition(kriterijumi);
-            Result = lista.OfType<Dijagnoza>().ToList();
+            var kriterijum = new Dijagnoza { Id = dijagnoza.Id };
+            Result = broker.GetByCondition(kriterijum).OfType<Dijagnoza>().FirstOrDefault();
         }
     }
 }

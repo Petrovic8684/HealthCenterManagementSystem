@@ -1,6 +1,7 @@
 ﻿using Common.Communication;
 using Common.Domain;
 using Client.Forms;
+using Client.GuiController.Criteria;
 
 namespace Client.GuiController.Services
 {
@@ -10,7 +11,7 @@ namespace Client.GuiController.Services
         protected override Operation UpdateOperation => Operation.PromeniSertifikat;
         protected override Operation DeleteOperation => Operation.ObrisiSertifikat;
         protected override Operation SearchOperation => Operation.PretraziSertifikat;
-
+        protected override Operation RetreiveAllListOperation => Operation.VratiListuSviSertifikat;
         protected override FrmSertifikat GetSearchForm() => FormManager.Instance.Get<FrmSertifikat>() ?? new FrmSertifikat();
 
         protected override FrmSertifikatCRUD GetCrudForm() => FormManager.Instance.Get<FrmSertifikatCRUD>();
@@ -26,8 +27,6 @@ namespace Client.GuiController.Services
             form.PrikaziDetalje(entity);
         }
 
-        protected override Sertifikat GetSearchCriteria(FrmSertifikat form) => form.ConstructCriteria();
-
         protected override void BindSearchResults(FrmSertifikat form, List<Sertifikat> results)
         {
             form.dgvSertifikati.DataSource = results;
@@ -36,6 +35,13 @@ namespace Client.GuiController.Services
             {
                 column.Visible = column.Name == nameof(Sertifikat.Id) || column.Name == nameof(Sertifikat.Opis);
             }
+        }
+
+        protected override List<Sertifikat> BuildListResults(FrmSertifikat form)
+        {
+            return new SertifikatCriteriaBuilder()
+                .WithOpis(form.tbOpis.Text)
+                .Build();
         }
     }
 }

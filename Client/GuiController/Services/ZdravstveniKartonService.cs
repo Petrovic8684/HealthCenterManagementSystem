@@ -2,6 +2,7 @@
 using Client;
 using Common.Domain;
 using Common.Communication;
+using Client.GuiController.Criteria;
 
 internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, FrmZdravstveniKarton, FrmZdravstveniKartonCRUD>
 {
@@ -9,7 +10,7 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
     protected override Operation UpdateOperation => Operation.PromeniZdravstveniKarton;
     protected override Operation DeleteOperation => Operation.None;
     protected override Operation SearchOperation => Operation.PretraziZdravstveniKarton;
-
+    protected override Operation RetreiveAllListOperation => Operation.None;
     protected override FrmZdravstveniKarton GetSearchForm() => FormManager.Instance.Get<FrmZdravstveniKarton>() ?? new FrmZdravstveniKarton();
     protected override FrmZdravstveniKartonCRUD GetCrudForm() => FormManager.Instance.Get<FrmZdravstveniKartonCRUD>();
 
@@ -27,8 +28,6 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
     {
         form.PrikaziDetalje(entity);
     }
-
-    protected override ZdravstveniKarton GetSearchCriteria(FrmZdravstveniKarton form) => form.ConstructCriteria();
 
     protected override void BindSearchResults(FrmZdravstveniKarton form, List<ZdravstveniKarton> results)
     {
@@ -49,6 +48,11 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
     private List<StavkaZdravstvenogKartona> GetStavkeList(ListBox lb)
     {
         return lb.DataSource as List<StavkaZdravstvenogKartona> ?? lb.Items.OfType<StavkaZdravstvenogKartona>().ToList();
+    }
+
+    public override List<ZdravstveniKarton> VratiListuSvi()
+    {
+        return VratiListu(false);
     }
 
     internal void DodajStavku()
@@ -109,5 +113,15 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
         {
             MessageBox.Show(ex.Message, "Greška");
         }
+    }
+
+    protected override List<ZdravstveniKarton> BuildListResults(FrmZdravstveniKarton forma)
+    {
+        return new ZdravstveniKartonCriteriaBuilder()
+            .WithDatumOtvaranjaAfter(forma.mcOtvorenNakon.SelectionStart)
+            .WithImeLekara(forma.tbLekar.Text)
+            .WithImePacijenta(forma.tbPacijent.Text)
+            .WithDijagnoza((Dijagnoza)forma.cbDijagnoze.SelectedItem)
+            .Build();
     }
 }

@@ -6,18 +6,18 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
 {
     internal class PretraziZdravstveniKartonSO : SystemOperationBase
     {
-        private readonly ZdravstveniKarton kriterijumi;
-        internal List<ZdravstveniKarton> Result { get; private set; }
+        private readonly ZdravstveniKarton zdravstveniKarton;
+        internal ZdravstveniKarton Result { get; private set; }
 
-        internal PretraziZdravstveniKartonSO(ZdravstveniKarton kriterijumi)
+        internal PretraziZdravstveniKartonSO(ZdravstveniKarton zdravstveniKarton)
         {
-            this.kriterijumi = kriterijumi;
+            this.zdravstveniKarton = zdravstveniKarton;
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            List<IEntity> lista = broker.GetByCondition(kriterijumi);
-            Result = lista.Cast<ZdravstveniKarton>().ToList();
+            var kriterijum = new ZdravstveniKarton { Id = zdravstveniKarton.Id };
+            Result = broker.GetByCondition(kriterijum).OfType<ZdravstveniKarton>().FirstOrDefault();
         }
     }
 }

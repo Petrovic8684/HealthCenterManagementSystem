@@ -4,19 +4,21 @@ namespace Server.SystemOperations.LekarSO
 {
     internal class PrijaviLekarSO : SystemOperationBase
     {
-        private readonly Lekar lekar;
+        private readonly string korisnickoIme;
+        private readonly string sifra;
         internal Lekar Result { get; set; }
 
-        internal PrijaviLekarSO(Lekar lekar)
+        internal PrijaviLekarSO(string korisnickoIme, string sifra)
         {
-            this.lekar = lekar;
+            this.korisnickoIme = korisnickoIme;
+            this.sifra = sifra;
         }
 
         protected override void ExecuteConcreteOperation()
         {
             Lekar kriterijum = new Lekar
             {
-                Email = lekar.Email
+                KorisnickoIme = korisnickoIme
             };
 
             List<IEntity> lista = broker.GetByCondition(kriterijum);

@@ -25,7 +25,7 @@ namespace Client
 
             ControlInitialisator.InitComboBox(
                 cbMesta,
-                Controller.Instance.Mesta.Pretrazi().Cast<Mesto>(),
+                Controller.Instance.Mesta.VratiListuSvi().Cast<Mesto>(),
                 "Id",
                 "Prikaz",
                 new Mesto { Id = -1, Naziv = "-- Bez izbora --" }

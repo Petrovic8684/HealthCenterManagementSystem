@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
-            lblEmail = new Label();
+            lblKorisnickoIme = new Label();
             lblSifra = new Label();
-            tbEmail = new TextBox();
+            tbKorisnickoIme = new TextBox();
             tbSifra = new TextBox();
             btnPrijava = new Button();
             pbLogin = new PictureBox();
@@ -42,14 +42,14 @@
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // lblEmail
+            // lblKorisnickoIme
             // 
-            lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(89, 73);
-            lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(49, 20);
-            lblEmail.TabIndex = 0;
-            lblEmail.Text = "Email:";
+            lblKorisnickoIme.AutoSize = true;
+            lblKorisnickoIme.Location = new Point(89, 73);
+            lblKorisnickoIme.Name = "lblKorisnickoIme";
+            lblKorisnickoIme.Size = new Size(109, 20);
+            lblKorisnickoIme.TabIndex = 0;
+            lblKorisnickoIme.Text = "Korisničko ime:";
             // 
             // lblSifra
             // 
@@ -60,13 +60,13 @@
             lblSifra.TabIndex = 1;
             lblSifra.Text = "Sifra:";
             // 
-            // tbEmail
+            // tbKorisnickoIme
             // 
-            tbEmail.BackColor = SystemColors.Window;
-            tbEmail.Location = new Point(89, 96);
-            tbEmail.Name = "tbEmail";
-            tbEmail.Size = new Size(220, 27);
-            tbEmail.TabIndex = 2;
+            tbKorisnickoIme.BackColor = SystemColors.Window;
+            tbKorisnickoIme.Location = new Point(89, 96);
+            tbKorisnickoIme.Name = "tbKorisnickoIme";
+            tbKorisnickoIme.Size = new Size(220, 27);
+            tbKorisnickoIme.TabIndex = 2;
             // 
             // tbSifra
             // 
@@ -136,9 +136,9 @@
             Controls.Add(pbLogin);
             Controls.Add(btnPrijava);
             Controls.Add(tbSifra);
-            Controls.Add(tbEmail);
+            Controls.Add(tbKorisnickoIme);
             Controls.Add(lblSifra);
-            Controls.Add(lblEmail);
+            Controls.Add(lblKorisnickoIme);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -155,14 +155,14 @@
 
         #endregion
 
-        private Label lblEmail;
+        private Label lblKorisnickoIme;
         private Label lblSifra;
         private Button btnPrijava;
         private PictureBox pbLogin;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem podešavanjaSoftverskogSistemaToolStripMenuItem;
         private ToolStripMenuItem oProgramuToolStripMenuItem;
-        internal TextBox tbEmail;
+        internal TextBox tbKorisnickoIme;
         internal TextBox tbSifra;
     }
 }

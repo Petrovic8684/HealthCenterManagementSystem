@@ -1,48 +1,79 @@
-﻿using Common.Domain;
+﻿using Client;
+using Client.GuiController.Criteria;
+using Common.Communication;
+using Common.Domain;
 
-namespace Client.GuiController.Criteria
+public class ZdravstveniKartonCriteriaBuilder : ICriteriaBuilder<ZdravstveniKarton>
 {
-    internal class ZdravstveniKartonCriteriaBuilder : ICriteriaBuilder<ZdravstveniKarton>
+    private readonly List<Func<List<ZdravstveniKarton>>> _criteriaFetchers = new();
+
+    public ZdravstveniKartonCriteriaBuilder WithDatumOtvaranjaAfter(DateTime datum)
     {
-        private readonly ZdravstveniKarton kriterijumi = new ZdravstveniKarton();
-
-        internal ZdravstveniKartonCriteriaBuilder WithDatumOtvaranjaAfter(DateTime datum)
+        if (datum != DateTime.Today)
         {
-            if (datum != DateTime.Today)
-                kriterijumi.DatumOtvaranja = datum;
-            return this;
-        }
-
-        internal ZdravstveniKartonCriteriaBuilder WithImeLekara(string ime)
-        {
-            if (!string.IsNullOrWhiteSpace(ime))
-                kriterijumi.Lekar.Ime = ime.Trim();
-            return this;
-        }
-
-        internal ZdravstveniKartonCriteriaBuilder WithImePacijenta(string ime)
-        {
-            if (!string.IsNullOrWhiteSpace(ime))
-                kriterijumi.Pacijent.Ime = ime.Trim();
-            return this;
-        }
-
-        internal ZdravstveniKartonCriteriaBuilder WithDijagnoza(Dijagnoza dijagnoza)
-        {
-            if (dijagnoza != null && dijagnoza.Id != -1)
+            _criteriaFetchers.Add(() =>
             {
-                StavkaZdravstvenogKartona stavka = new StavkaZdravstvenogKartona();
-                stavka.Dijagnoza = dijagnoza;
-
-                kriterijumi.Stavke = new List<StavkaZdravstvenogKartona>() { stavka };
-            }
-
-            return this;
+                var kriterijum = new ZdravstveniKarton { DatumOtvaranja = datum };
+                var response = Communication.Instance.SendRequestList<ZdravstveniKarton, ZdravstveniKarton>(kriterijum, Operation.VratiListuZdravstveniKartonPoZdravstvenomKartonu);
+                return response.Result as List<ZdravstveniKarton>;
+            });
         }
+        return this;
+    }
 
-        public ZdravstveniKarton Build()
+    public ZdravstveniKartonCriteriaBuilder WithImeLekara(string ime)
+    {
+        if (!string.IsNullOrWhiteSpace(ime))
         {
-            return kriterijumi;
+            _criteriaFetchers.Add(() =>
+            {
+                var kriterijum = new Lekar { Ime = ime.Trim() };
+                var response = Communication.Instance.SendRequestList<Lekar, ZdravstveniKarton>(kriterijum, Operation.VratiListuZdravstveniKartonPoLekaru);
+                return response.Result as List<ZdravstveniKarton>;
+            });
         }
+        return this;
+    }
+
+    public ZdravstveniKartonCriteriaBuilder WithImePacijenta(string ime)
+    {
+        if (!string.IsNullOrWhiteSpace(ime))
+        {
+            _criteriaFetchers.Add(() =>
+            {
+                var kriterijum = new Pacijent { Ime = ime.Trim() };
+                var response = Communication.Instance.SendRequestList<Pacijent, ZdravstveniKarton>(kriterijum, Operation.VratiListuZdravstveniKartonPoPacijentu);
+                return response.Result as List<ZdravstveniKarton>;
+            });
+        }
+        return this;
+    }
+
+    public ZdravstveniKartonCriteriaBuilder WithDijagnoza(Dijagnoza dijagnoza)
+    {
+        if (dijagnoza != null && dijagnoza.Id != -1)
+        {
+            _criteriaFetchers.Add(() =>
+            {
+                var response = Communication.Instance.SendRequestList<Dijagnoza, ZdravstveniKarton>(dijagnoza, Operation.VratiListuZdravstveniKartonPoDijagnozi);
+                return response.Result as List<ZdravstveniKarton>;
+            });
+        }
+        return this;
+    }
+
+    public List<ZdravstveniKarton> Build()
+    {
+        if (_criteriaFetchers.Count == 0)
+            throw new Exception("Izaberite bar jedan kriterijum pretrage.");
+
+        var resultSets = _criteriaFetchers.Select(fetch => fetch()).ToList();
+        return resultSets.Aggregate((prev, next) => prev.Intersect(next, new ZdravstveniKartonComparer()).ToList());
+    }
+
+    private class ZdravstveniKartonComparer : IEqualityComparer<ZdravstveniKarton>
+    {
+        public bool Equals(ZdravstveniKarton x, ZdravstveniKarton y) => x.Id == y.Id;
+        public int GetHashCode(ZdravstveniKarton obj) => obj.Id.GetHashCode();
     }
 }

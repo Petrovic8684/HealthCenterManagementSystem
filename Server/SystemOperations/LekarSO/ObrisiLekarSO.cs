@@ -5,6 +5,8 @@ namespace Server.SystemOperations.LekarSO
     internal class ObrisiLekarSO : SystemOperationBase
     {
         private readonly Lekar lekar;
+        internal Lekar Result { get; private set; }
+
 
         internal ObrisiLekarSO(Lekar lekar)
         {
@@ -13,6 +15,8 @@ namespace Server.SystemOperations.LekarSO
 
         protected override void ExecuteConcreteOperation()
         {
+            Result = lekar;
+
             LeS kriterijum = new LeS
             {
                 IdLekar = lekar.Id

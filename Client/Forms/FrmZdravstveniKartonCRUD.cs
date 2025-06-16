@@ -24,7 +24,7 @@ namespace Client
 
             ControlInitialisator.InitComboBox(
                 cbDijagnoze,
-                Controller.Instance.Dijagnoze.Pretrazi().Cast<Dijagnoza>(),
+                Controller.Instance.Dijagnoze.VratiListuSvi().Cast<Dijagnoza>(),
                 "Id",
                 "Prikaz",
                 new Dijagnoza { Id = -1, Naziv = "-- Bez izbora --" }
@@ -32,7 +32,7 @@ namespace Client
 
             ControlInitialisator.InitComboBox(
                 cbLekari,
-                Controller.Instance.Lekari.Pretrazi().Cast<Lekar>(),
+                Controller.Instance.Lekari.VratiListuSvi().Cast<Lekar>(),
                 "Id",
                 "Prikaz",
                 new Lekar { Id = -1, Ime = "-- Bez izbora --" }
@@ -40,7 +40,7 @@ namespace Client
 
             ControlInitialisator.InitComboBox(
                 cbPacijenti,
-                Controller.Instance.Pacijenti.Pretrazi().Cast<Pacijent>(),
+                Controller.Instance.Pacijenti.VratiListuSvi().Cast<Pacijent>(),
                 "Id",
                 "Prikaz",
                 new Pacijent { Id = -1, Ime = "-- Bez izbora --" }

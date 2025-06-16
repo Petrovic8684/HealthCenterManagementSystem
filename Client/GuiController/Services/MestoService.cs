@@ -1,6 +1,7 @@
 ﻿using Common.Communication;
 using Common.Domain;
 using Client.Forms;
+using Client.GuiController.Criteria;
 
 namespace Client.GuiController.Services
 {
@@ -10,7 +11,7 @@ namespace Client.GuiController.Services
         protected override Operation UpdateOperation => Operation.PromeniMesto;
         protected override Operation DeleteOperation => Operation.ObrisiMesto;
         protected override Operation SearchOperation => Operation.PretraziMesto;
-
+        protected override Operation RetreiveAllListOperation => Operation.VratiListuSviMesto;
         protected override FrmMesto GetSearchForm() => FormManager.Instance.Get<FrmMesto>() ?? new FrmMesto();
 
         protected override FrmMestoCRUD GetCrudForm() => FormManager.Instance.Get<FrmMestoCRUD>();
@@ -27,8 +28,6 @@ namespace Client.GuiController.Services
             form.PrikaziDetalje(entity);
         }
 
-        protected override Mesto GetSearchCriteria(FrmMesto form) => form.ConstructCriteria();
-
         protected override void BindSearchResults(FrmMesto form, List<Mesto> results)
         {
             form.dgvMesta.DataSource = results;
@@ -39,6 +38,14 @@ namespace Client.GuiController.Services
                               || column.Name == nameof(Mesto.Naziv)
                               || column.Name == nameof(Mesto.PostanskiBroj);
             }
+        }
+
+        protected override List<Mesto> BuildListResults(FrmMesto form)
+        {
+            return new MestoCriteriaBuilder()
+                .WithNaziv(form.tbNaziv.Text)
+                .WithPostanskiBroj(form.tbPostanskiBroj.Text)
+                .Build();
         }
     }
 }

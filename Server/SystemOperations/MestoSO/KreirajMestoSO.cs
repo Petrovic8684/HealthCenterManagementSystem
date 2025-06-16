@@ -5,6 +5,7 @@ namespace Server.SystemOperations.MestoSO
     internal class KreirajMestoSO : SystemOperationBase
     {
         private readonly Mesto mesto;
+        internal Mesto Result { get; private set; }
 
         internal KreirajMestoSO(Mesto mesto)
         {
@@ -13,7 +14,10 @@ namespace Server.SystemOperations.MestoSO
 
         protected override void ExecuteConcreteOperation()
         {
-            broker.Add(mesto);
+            int id = broker.AddWithReturnId(mesto);
+
+            var kriterijum = new Mesto { Id = id };
+            Result = broker.GetByCondition(kriterijum).OfType<Mesto>().FirstOrDefault();
         }
     }
 }

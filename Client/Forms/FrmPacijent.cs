@@ -1,6 +1,5 @@
 ﻿using Client.Forms;
 using Client.GuiController;
-using Client.GuiController.Criteria;
 using Common.Domain;
 
 namespace Client
@@ -11,32 +10,23 @@ namespace Client
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.Pacijenti.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.Pacijenti.VratiListu();
             btnKreirajNovog.Click += (s, e) => FormManager.Instance.Open<FrmPacijentCRUD>(f =>
             {
                 f.FormClosed += (s, e) =>
                 {
-                    Controller.Instance.Pacijenti.Pretrazi();
+                    Controller.Instance.Pacijenti.VratiListuSvi();
                 };
             });
-            btnDetalji.Click += (s, e) => Controller.Instance.Pacijenti.PrikaziDetalje();
+            btnDetalji.Click += (s, e) => Controller.Instance.Pacijenti.Pretrazi();
 
             ControlInitialisator.InitComboBox(
                 cbMesta,
-                Controller.Instance.Mesta.Pretrazi().Cast<Mesto>(),
+                Controller.Instance.Mesta.VratiListuSvi().Cast<Mesto>(),
                 "Id",
                 "Prikaz",
                 new Mesto { Id = -1, Naziv = "-- Bez izbora --" }
             );
-        }
-
-        public Pacijent ConstructCriteria()
-        {
-            return new PacijentCriteriaBuilder()
-                .WithIme(tbIme.Text)
-                .WithPrezime(tbPrezime.Text)
-                .WithMesto((Mesto)cbMesta.SelectedItem)
-                .Build();
         }
     }
 }

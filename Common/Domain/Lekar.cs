@@ -9,6 +9,7 @@ namespace Common.Domain
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Email { get; set; }
+        public string KorisnickoIme { get; set; }
         public string Sifra { get; set; }
         public List<Sertifikat> Sertifikati { get; set; } = new List<Sertifikat>();
 
@@ -16,11 +17,11 @@ namespace Common.Domain
         public string ImeKlaseAkuzativJednine => "lekara";
         public string ImeKlaseAkuzativMnozine => "lekare";
 
-        public string Columns => "ime, prezime, email, sifra";
+        public string Columns => "ime, prezime, email, sifra, korisnickoIme";
 
-        public string ValuesClause => "@Ime, @Prezime, @Email, @Sifra";
+        public string ValuesClause => "@Ime, @Prezime, @Email, @Sifra, @KorisnickoIme";
 
-        public string SetClause => "ime = @Ime, prezime = @Prezime, email = @Email, sifra = @Sifra";
+        public string SetClause => "ime = @Ime, prezime = @Prezime, email = @Email, sifra = @Sifra, korisnickoIme = @KorisnickoIme";
 
         public string PrimaryKey => "idLekar";
 
@@ -34,7 +35,7 @@ namespace Common.Domain
             "LEFT JOIN sertifikat s ON les.idSertifikat = s.idSertifikat";
 
         public string SelectClause =>
-            "l.idLekar, l.ime, l.prezime, l.email, l.sifra, " +
+            "l.idLekar, l.ime, l.prezime, l.email, l.sifra, l.korisnickoIme, " +
             "s.idSertifikat AS SertifikatId, s.opis AS SertifikatOpis";
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
@@ -58,6 +59,12 @@ namespace Common.Domain
             {
                 conditions.Add("l.email = @Email");
                 parameters.Add(new SqlParameter("@Email", Email));
+            }
+
+            if (!string.IsNullOrWhiteSpace(KorisnickoIme))
+            {
+                conditions.Add("l.korisnickoIme = @KorisnickoIme");
+                parameters.Add(new SqlParameter("@KorisnickoIme", KorisnickoIme));
             }
 
             if (Sertifikati?.Count > 0 && Sertifikati[0]?.Id > 0)
@@ -87,6 +94,7 @@ namespace Common.Domain
                         Prezime = (string)reader["prezime"],
                         Email = (string)reader["email"],
                         Sifra = (string)reader["sifra"],
+                        KorisnickoIme = (string)reader["korisnickoIme"],
                         Sertifikati = new List<Sertifikat>()
                     };
                     lekarDict[idLekar] = lekar;
@@ -118,6 +126,7 @@ namespace Common.Domain
                 new SqlParameter("@Prezime", Prezime),
                 new SqlParameter("@Email", Email),
                 new SqlParameter("@Sifra", Sifra),
+                new SqlParameter("@KorisnickoIme", KorisnickoIme),
             };
         }
 

@@ -1,30 +1,51 @@
 ﻿using Common.Domain;
 using Server.SystemOperations.PacijentSO;
+using Server.SystemOperations.ZdravstveniKartonSO;
 
 namespace Server.Services
 {
     internal class PacijentService : IEntityService<Pacijent>
     {
-        public void Kreiraj(Pacijent pacijent)
+        public Pacijent Kreiraj(Pacijent entity)
         {
-            new KreirajPacijentSO(pacijent).ExecuteTemplate();
-        }
-
-        public List<Pacijent> Pretrazi(Pacijent kriterijum)
-        {
-            var so = new PretraziPacijentSO(kriterijum);
+            var so = new KreirajPacijentSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public void Promeni(Pacijent pacijent)
+        public Pacijent Pretrazi(Pacijent entity)
         {
-            new PromeniPacijentSO(pacijent).ExecuteTemplate();
+            var so = new PretraziPacijentSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
         }
 
-        public void Obrisi(Pacijent pacijent)
+        public Pacijent Promeni(Pacijent entity)
         {
-            new ObrisiPacijentSO(pacijent).ExecuteTemplate();
+            var so = new PromeniPacijentSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public Pacijent Obrisi(Pacijent entity)
+        {
+            var so = new ObrisiPacijentSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<Pacijent> VratiListuSvi()
+        {
+            var so = new VratiListuSviPacijentSO(new List<Pacijent>());
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<Pacijent> VratiListu(IEntity criterion)
+        {
+            var so = new VratiListuPacijentSO(criterion, new List<Pacijent>());
+            so.ExecuteTemplate();
+            return so.Result;
         }
     }
 }

@@ -201,14 +201,14 @@
         private TextBox tbPacijent;
         private GroupBox groupBox1;
         private ComboBox comboBox1;
-        private TextBox tbNaziv;
         private Label label1;
         private Label label2;
         private DataGridView dataGridView1;
         private Label lblMesto;
         private Label lblNaziv;
-        private TextBox tbPostanskiBroj;
         private Label lblPostanskiBroj;
         internal DataGridView dgvMesta;
+        internal TextBox tbNaziv;
+        internal TextBox tbPostanskiBroj;
     }
 }

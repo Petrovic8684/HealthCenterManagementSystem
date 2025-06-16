@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
-using Common.Config;
 
 namespace Server
 {
@@ -39,11 +38,11 @@ namespace Server
             {
                 while (true)
                 {
-                    Socket klijentskiSoket = socket.Accept();
-                    ClientHandler handler = new ClientHandler(klijentskiSoket, this);
+                    Socket clientSocket = socket.Accept();
+                    ClientHandler handler = new ClientHandler(clientSocket, this);
                     AddClient(handler);
-                    Thread klijentskaNit = new Thread(handler.HandleRequest);
-                    klijentskaNit.Start();
+                    Thread clientThread = new Thread(handler.HandleRequest);
+                    clientThread.Start();
                 }
             }
             catch (Exception ex)

@@ -173,7 +173,7 @@
             lblZelje.Name = "lblZelje";
             lblZelje.Size = new Size(331, 99);
             lblZelje.TabIndex = 12;
-            lblZelje.Text = "Želimo vam uspešan i prijatan rad u sistemu. Vaši podaci su ažurirani, a pacijenti Vas očekuju.\r\n";
+            lblZelje.Text = "Želimo Vam uspešan i prijatan rad u sistemu. Vaši podaci su ažurirani, a pacijenti Vas očekuju.\r\n";
             lblZelje.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // FrmMenu

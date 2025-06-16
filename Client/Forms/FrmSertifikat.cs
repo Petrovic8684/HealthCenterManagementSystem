@@ -11,22 +11,15 @@ namespace Client
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.Sertifikati.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.Sertifikati.VratiListu();
             btnKreirajNovo.Click += (s, e) => FormManager.Instance.Open<FrmSertifikatCRUD>(f =>
             {
                 f.FormClosed += (s, e) =>
                 {
-                    Controller.Instance.Sertifikati.Pretrazi();
+                    Controller.Instance.Sertifikati.VratiListuSvi();
                 };
             });
-            btnDetalji.Click += (s, e) => Controller.Instance.Sertifikati.PrikaziDetalje();
-        }
-
-        public Sertifikat ConstructCriteria()
-        {
-            return new SertifikatCriteriaBuilder()
-                .WithOpis(tbOpis.Text)
-                .Build();
+            btnDetalji.Click += (s, e) => Controller.Instance.Sertifikati.Pretrazi();
         }
     }
 }

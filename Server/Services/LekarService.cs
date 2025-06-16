@@ -1,47 +1,69 @@
 ﻿using Common.Domain;
 using Common.Config;
 using Server.SystemOperations.LekarSO;
+using Server.SystemOperations.PacijentSO;
 
 namespace Server.Services
 {
     internal class LekarService : IEntityService<Lekar>
     {
-        internal Lekar Prijavi(Lekar lekar)
+        internal Lekar Prijavi(Lekar entity)
         {
-            var so = new PrijaviLekarSO(lekar);
+            var so = new PrijaviLekarSO(entity.KorisnickoIme, entity.Sifra);
             so.ExecuteTemplate();
 
-            var korisnik = so.Result;
-            if (korisnik == null)
+            var lekar = so.Result;
+            if (lekar == null)
                 throw new UnauthorizedAccessException();
 
-            if (!PasswordUtility.VerifyPassword(lekar.Sifra, korisnik.Sifra))
+            if (!PasswordUtility.VerifyPassword(entity.Sifra, lekar.Sifra))
                 throw new UnauthorizedAccessException("Pogrešna lozinka.");
 
-            return korisnik;
+            return lekar;
         }
 
-        public void Kreiraj(Lekar lekar)
+        public Lekar Kreiraj(Lekar entity)
         {
-            lekar.Sifra = PasswordUtility.HashPassword(lekar.Sifra);
-            new KreirajLekarSO(lekar).ExecuteTemplate();
-        }
+            entity.Sifra = PasswordUtility.HashPassword(entity.Sifra);
 
-        public List<Lekar> Pretrazi(Lekar kriterijum)
-        {
-            var so = new PretraziLekarSO(kriterijum);
+            var so = new KreirajLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public void Promeni(Lekar lekar)
+        public Lekar Pretrazi(Lekar entity)
         {
-            new PromeniLekarSO(lekar).ExecuteTemplate();
+            var so = new PretraziLekarSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
         }
 
-        public void Obrisi(Lekar lekar)
+        public Lekar Promeni(Lekar entity)
         {
-            new ObrisiLekarSO(lekar).ExecuteTemplate();
+            var so = new PromeniLekarSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public Lekar Obrisi(Lekar entity)
+        {
+            var so = new ObrisiLekarSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<Lekar> VratiListuSvi()
+        {
+            var so = new VratiListuSviLekarSO(new List<Lekar>());
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<Lekar> VratiListu(IEntity criterion)
+        {
+            var so = new VratiListuLekarSO(criterion, new List<Lekar>());
+            so.ExecuteTemplate();
+            return so.Result;
         }
     }
 }

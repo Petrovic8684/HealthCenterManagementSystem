@@ -2,6 +2,7 @@
 using Client;
 using Common.Domain;
 using Common.Communication;
+using Client.GuiController.Criteria;
 
 internal class DijagnozaService : BaseEntityService<Dijagnoza, FrmDijagnoza, FrmDijagnozaCRUD>
 {
@@ -9,6 +10,7 @@ internal class DijagnozaService : BaseEntityService<Dijagnoza, FrmDijagnoza, Frm
     protected override Operation UpdateOperation => Operation.PromeniDijagnoza;
     protected override Operation DeleteOperation => Operation.ObrisiDijagnoza;
     protected override Operation SearchOperation => Operation.PretraziDijagnoza;
+    protected override Operation RetreiveAllListOperation => Operation.VratiListuSviDijagnoza;
 
     protected override FrmDijagnoza GetSearchForm() => FormManager.Instance.Get<FrmDijagnoza>() ?? new FrmDijagnoza();
     protected override FrmDijagnozaCRUD GetCrudForm() => FormManager.Instance.Get<FrmDijagnozaCRUD>();
@@ -26,13 +28,19 @@ internal class DijagnozaService : BaseEntityService<Dijagnoza, FrmDijagnoza, Frm
         form.PrikaziDetalje(entity);
     }
 
-    protected override Dijagnoza GetSearchCriteria(FrmDijagnoza form) => form.ConstructCriteria();
-
     protected override void BindSearchResults(FrmDijagnoza form, List<Dijagnoza> results)
     {
         form.dgvDijagnoze.DataSource = results;
 
         foreach (DataGridViewColumn column in form.dgvDijagnoze.Columns)
             column.Visible = column.Name is nameof(Dijagnoza.Id) or nameof(Dijagnoza.Naziv) or nameof(Dijagnoza.Opis) or nameof(Dijagnoza.BazniSkor);
+    }
+
+    protected override List<Dijagnoza> BuildListResults(FrmDijagnoza form)
+    {
+        return new DijagnozaCriteriaBuilder()
+            .WithNaziv(form.tbNaziv.Text)
+            .WithOpis(form.tbOpis.Text)
+            .Build();
     }
 }

@@ -50,13 +50,15 @@
             // 
             // lblStatus
             // 
-            lblStatus.AutoSize = true;
             lblStatus.ForeColor = SystemColors.ControlDarkDark;
-            lblStatus.Location = new Point(413, 467);
+            lblStatus.ImageAlign = ContentAlignment.MiddleLeft;
+            lblStatus.Location = new Point(421, 479);
             lblStatus.Name = "lblStatus";
+            lblStatus.RightToLeft = RightToLeft.No;
             lblStatus.Size = new Size(187, 20);
             lblStatus.TabIndex = 1;
             lblStatus.Text = "Status servera - zaustavljen";
+            lblStatus.TextAlign = ContentAlignment.MiddleRight;
             // 
             // btnTogglujStatus
             // 
@@ -92,7 +94,7 @@
             // 
             lblBrojKlijenata.AutoSize = true;
             lblBrojKlijenata.ForeColor = SystemColors.ControlDarkDark;
-            lblBrojKlijenata.Location = new Point(31, 467);
+            lblBrojKlijenata.Location = new Point(12, 479);
             lblBrojKlijenata.Name = "lblBrojKlijenata";
             lblBrojKlijenata.Size = new Size(154, 20);
             lblBrojKlijenata.TabIndex = 9;

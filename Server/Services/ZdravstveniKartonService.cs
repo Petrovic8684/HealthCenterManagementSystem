@@ -5,23 +5,39 @@ namespace Server.Services
 {
     internal class ZdravstveniKartonService : IEntityService<ZdravstveniKarton>
     {
-        public void Kreiraj(ZdravstveniKarton zdravstveniKarton)
+        public ZdravstveniKarton Kreiraj(ZdravstveniKarton entity)
         {
-            new KreirajZdravstveniKartonSO(zdravstveniKarton).ExecuteTemplate();
-        }
-
-        public List<ZdravstveniKarton> Pretrazi(ZdravstveniKarton kriterijum)
-        {
-            var so = new PretraziZdravstveniKartonSO(kriterijum);
+            var so = new KreirajZdravstveniKartonSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public void Promeni(ZdravstveniKarton zdravstveniKarton)
+        public ZdravstveniKarton Pretrazi(ZdravstveniKarton entity)
         {
-            new PromeniZdravstveniKartonSO(zdravstveniKarton).ExecuteTemplate();
+            var so = new PretraziZdravstveniKartonSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
         }
 
-        public void Obrisi(ZdravstveniKarton zdravstveniKarton) { }
+        public ZdravstveniKarton Promeni(ZdravstveniKarton entity)
+        {
+            var so = new PromeniZdravstveniKartonSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public ZdravstveniKarton Obrisi(ZdravstveniKarton entity) { throw new NotImplementedException(); }
+
+        public List<ZdravstveniKarton> VratiListuSvi()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ZdravstveniKarton> VratiListu(IEntity criterion)
+        {
+            var so = new VratiListuZdravstveniKartonSO(criterion, new List<ZdravstveniKarton>());
+            so.ExecuteTemplate();
+            return so.Result;
+        }
     }
 }

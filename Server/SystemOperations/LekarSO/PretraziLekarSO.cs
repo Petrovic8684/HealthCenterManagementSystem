@@ -4,18 +4,18 @@ namespace Server.SystemOperations.LekarSO
 {
     internal class PretraziLekarSO : SystemOperationBase
     {
-        private readonly Lekar kriterijumi;
-        internal List<Lekar> Result { get; private set; }
+        private readonly Lekar lekar;
+        internal Lekar Result { get; private set; }
 
-        internal PretraziLekarSO(Lekar kriterijumi)
+        internal PretraziLekarSO(Lekar lekar)
         {
-            this.kriterijumi = kriterijumi;
+            this.lekar = lekar;
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            List<IEntity> lista = broker.GetByCondition(kriterijumi);
-            Result = lista.OfType<Lekar>().ToList();
+            var kriterijum = new Lekar { Id = lekar.Id };
+            Result = broker.GetByCondition(kriterijum).OfType<Lekar>().FirstOrDefault();
         }
     }
 }

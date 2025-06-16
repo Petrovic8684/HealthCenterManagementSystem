@@ -1,6 +1,5 @@
 ﻿using Client.Forms;
 using Client.GuiController;
-using Client.GuiController.Criteria;
 using Common.Domain;
 
 namespace Client
@@ -11,23 +10,15 @@ namespace Client
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.Mesta.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.Mesta.VratiListu();
             btnKreirajNovo.Click += (s, e) => FormManager.Instance.Open<FrmMestoCRUD>(f =>
             {
                 f.FormClosed += (s, e) =>
                 {
-                    Controller.Instance.Mesta.Pretrazi();
+                    Controller.Instance.Mesta.VratiListuSvi();
                 };
             });
-            btnDetalji.Click += (s, e) => Controller.Instance.Mesta.PrikaziDetalje();
-        }
-
-        public Mesto ConstructCriteria()
-        {
-            return new MestoCriteriaBuilder()
-                .WithNaziv(tbNaziv.Text)
-                .WithPostanskiBroj(tbPostanskiBroj.Text)
-                .Build();
+            btnDetalji.Click += (s, e) => Controller.Instance.Mesta.Pretrazi();
         }
     }
 }

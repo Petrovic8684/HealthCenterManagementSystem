@@ -1,28 +1,55 @@
-﻿using Common.Domain;
+﻿using Client;
+using Client.GuiController.Criteria;
+using Common.Communication;
+using Common.Domain;
 
-namespace Client.GuiController.Criteria
+public class MestoCriteriaBuilder : ICriteriaBuilder<Mesto>
 {
-    internal class MestoCriteriaBuilder : ICriteriaBuilder<Mesto>
+    private readonly List<Func<List<Mesto>>> _criteriaFetchers = new();
+
+    public MestoCriteriaBuilder WithNaziv(string naziv)
     {
-        private readonly Mesto kriterijumi = new Mesto();
-
-        internal MestoCriteriaBuilder WithNaziv(string naziv)
+        if (!string.IsNullOrWhiteSpace(naziv))
         {
-            if (!string.IsNullOrWhiteSpace(naziv))
-                kriterijumi.Naziv = naziv.Trim();
-            return this;
+            _criteriaFetchers.Add(() =>
+            {
+                var kriterijum = new Mesto { Naziv = naziv.Trim() };
+                var response = Communication.Instance.SendRequestList<Mesto, Mesto>(kriterijum, Operation.VratiListuMestoPoMestu);
+                return response.Result as List<Mesto>;
+            });
+        }
+        return this;
+    }
+
+    public MestoCriteriaBuilder WithPostanskiBroj(string postanskiBroj)
+    {
+        if (!string.IsNullOrWhiteSpace(postanskiBroj))
+        {
+            _criteriaFetchers.Add(() =>
+            {
+                var kriterijum = new Mesto { PostanskiBroj = postanskiBroj.Trim() };
+                var response = Communication.Instance.SendRequestList<Mesto, Mesto>(kriterijum, Operation.VratiListuMestoPoMestu);
+                return response.Result as List<Mesto>;
+            });
+        }
+        return this;
+    }
+
+    public List<Mesto> Build()
+    {
+        if (_criteriaFetchers.Count == 0)
+        {
+            var response = Communication.Instance.SendRequestList<object, Mesto>(null, Operation.VratiListuSviMesto);
+            return response.Result as List<Mesto>;
         }
 
-        internal MestoCriteriaBuilder WithPostanskiBroj(string postanskiBroj)
-        {
-            if (!string.IsNullOrWhiteSpace(postanskiBroj))
-                kriterijumi.PostanskiBroj = postanskiBroj.Trim();
-            return this;
-        }
+        var resultSets = _criteriaFetchers.Select(fetch => fetch()).ToList();
+        return resultSets.Aggregate((prev, next) => prev.Intersect(next, new MestoComparer()).ToList());
+    }
 
-        public Mesto Build()
-        {
-            return kriterijumi;
-        }
+    private class MestoComparer : IEqualityComparer<Mesto>
+    {
+        public bool Equals(Mesto x, Mesto y) => x.Id == y.Id;
+        public int GetHashCode(Mesto obj) => obj.Id.GetHashCode();
     }
 }

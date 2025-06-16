@@ -5,6 +5,8 @@ namespace Server.SystemOperations.LekarSO
     internal class PromeniLekarSO : SystemOperationBase
     {
         private readonly Lekar lekar;
+        internal Lekar Result { get; private set; }
+
 
         internal PromeniLekarSO(Lekar lekar)
         {
@@ -30,6 +32,9 @@ namespace Server.SystemOperations.LekarSO
                 LeS les = new LeS { IdLekar = lekar.Id, IdSertifikat = sertifikat.Id, DatumIzdavanja = DateTime.Now };
                 broker.Add(les);
             }
+
+            var krit = new Lekar { Id = lekar.Id };
+            Result = broker.GetByCondition(krit).OfType<Lekar>().FirstOrDefault();
         }
     }
 }

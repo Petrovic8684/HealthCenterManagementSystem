@@ -6,19 +6,19 @@ namespace Common.Config
 {
     public static class PasswordUtility
     {
-        private const int SaltSize = 16;
-        private const int KeySize = 32;
-        private const int Iterations = 10000;
+        private const int saltSize = 16;
+        private const int keySize = 32;
+        private const int iterations = 10000;
 
         public static string HashPassword(string password)
         {
-            using var algorithm = new Rfc2898DeriveBytes(password, SaltSize, Iterations, HashAlgorithmName.SHA256);
+            using var algorithm = new Rfc2898DeriveBytes(password, saltSize, iterations, HashAlgorithmName.SHA256);
             var salt = algorithm.Salt;
-            var key = algorithm.GetBytes(KeySize);
+            var key = algorithm.GetBytes(keySize);
 
-            var hashBytes = new byte[SaltSize + KeySize];
-            Buffer.BlockCopy(salt, 0, hashBytes, 0, SaltSize);
-            Buffer.BlockCopy(key, 0, hashBytes, SaltSize, KeySize);
+            var hashBytes = new byte[saltSize + keySize];
+            Buffer.BlockCopy(salt, 0, hashBytes, 0, saltSize);
+            Buffer.BlockCopy(key, 0, hashBytes, saltSize, keySize);
 
             return Convert.ToBase64String(hashBytes);
         }
@@ -27,14 +27,14 @@ namespace Common.Config
         {
             var hashBytes = Convert.FromBase64String(storedHash);
 
-            var salt = new byte[SaltSize];
-            Buffer.BlockCopy(hashBytes, 0, salt, 0, SaltSize);
+            var salt = new byte[saltSize];
+            Buffer.BlockCopy(hashBytes, 0, salt, 0, saltSize);
 
-            var key = new byte[KeySize];
-            Buffer.BlockCopy(hashBytes, SaltSize, key, 0, KeySize);
+            var key = new byte[keySize];
+            Buffer.BlockCopy(hashBytes, saltSize, key, 0, keySize);
 
-            using var algorithm = new Rfc2898DeriveBytes(password, salt, Iterations, HashAlgorithmName.SHA256);
-            var keyToCheck = algorithm.GetBytes(KeySize);
+            using var algorithm = new Rfc2898DeriveBytes(password, salt, iterations, HashAlgorithmName.SHA256);
+            var keyToCheck = algorithm.GetBytes(keySize);
 
             return CryptographicOperations.FixedTimeEquals(key, keyToCheck);
         }

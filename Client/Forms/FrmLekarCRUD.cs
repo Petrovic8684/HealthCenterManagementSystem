@@ -25,7 +25,7 @@ namespace Client
 
             ControlInitialisator.InitComboBox(
                 cbSertifikati,
-                Controller.Instance.Sertifikati.Pretrazi().Cast<Sertifikat>(),
+                Controller.Instance.Sertifikati.VratiListuSvi().Cast<Sertifikat>(),
                 "Id",
                 "Prikaz",
                 new Sertifikat { Id = -1, Opis = "-- Bez izbora --" }
@@ -45,6 +45,7 @@ namespace Client
             tbPrezime.Text = lekar.Prezime;
             tbEmail.Text = lekar.Email;
             tbSifra.Text = lekar.Sifra;
+            tbKorisnickoIme.Text = lekar.KorisnickoIme;
             lbSertifikati.DataSource = lekar.Sertifikati;
 
             btnObrisi.Enabled = true;

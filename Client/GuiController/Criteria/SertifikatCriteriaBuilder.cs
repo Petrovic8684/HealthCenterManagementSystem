@@ -1,21 +1,41 @@
-﻿using Common.Domain;
+﻿using Client;
+using Client.GuiController.Criteria;
+using Common.Communication;
+using Common.Domain;
 
-namespace Client.GuiController.Criteria
+public class SertifikatCriteriaBuilder : ICriteriaBuilder<Sertifikat>
 {
-    internal class SertifikatCriteriaBuilder : ICriteriaBuilder<Sertifikat>
+    private readonly List<Func<List<Sertifikat>>> _criteriaFetchers = new();
+
+    public SertifikatCriteriaBuilder WithOpis(string opis)
     {
-        private readonly Sertifikat kriterijumi = new Sertifikat();
-
-        internal SertifikatCriteriaBuilder WithOpis(string opis)
+        if (!string.IsNullOrWhiteSpace(opis))
         {
-            if (!string.IsNullOrWhiteSpace(opis))
-                kriterijumi.Opis = opis.Trim();
-            return this;
+            _criteriaFetchers.Add(() =>
+            {
+                var kriterijum = new Sertifikat { Opis = opis.Trim() };
+                var response = Communication.Instance.SendRequestList<Sertifikat, Sertifikat>(kriterijum, Operation.VratiListuSertifikatPoSertifikatu);
+                return response.Result as List<Sertifikat>;
+            });
+        }
+        return this;
+    }
+
+    public List<Sertifikat> Build()
+    {
+        if (_criteriaFetchers.Count == 0)
+        {
+            var response = Communication.Instance.SendRequestList<object, Sertifikat>(null, Operation.VratiListuSviSertifikat);
+            return response.Result as List<Sertifikat>;
         }
 
-        public Sertifikat Build()
-        {
-            return kriterijumi;
-        }
+        var resultSets = _criteriaFetchers.Select(fetch => fetch()).ToList();
+        return resultSets.Aggregate((prev, next) => prev.Intersect(next, new SertifikatComparer()).ToList());
+    }
+
+    private class SertifikatComparer : IEqualityComparer<Sertifikat>
+    {
+        public bool Equals(Sertifikat x, Sertifikat y) => x.Id == y.Id;
+        public int GetHashCode(Sertifikat obj) => obj.Id.GetHashCode();
     }
 }

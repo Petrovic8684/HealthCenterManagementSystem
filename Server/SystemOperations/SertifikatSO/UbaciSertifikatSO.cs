@@ -5,6 +5,7 @@ namespace Server.SystemOperations.SertifikatSO
     internal class UbaciSertifikatSO : SystemOperationBase
     {
         private readonly Sertifikat sertifikat;
+        internal Sertifikat Result { get; private set; }
 
         internal UbaciSertifikatSO(Sertifikat sertifikat)
         {
@@ -13,7 +14,10 @@ namespace Server.SystemOperations.SertifikatSO
 
         protected override void ExecuteConcreteOperation()
         {
-            broker.Add(sertifikat);
+            int id = broker.AddWithReturnId(sertifikat);
+
+            var kriterijum = new Sertifikat { Id = id };
+            Result = broker.GetByCondition(kriterijum).OfType<Sertifikat>().FirstOrDefault();
         }
     }
 }

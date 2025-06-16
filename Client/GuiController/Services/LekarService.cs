@@ -1,4 +1,5 @@
-﻿using Common.Communication;
+﻿using Client.GuiController.Criteria;
+using Common.Communication;
 using Common.Domain;
 
 namespace Client.GuiController.Services
@@ -9,6 +10,7 @@ namespace Client.GuiController.Services
         protected override Operation UpdateOperation => Operation.PromeniLekar;
         protected override Operation DeleteOperation => Operation.ObrisiLekar;
         protected override Operation SearchOperation => Operation.PretraziLekar;
+        protected override Operation RetreiveAllListOperation => Operation.VratiListuSviLekar;
 
         protected override FrmLekar GetSearchForm() => FormManager.Instance.Get<FrmLekar>() ?? new FrmLekar();
 
@@ -20,6 +22,7 @@ namespace Client.GuiController.Services
             Ime = form.tbIme.Text.Trim(),
             Prezime = form.tbPrezime.Text.Trim(),
             Email = form.tbEmail.Text.Trim(),
+            KorisnickoIme = form.tbKorisnickoIme.Text.Trim(),
             Sifra = form.tbSifra.Text.Trim(),
             Sertifikati = form.lbSertifikati.Items.Cast<Sertifikat>().ToList()
         };
@@ -28,8 +31,6 @@ namespace Client.GuiController.Services
         {
             form.PrikaziDetalje(entity);
         }
-
-        protected override Lekar GetSearchCriteria(FrmLekar form) => form.ConstructCriteria();
 
         protected override void BindSearchResults(FrmLekar form, List<Lekar> results)
         {
@@ -59,8 +60,8 @@ namespace Client.GuiController.Services
 
                 Lekar lekar = new Lekar
                 {
-                    Email = frm.tbEmail.Text,
-                    Sifra = frm.tbSifra.Text,
+                    KorisnickoIme = frm.tbKorisnickoIme.Text.Trim(),
+                    Sifra = frm.tbSifra.Text.Trim(),
                 };
 
                 Response response = Communication.Instance.SendRequest<Lekar, Lekar>(lekar, Operation.PrijaviLekar);
@@ -151,6 +152,15 @@ namespace Client.GuiController.Services
         private List<Sertifikat> GetSertifikatiList(ListBox lb)
         {
             return lb.DataSource as List<Sertifikat> ?? lb.Items.OfType<Sertifikat>().ToList();
+        }
+
+        protected override List<Lekar> BuildListResults(FrmLekar form)
+        {
+            return new LekarCriteriaBuilder()
+                .WithIme(form.tbIme.Text)
+                .WithPrezime(form.tbPrezime.Text)
+                .WithSertifikat((Sertifikat)form.cbSertifikati.SelectedItem)
+                .Build();
         }
     }
 }

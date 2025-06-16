@@ -5,6 +5,7 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
     internal class PromeniZdravstveniKartonSO : SystemOperationBase
     {
         private readonly ZdravstveniKarton zdravstveniKarton;
+        internal ZdravstveniKarton Result { get; private set; }
 
         internal PromeniZdravstveniKartonSO(ZdravstveniKarton zdravstveniKarton)
         {
@@ -28,6 +29,9 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
                 stavka.ZdravstveniKarton.Id = zdravstveniKarton.Id;
                 broker.Add(stavka);
             }
+
+            var krit = new ZdravstveniKarton { Id = zdravstveniKarton.Id };
+            Result = broker.GetByCondition(krit).OfType<ZdravstveniKarton>().FirstOrDefault();
         }
     }
 }

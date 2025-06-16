@@ -178,7 +178,7 @@
         private Label lblPostanskiBroj;
         private TextBox tbPostanskiBroj;
         private Label lblOpis;
-        private TextBox tbOpis;
         internal DataGridView dgvSertifikati;
+        internal TextBox tbOpis;
     }
 }
