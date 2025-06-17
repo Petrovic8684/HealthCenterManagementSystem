@@ -13,8 +13,7 @@ namespace Client.GuiController.Services
         protected override Operation SearchOperation => Operation.PretraziPacijent;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviPacijent;
         protected override FrmPacijent GetSearchForm() => FormManager.Instance.Get<FrmPacijent>() ?? new FrmPacijent();
-
-        protected override FrmPacijentCRUD GetCrudForm() => FormManager.Instance.Get<FrmPacijentCRUD>();
+        protected override FrmPacijentCRUD GetCrudForm() => FormManager.Instance.Get<FrmPacijentCRUD>() ?? FormManager.Instance.Open<FrmPacijentCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
 
         protected override Pacijent CreateEntityFromForm(FrmPacijentCRUD form) => new()
         {

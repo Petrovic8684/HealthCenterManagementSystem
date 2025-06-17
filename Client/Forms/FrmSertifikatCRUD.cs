@@ -12,16 +12,13 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) =>
-            {
-                if (Sertifikat == null)
-                    Controller.Instance.Sertifikati.Kreiraj();
-                else
-                    Controller.Instance.Sertifikati.Promeni();
-            };
-
+            btnZapamti.Click += (s, e) => Controller.Instance.Sertifikati.Zapamti();
             btnObrisi.Click += (s, e) => Controller.Instance.Sertifikati.Obrisi();
-            btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmSertifikatCRUD>();
+            btnOdustani.Click += (s, e) =>
+            {
+                if (Sertifikat == null) Controller.Instance.Sertifikati.Obrisi();
+                else FormManager.Instance.Close<FrmSertifikatCRUD>();
+            };
         }
 
         public void PrikaziDetalje(Sertifikat sertifikat)

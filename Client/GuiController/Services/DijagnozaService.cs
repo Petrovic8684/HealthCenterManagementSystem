@@ -3,6 +3,7 @@ using Client;
 using Common.Domain;
 using Common.Communication;
 using Client.GuiController.Criteria;
+using System.Windows.Forms;
 
 internal class DijagnozaService : BaseEntityService<Dijagnoza, FrmDijagnoza, FrmDijagnozaCRUD>
 {
@@ -11,10 +12,9 @@ internal class DijagnozaService : BaseEntityService<Dijagnoza, FrmDijagnoza, Frm
     protected override Operation DeleteOperation => Operation.ObrisiDijagnoza;
     protected override Operation SearchOperation => Operation.PretraziDijagnoza;
     protected override Operation RetreiveAllListOperation => Operation.VratiListuSviDijagnoza;
-
     protected override FrmDijagnoza GetSearchForm() => FormManager.Instance.Get<FrmDijagnoza>() ?? new FrmDijagnoza();
-    protected override FrmDijagnozaCRUD GetCrudForm() => FormManager.Instance.Get<FrmDijagnozaCRUD>();
-
+    protected override FrmDijagnozaCRUD GetCrudForm() => FormManager.Instance.Get<FrmDijagnozaCRUD>() ?? FormManager.Instance.Open<FrmDijagnozaCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
+    
     protected override Dijagnoza CreateEntityFromForm(FrmDijagnozaCRUD form) => new()
     {
         Id = form.Dijagnoza?.Id ?? 0,

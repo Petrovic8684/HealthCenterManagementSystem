@@ -13,8 +13,7 @@ namespace Client.GuiController.Services
         protected override Operation SearchOperation => Operation.PretraziMesto;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviMesto;
         protected override FrmMesto GetSearchForm() => FormManager.Instance.Get<FrmMesto>() ?? new FrmMesto();
-
-        protected override FrmMestoCRUD GetCrudForm() => FormManager.Instance.Get<FrmMestoCRUD>();
+        protected override FrmMestoCRUD GetCrudForm() => FormManager.Instance.Get<FrmMestoCRUD>() ?? FormManager.Instance.Open<FrmMestoCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
 
         protected override Mesto CreateEntityFromForm(FrmMestoCRUD form) => new()
         {

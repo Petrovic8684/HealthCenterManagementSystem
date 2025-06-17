@@ -8,11 +8,11 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
 {
     protected override Operation CreateOperation => Operation.KreirajZdravstveniKarton;
     protected override Operation UpdateOperation => Operation.PromeniZdravstveniKarton;
-    protected override Operation DeleteOperation => Operation.None;
+    protected override Operation DeleteOperation => Operation.ObrisiZdravstveniKarton;
     protected override Operation SearchOperation => Operation.PretraziZdravstveniKarton;
     protected override Operation RetreiveAllListOperation => Operation.None;
     protected override FrmZdravstveniKarton GetSearchForm() => FormManager.Instance.Get<FrmZdravstveniKarton>() ?? new FrmZdravstveniKarton();
-    protected override FrmZdravstveniKartonCRUD GetCrudForm() => FormManager.Instance.Get<FrmZdravstveniKartonCRUD>();
+    protected override FrmZdravstveniKartonCRUD GetCrudForm() => FormManager.Instance.Get<FrmZdravstveniKartonCRUD>() ?? FormManager.Instance.Open<FrmZdravstveniKartonCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
 
     protected override ZdravstveniKarton CreateEntityFromForm(FrmZdravstveniKartonCRUD form) => new ZdravstveniKarton
     {

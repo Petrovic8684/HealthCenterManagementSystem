@@ -175,6 +175,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(554, 425);
+            ControlBox = false;
             Controls.Add(lblPacijentId);
             Controls.Add(cbMesta);
             Controls.Add(btnObrisi);

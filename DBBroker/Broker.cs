@@ -60,6 +60,8 @@ namespace DBBroker
                 cmd.Parameters.Add(param);
 
             int id = (int)cmd.ExecuteScalar();
+            cmd.Dispose();
+
             return id;
         }
 
@@ -97,6 +99,7 @@ namespace DBBroker
             using SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = $"SELECT * FROM {entity.TableName}";
             using SqlDataReader reader = cmd.ExecuteReader();
+            cmd.Dispose();
             return entity.GetReaderList(reader);
         }
 
@@ -118,7 +121,24 @@ namespace DBBroker
                 cmd.Parameters.Add(param);
 
             using SqlDataReader reader = cmd.ExecuteReader();
+            cmd.Dispose();
+
             return entity.GetReaderList(reader);
+        }
+
+        public int GetFirstId(IEntity entity)
+        {
+            using SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = $"SELECT TOP 1 {entity.PrimaryKey} FROM {entity.TableName}";
+
+            object result = cmd.ExecuteScalar();
+
+            cmd.Dispose();
+
+            if (result != null && result != DBNull.Value)
+                return Convert.ToInt32(result);
+
+            return -1;
         }
     }
 }

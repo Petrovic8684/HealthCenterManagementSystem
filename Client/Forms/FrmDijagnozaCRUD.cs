@@ -12,16 +12,13 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) =>
-            {
-                if (Dijagnoza == null)
-                    Controller.Instance.Dijagnoze.Kreiraj();
-                else
-                    Controller.Instance.Dijagnoze.Promeni();
-            };
-
+            btnZapamti.Click += (s, e) => Controller.Instance.Dijagnoze.Zapamti();
             btnObrisi.Click += (s, e) => Controller.Instance.Dijagnoze.Obrisi();
-            btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmDijagnozaCRUD>();
+            btnOdustani.Click += (s, e) =>
+            {
+                if (Dijagnoza == null) Controller.Instance.Dijagnoze.Obrisi();
+                else FormManager.Instance.Close<FrmDijagnozaCRUD>();
+            };
         }
 
         public void PrikaziDetalje(Dijagnoza dijagnoza)

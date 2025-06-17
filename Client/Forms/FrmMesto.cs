@@ -11,13 +11,7 @@ namespace Client
             InitializeComponent();
 
             btnPretrazi.Click += (s, e) => Controller.Instance.Mesta.VratiListu();
-            btnKreirajNovo.Click += (s, e) => FormManager.Instance.Open<FrmMestoCRUD>(f =>
-            {
-                f.FormClosed += (s, e) =>
-                {
-                    Controller.Instance.Mesta.VratiListuSvi();
-                };
-            });
+            btnKreirajNovo.Click += (s, e) => Controller.Instance.Mesta.Kreiraj();
             btnDetalji.Click += (s, e) => Controller.Instance.Mesta.Pretrazi();
         }
     }

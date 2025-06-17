@@ -94,6 +94,10 @@ namespace Server
                         r.Result = Controller.Instance.Sertifikati.Obrisi(serializer.ReadType<Sertifikat>(req.Argument));
                         break;
 
+                    case Operation.ObrisiZdravstveniKarton:
+                        r.Result = Controller.Instance.ZdravstveniKartoni.Obrisi(serializer.ReadType<ZdravstveniKarton>(req.Argument));
+                        break;
+
                     case Operation.PretraziDijagnoza:
                         r.Result = Controller.Instance.Dijagnoze.Pretrazi(serializer.ReadType<Dijagnoza>(req.Argument));
                         break;

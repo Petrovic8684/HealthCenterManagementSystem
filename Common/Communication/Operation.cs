@@ -13,6 +13,7 @@
         ObrisiMesto,
         ObrisiPacijent,
         ObrisiSertifikat,
+        ObrisiZdravstveniKarton,
         PretraziDijagnoza,
         PretraziLekar,
         PretraziMesto,

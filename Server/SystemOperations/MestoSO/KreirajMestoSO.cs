@@ -14,10 +14,19 @@ namespace Server.SystemOperations.MestoSO
 
         protected override void ExecuteConcreteOperation()
         {
-            int id = broker.AddWithReturnId(mesto);
+            /*int id = broker.AddWithReturnId(mesto);
 
             var kriterijum = new Mesto { Id = id };
-            Result = broker.GetByCondition(kriterijum).OfType<Mesto>().FirstOrDefault();
+            Result = broker.GetByCondition(kriterijum).OfType<Mesto>().FirstOrDefault();*/
+
+            var praznoMesto = new Mesto
+            {
+                Naziv = "",
+                PostanskiBroj = "00000"
+            };
+
+            int id = broker.AddWithReturnId(praznoMesto);
+            Result = new Mesto { Id = id };
         }
     }
 }

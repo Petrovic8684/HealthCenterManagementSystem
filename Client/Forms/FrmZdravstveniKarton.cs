@@ -12,13 +12,7 @@ namespace Client
             InitializeComponent();
 
             btnPretrazi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.VratiListu();
-            btnKreirajNovi.Click += (s, e) => FormManager.Instance.Open<FrmZdravstveniKartonCRUD>(f =>
-            {
-                f.FormClosed += (s, e) =>
-                {
-                    Controller.Instance.ZdravstveniKartoni.VratiListuSvi();
-                };
-            });
+            btnKreirajNovi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Kreiraj();
             btnDetalji.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Pretrazi();
 
             ControlInitialisator.InitComboBox(

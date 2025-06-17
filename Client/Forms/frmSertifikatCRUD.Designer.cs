@@ -119,6 +119,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(538, 312);
+            ControlBox = false;
             Controls.Add(lblSertifikatId);
             Controls.Add(btnObrisi);
             Controls.Add(btnOdustani);

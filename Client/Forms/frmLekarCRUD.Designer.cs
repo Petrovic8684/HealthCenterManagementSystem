@@ -258,6 +258,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(669, 572);
+            ControlBox = false;
             Controls.Add(tbKorisnickoIme);
             Controls.Add(lblKorisnickoIme);
             Controls.Add(tbSifra);

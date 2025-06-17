@@ -15,7 +15,7 @@ namespace Server.SystemOperations.LekarSO
 
         protected override void ExecuteConcreteOperation()
         {
-            lekar.Id = broker.AddWithReturnId(lekar);
+            /*lekar.Id = broker.AddWithReturnId(lekar);
 
             foreach (var sertifikat in lekar.Sertifikati)
             {
@@ -30,7 +30,19 @@ namespace Server.SystemOperations.LekarSO
             }
 
             var kriterijum = new Lekar { Id = lekar.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<Lekar>().FirstOrDefault();
+            Result = broker.GetByCondition(kriterijum).OfType<Lekar>().FirstOrDefault();*/
+
+            var prazanLekar = new Lekar
+            {
+                Ime = "",
+                Prezime = "",
+                Email = "placeholder@example.com",
+                Sifra = "",
+                KorisnickoIme = "",
+            };
+
+            int id = broker.AddWithReturnId(prazanLekar);
+            Result = new Lekar { Id = id };
         }
     }
 }

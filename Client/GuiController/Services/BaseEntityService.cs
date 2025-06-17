@@ -2,6 +2,7 @@
 using Client;
 using Common.Communication;
 using Client.Forms;
+using System.Windows.Forms;
 
 internal abstract class BaseEntityService<T, TForm, TCrudForm>
     where T : class, ICrudEntity, new()
@@ -26,23 +27,22 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         try
         {
             var form = GetCrudForm();
-            if (!ValidateForm(form)) throw new Exception("Sva obavezna polja moraju biti popunjena.");
-
-            T entity = CreateEntityFromForm(form);
+            var entity = new T();
 
             var response = Communication.Instance.SendRequest<T, T>(entity, CreateOperation);
             CheckResponse(response);
 
-            MessageBox.Show("Sistem je zapamtio " + new T().ImeKlaseAkuzativJednine + ".");
-            FormManager.Instance.Close<TCrudForm>();
+            form.Tag = ((ICrudEntity)response.Result);
+
+            MessageBox.Show("Sistem je kreirao " + new T().ImeKlaseAkuzativJednine + ".");
         }
         catch (Exception ex)
         {
-            ShowError("Sistem ne može da zapamti " + new T().ImeKlaseAkuzativJednine + ".", ex);
+            ShowError("Sistem ne može da kreira " + new T().ImeKlaseAkuzativJednine + ".", ex);
         }
     }
 
-    public void Promeni()
+    public void Zapamti()
     {
         try
         {
@@ -51,7 +51,9 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
 
             T entity = CreateEntityFromForm(form);
 
-            ValidateBeforeOperation(entity);
+            //ValidateBeforeOperation(entity);
+
+            entity.Id = ((ICrudEntity)form.Tag).Id;
 
             var response = Communication.Instance.SendRequest<T, T>(entity, UpdateOperation);
             CheckResponse(response);
@@ -70,13 +72,9 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         try
         {
             var form = GetCrudForm();
-
-            if (form.Tag is not ICrudEntity entityFromTag)
-                throw new Exception("Nema entiteta za brisanje.");
-
             var entity = new T { Id = ((ICrudEntity)form.Tag).Id };
 
-            ValidateBeforeOperation(entity);
+            //ValidateBeforeOperation(entity);
 
             var response = Communication.Instance.SendRequest<T, T>(entity, DeleteOperation);
             CheckResponse(response);

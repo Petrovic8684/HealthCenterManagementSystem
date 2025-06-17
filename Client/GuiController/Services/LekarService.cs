@@ -11,10 +11,8 @@ namespace Client.GuiController.Services
         protected override Operation DeleteOperation => Operation.ObrisiLekar;
         protected override Operation SearchOperation => Operation.PretraziLekar;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviLekar;
-
         protected override FrmLekar GetSearchForm() => FormManager.Instance.Get<FrmLekar>() ?? new FrmLekar();
-
-        protected override FrmLekarCRUD GetCrudForm() => FormManager.Instance.Get<FrmLekarCRUD>();
+        protected override FrmLekarCRUD GetCrudForm() => FormManager.Instance.Get<FrmLekarCRUD>() ?? FormManager.Instance.Open<FrmLekarCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
 
         protected override Lekar CreateEntityFromForm(FrmLekarCRUD form) => new Lekar
         {
@@ -78,6 +76,7 @@ namespace Client.GuiController.Services
                 }
 
                 Session.CurrentLekar = response.Result as Lekar;
+                MessageBox.Show("Korisničko ime i šifra su ispravni.");
 
                 FormManager.Instance.Open<FrmMenu>();
                 FormManager.Instance.Close<FrmLogin>();

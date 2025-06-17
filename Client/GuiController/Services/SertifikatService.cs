@@ -13,8 +13,7 @@ namespace Client.GuiController.Services
         protected override Operation SearchOperation => Operation.PretraziSertifikat;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviSertifikat;
         protected override FrmSertifikat GetSearchForm() => FormManager.Instance.Get<FrmSertifikat>() ?? new FrmSertifikat();
-
-        protected override FrmSertifikatCRUD GetCrudForm() => FormManager.Instance.Get<FrmSertifikatCRUD>();
+        protected override FrmSertifikatCRUD GetCrudForm() => FormManager.Instance.Get<FrmSertifikatCRUD>() ?? FormManager.Instance.Open<FrmSertifikatCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
 
         protected override Sertifikat CreateEntityFromForm(FrmSertifikatCRUD form) => new()
         {

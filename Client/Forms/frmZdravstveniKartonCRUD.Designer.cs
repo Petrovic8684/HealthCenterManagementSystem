@@ -228,6 +228,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(763, 490);
+            ControlBox = false;
             Controls.Add(lblZdravstveniKartonId);
             Controls.Add(cbDijagnoze);
             Controls.Add(cbPacijenti);

@@ -12,13 +12,7 @@ namespace Client
             InitializeComponent();
 
             btnPretrazi.Click += (s, e) => Controller.Instance.Sertifikati.VratiListu();
-            btnKreirajNovo.Click += (s, e) => FormManager.Instance.Open<FrmSertifikatCRUD>(f =>
-            {
-                f.FormClosed += (s, e) =>
-                {
-                    Controller.Instance.Sertifikati.VratiListuSvi();
-                };
-            });
+            btnKreirajNovo.Click += (s, e) => Controller.Instance.Sertifikati.Kreiraj();
             btnDetalji.Click += (s, e) => Controller.Instance.Sertifikati.Pretrazi();
         }
     }

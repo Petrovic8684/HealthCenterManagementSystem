@@ -14,10 +14,15 @@ namespace Server.SystemOperations.DijagnozaSO
 
         protected override void ExecuteConcreteOperation()
         {
-            int id = broker.AddWithReturnId(dijagnoza);
+            var praznaDijagnoza = new Dijagnoza
+            {
+                Naziv = "",
+                Opis = "",
+                BazniSkor = 1
+            };
 
-            var kriterijum = new Dijagnoza { Id = id };
-            Result = broker.GetByCondition(kriterijum).OfType<Dijagnoza>().FirstOrDefault();
+            int id = broker.AddWithReturnId(praznaDijagnoza);
+            Result = new Dijagnoza { Id = id };
         }
     }
 }

@@ -12,16 +12,13 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) =>
-            {
-                if (Lekar == null)
-                    Controller.Instance.Lekari.Kreiraj();
-                else
-                    Controller.Instance.Lekari.Promeni();
-            };
-
+            btnZapamti.Click += (s, e) => Controller.Instance.Lekari.Zapamti();
             btnObrisi.Click += (s, e) => Controller.Instance.Lekari.Obrisi();
-            btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmLekarCRUD>();
+            btnOdustani.Click += (s, e) =>
+            {
+                if (Lekar == null) Controller.Instance.Lekari.Obrisi();
+                else FormManager.Instance.Close<FrmLekarCRUD>();
+            };
 
             ControlInitialisator.InitComboBox(
                 cbSertifikati,

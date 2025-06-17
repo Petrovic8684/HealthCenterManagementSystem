@@ -24,8 +24,6 @@ namespace Server.Services
 
         public Lekar Kreiraj(Lekar entity)
         {
-            entity.Sifra = PasswordUtility.HashPassword(entity.Sifra);
-
             var so = new KreirajLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;
@@ -40,6 +38,8 @@ namespace Server.Services
 
         public Lekar Promeni(Lekar entity)
         {
+            entity.Sifra = PasswordUtility.HashPassword(entity.Sifra);
+
             var so = new PromeniLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;

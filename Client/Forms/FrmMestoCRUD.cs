@@ -12,16 +12,13 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) =>
-            {
-                if (Mesto == null)
-                    Controller.Instance.Mesta.Kreiraj();
-                else
-                    Controller.Instance.Mesta.Promeni();
-            };
-
+            btnZapamti.Click += (s, e) => Controller.Instance.Mesta.Zapamti();
             btnObrisi.Click += (s, e) => Controller.Instance.Mesta.Obrisi();
-            btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmMestoCRUD>();
+            btnOdustani.Click += (s, e) =>
+            {
+                if (Mesto == null) Controller.Instance.Mesta.Obrisi();
+                else FormManager.Instance.Close<FrmMestoCRUD>();
+            };
         }
 
         public void PrikaziDetalje(Mesto mesto)

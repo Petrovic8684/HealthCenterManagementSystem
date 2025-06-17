@@ -11,13 +11,7 @@ namespace Client
             InitializeComponent();
 
             btnPretrazi.Click += (s, e) => Controller.Instance.Dijagnoze.VratiListu();
-            btnKreirajNovu.Click += (s, e) => FormManager.Instance.Open<FrmDijagnozaCRUD>(f =>
-            {
-                f.FormClosed += (s, e) =>
-                {
-                    Controller.Instance.Dijagnoze.VratiListuSvi();
-                };
-            });
+            btnKreirajNovu.Click += (s, e) => Controller.Instance.Dijagnoze.Kreiraj();
             btnDetalji.Click += (s, e) => Controller.Instance.Dijagnoze.Pretrazi();
         }
     }

@@ -26,7 +26,12 @@ namespace Server.Services
             return so.Result;
         }
 
-        public ZdravstveniKarton Obrisi(ZdravstveniKarton entity) { throw new NotImplementedException(); }
+        public ZdravstveniKarton Obrisi(ZdravstveniKarton entity) 
+        {
+            var so = new ObrisiZdravstveniKartonSO(entity);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
 
         public List<ZdravstveniKarton> VratiListuSvi()
         {

@@ -12,15 +12,12 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) =>
+            btnZapamti.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Zapamti();
+            btnOdustani.Click += (s, e) =>
             {
-                if (ZdravstveniKarton == null)
-                    Controller.Instance.ZdravstveniKartoni.Kreiraj();
-                else
-                    Controller.Instance.ZdravstveniKartoni.Promeni();
+                if (ZdravstveniKarton == null) Controller.Instance.ZdravstveniKartoni.Obrisi();
+                else FormManager.Instance.Close<FrmZdravstveniKartonCRUD>();
             };
-
-            btnOdustani.Click += (s, e) => FormManager.Instance.Close<FrmZdravstveniKartonCRUD>();
 
             ControlInitialisator.InitComboBox(
                 cbDijagnoze,
