@@ -1,4 +1,4 @@
-﻿using Client.GuiController;
+﻿using Client.Forms;
 
 namespace Client
 {
@@ -9,12 +9,12 @@ namespace Client
             InitializeComponent();
 
             btnOdjava.Click += (s, e) => { 
-                Session.Clear();
+                Session.Instance.Clear();
                 FormManager.Instance.Open<FrmLogin>();
                 FormManager.Instance.Close<FrmMenu>();
             };
 
-            lblDobrodosli.Text = "Dobro došli, " + Session.CurrentLekar.Ime;
+            lblDobrodosli.Text = "Dobro došli, " + Session.Instance.CurrentLekar.Ime;
 
             zdravstveniKartonToolStripMenuItem.Click += (s, e) => FormManager.Instance.Open<FrmZdravstveniKarton>();
             lekarToolStripMenuItem.Click += (s, e) => FormManager.Instance.Open<FrmLekar>();

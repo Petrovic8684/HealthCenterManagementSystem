@@ -17,14 +17,14 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
         {
             Result = zdravstveniKarton;
 
-            StavkaZdravstvenogKartona kriterijum = new StavkaZdravstvenogKartona
+            StavkaZdravstvenogKartona criterion = new StavkaZdravstvenogKartona
             {
                 ZdravstveniKarton = new ZdravstveniKarton { Id = zdravstveniKarton.Id }
             };
 
-            List<StavkaZdravstvenogKartona> stavke = broker.GetByCondition(kriterijum).Cast<StavkaZdravstvenogKartona>().ToList();
+            List<StavkaZdravstvenogKartona> list = broker.GetByCondition(criterion).Cast<StavkaZdravstvenogKartona>().ToList();
 
-            foreach (StavkaZdravstvenogKartona stavka in stavke)
+            foreach (StavkaZdravstvenogKartona stavka in list)
                 broker.Delete(stavka);
 
             broker.Delete(zdravstveniKarton);

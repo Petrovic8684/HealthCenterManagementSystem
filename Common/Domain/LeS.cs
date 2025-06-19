@@ -22,7 +22,7 @@ namespace Common.Domain
 
         public string PrimaryKeyCondition => "idLekar = @IdLekar AND idSertifikat = @IdSertifikat";
 
-        public string Prikaz => DatumIzdavanja.ToShortDateString();
+        public string DisplayValue => DatumIzdavanja.ToShortDateString();
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
@@ -80,6 +80,6 @@ namespace Common.Domain
             };
         }
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

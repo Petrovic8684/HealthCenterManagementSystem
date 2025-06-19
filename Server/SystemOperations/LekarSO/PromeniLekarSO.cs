@@ -1,4 +1,5 @@
-﻿using Common.Domain;
+﻿using Common.Config;
+using Common.Domain;
 
 namespace Server.SystemOperations.LekarSO
 {
@@ -7,7 +8,6 @@ namespace Server.SystemOperations.LekarSO
         private readonly Lekar lekar;
         internal Lekar Result { get; private set; }
 
-
         internal PromeniLekarSO(Lekar lekar)
         {
             this.lekar = lekar;
@@ -15,16 +15,18 @@ namespace Server.SystemOperations.LekarSO
 
         protected override void ExecuteConcreteOperation()
         {
+            lekar.Sifra = PasswordUtility.HashPassword(lekar.Sifra);
+
             broker.Update(lekar);
 
-            LeS kriterijum = new LeS
+            LeS criterionLeS = new LeS
             {
                 IdLekar = lekar.Id
             };
 
-            List<LeS> lesLista = broker.GetByCondition(kriterijum).Cast<LeS>().ToList();
+            List<LeS> lesList = broker.GetByCondition(criterionLeS).Cast<LeS>().ToList();
 
-            foreach (LeS les in lesLista)
+            foreach (LeS les in lesList)
                 broker.Delete(les);
 
             foreach (var sertifikat in lekar.Sertifikati)
@@ -33,8 +35,8 @@ namespace Server.SystemOperations.LekarSO
                 broker.Add(les);
             }
 
-            var krit = new Lekar { Id = lekar.Id };
-            Result = broker.GetByCondition(krit).OfType<Lekar>().FirstOrDefault();
+            var criterion = new Lekar { Id = lekar.Id };
+            Result = broker.GetByCondition(criterion).OfType<Lekar>().FirstOrDefault();
         }
     }
 }

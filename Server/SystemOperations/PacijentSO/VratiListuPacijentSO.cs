@@ -9,30 +9,30 @@ namespace Server.SystemOperations.PacijentSO
 {
     internal class VratiListuPacijentSO : SystemOperationBase
     {
-        private readonly IEntity kriterijumi;
+        private readonly IEntity criteria;
         private List<Pacijent> list;
         internal List<Pacijent> Result { get; private set; }
 
-        internal VratiListuPacijentSO(IEntity kriterijumi, List<Pacijent> list)
+        internal VratiListuPacijentSO(IEntity criteria, List<Pacijent> list)
         {
-            this.kriterijumi = kriterijumi;
+            this.criteria = criteria;
             this.list = list;
             Result = new List<Pacijent>();
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            Pacijent kriterijumPacijent;
+            Pacijent criterionPacijent;
 
-            if (kriterijumi is Pacijent p)
-                kriterijumPacijent = p;
+            if (criteria is Pacijent pacijent)
+                criterionPacijent = pacijent;
             
-            else if (kriterijumi is Mesto m)
-                kriterijumPacijent = new Pacijent { Mesto = m };
+            else if (criteria is Mesto mesto)
+                criterionPacijent = new Pacijent { Mesto = mesto };
 
             else throw new ArgumentException("Kriterijum mora biti tipa Pacijent ili Mesto.");
 
-            list = broker.GetByCondition(kriterijumPacijent).Cast<Pacijent>().ToList();
+            list = broker.GetByCondition(criterionPacijent).Cast<Pacijent>().ToList();
             Result = list;
         }
     }

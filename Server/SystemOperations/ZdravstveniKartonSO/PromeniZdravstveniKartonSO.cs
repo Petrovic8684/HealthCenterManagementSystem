@@ -16,12 +16,12 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
         {
             broker.Update(zdravstveniKarton);
 
-            StavkaZdravstvenogKartona kriterijum = new StavkaZdravstvenogKartona();
-            kriterijum.ZdravstveniKarton.Id = zdravstveniKarton.Id;
+            StavkaZdravstvenogKartona criterionStavka = new StavkaZdravstvenogKartona();
+            criterionStavka.ZdravstveniKarton.Id = zdravstveniKarton.Id;
 
-            List<StavkaZdravstvenogKartona> stavke = broker.GetByCondition(kriterijum).Cast<StavkaZdravstvenogKartona>().ToList();
+            List<StavkaZdravstvenogKartona> list = broker.GetByCondition(criterionStavka).Cast<StavkaZdravstvenogKartona>().ToList();
 
-            foreach (StavkaZdravstvenogKartona stavka in stavke)
+            foreach (StavkaZdravstvenogKartona stavka in list)
                 broker.Delete(stavka);
 
             foreach (StavkaZdravstvenogKartona stavka in zdravstveniKarton.Stavke)
@@ -30,8 +30,8 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
                 broker.Add(stavka);
             }
 
-            var krit = new ZdravstveniKarton { Id = zdravstveniKarton.Id };
-            Result = broker.GetByCondition(krit).OfType<ZdravstveniKarton>().FirstOrDefault();
+            var criterion = new ZdravstveniKarton { Id = zdravstveniKarton.Id };
+            Result = broker.GetByCondition(criterion).OfType<ZdravstveniKarton>().FirstOrDefault();
         }
     }
 }

@@ -84,7 +84,6 @@
             linkLblUndraw.TabIndex = 0;
             linkLblUndraw.TabStop = true;
             linkLblUndraw.Text = "unDraw";
-            linkLblUndraw.LinkClicked += linkLblUndraw_LinkClicked;
             // 
             // FrmOProgramu
             // 

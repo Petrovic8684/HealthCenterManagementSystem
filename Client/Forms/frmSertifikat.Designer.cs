@@ -32,7 +32,7 @@
             gbAkcije = new GroupBox();
             btnDetalji = new Button();
             btnPretrazi = new Button();
-            btnKreirajNovo = new Button();
+            btnKreirajNovi = new Button();
             gbKriterijumi = new GroupBox();
             tbOpis = new TextBox();
             lblOpis = new Label();
@@ -46,7 +46,7 @@
             // 
             gbAkcije.Controls.Add(btnDetalji);
             gbAkcije.Controls.Add(btnPretrazi);
-            gbAkcije.Controls.Add(btnKreirajNovo);
+            gbAkcije.Controls.Add(btnKreirajNovi);
             gbAkcije.Location = new Point(508, 60);
             gbAkcije.Name = "gbAkcije";
             gbAkcije.Size = new Size(272, 258);
@@ -86,21 +86,21 @@
             btnPretrazi.Text = "Pretraži";
             btnPretrazi.UseVisualStyleBackColor = false;
             // 
-            // btnKreirajNovo
+            // btnKreirajNovi
             // 
-            btnKreirajNovo.BackColor = Color.White;
-            btnKreirajNovo.Cursor = Cursors.Hand;
-            btnKreirajNovo.FlatAppearance.BorderSize = 0;
-            btnKreirajNovo.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
-            btnKreirajNovo.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
-            btnKreirajNovo.FlatStyle = FlatStyle.Flat;
-            btnKreirajNovo.ForeColor = SystemColors.ControlText;
-            btnKreirajNovo.Location = new Point(79, 120);
-            btnKreirajNovo.Name = "btnKreirajNovo";
-            btnKreirajNovo.Size = new Size(113, 35);
-            btnKreirajNovo.TabIndex = 2;
-            btnKreirajNovo.Text = "Kreiraj novo";
-            btnKreirajNovo.UseVisualStyleBackColor = false;
+            btnKreirajNovi.BackColor = Color.White;
+            btnKreirajNovi.Cursor = Cursors.Hand;
+            btnKreirajNovi.FlatAppearance.BorderSize = 0;
+            btnKreirajNovi.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            btnKreirajNovi.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
+            btnKreirajNovi.FlatStyle = FlatStyle.Flat;
+            btnKreirajNovi.ForeColor = SystemColors.ControlText;
+            btnKreirajNovi.Location = new Point(79, 120);
+            btnKreirajNovi.Name = "btnKreirajNovi";
+            btnKreirajNovi.Size = new Size(113, 35);
+            btnKreirajNovi.TabIndex = 2;
+            btnKreirajNovi.Text = "Kreiraj novi";
+            btnKreirajNovi.UseVisualStyleBackColor = false;
             // 
             // gbKriterijumi
             // 
@@ -172,7 +172,7 @@
         private GroupBox gbAkcije;
         private Button btnDetalji;
         private Button btnPretrazi;
-        private Button btnKreirajNovo;
+        private Button btnKreirajNovi;
         private GroupBox gbKriterijumi;
         private TextBox tbNaziv;
         private Label lblPostanskiBroj;

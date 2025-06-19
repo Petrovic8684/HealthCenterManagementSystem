@@ -12,16 +12,16 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) => Controller.Instance.Sertifikati.Zapamti();
-            btnObrisi.Click += (s, e) => Controller.Instance.Sertifikati.Obrisi();
+            btnZapamti.Click += (s, e) => Controller.Instance.Sertifikati.Save();
+            btnObrisi.Click += (s, e) => Controller.Instance.Sertifikati.Delete();
             btnOdustani.Click += (s, e) =>
             {
-                if (Sertifikat == null) Controller.Instance.Sertifikati.Obrisi();
+                if (Sertifikat == null) Controller.Instance.Sertifikati.Delete();
                 else FormManager.Instance.Close<FrmSertifikatCRUD>();
             };
         }
 
-        public void PrikaziDetalje(Sertifikat sertifikat)
+        public void ShowDetails(Sertifikat sertifikat)
         {
             Sertifikat = sertifikat;
 
@@ -31,9 +31,6 @@ namespace Client
             btnObrisi.Enabled = true;
         }
 
-        public bool Validation()
-        {
-            return FormValidator.ValidateTextFields(tbOpis);
-        }
+        public bool Validation() => FormValidator.Instance.ValidateTextFields(tbOpis);
     }
 }

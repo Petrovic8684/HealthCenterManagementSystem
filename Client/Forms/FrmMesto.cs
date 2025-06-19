@@ -4,15 +4,15 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmMesto : Form, IForm<Mesto>
+    internal partial class FrmMesto : Form
     {
         public FrmMesto()
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.Mesta.VratiListu();
-            btnKreirajNovo.Click += (s, e) => Controller.Instance.Mesta.Kreiraj();
-            btnDetalji.Click += (s, e) => Controller.Instance.Mesta.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.Mesta.FetchList();
+            btnKreirajNovo.Click += (s, e) => Controller.Instance.Mesta.Create();
+            btnDetalji.Click += (s, e) => Controller.Instance.Mesta.Read();
         }
     }
 }

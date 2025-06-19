@@ -16,8 +16,8 @@ namespace Server.SystemOperations.PacijentSO
         {
             broker.Update(pacijent);
 
-            var kriterijum = new Pacijent { Id = pacijent.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<Pacijent>().FirstOrDefault();
+            var criterion = new Pacijent { Id = pacijent.Id };
+            Result = broker.GetByCondition(criterion).OfType<Pacijent>().FirstOrDefault();
         }
     }
 }

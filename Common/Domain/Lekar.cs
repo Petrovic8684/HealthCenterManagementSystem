@@ -14,8 +14,8 @@ namespace Common.Domain
         public List<Sertifikat> Sertifikati { get; set; } = new List<Sertifikat>();
 
         public string TableName => "lekar";
-        public string ImeKlaseAkuzativJednine => "lekara";
-        public string ImeKlaseAkuzativMnozine => "lekare";
+        public string ClassNameAccusativeSingular => "lekara";
+        public string ClassNameAccusativePlural => "lekare";
 
         public string Columns => "ime, prezime, email, sifra, korisnickoIme";
 
@@ -27,7 +27,7 @@ namespace Common.Domain
 
         public string PrimaryKeyCondition => "idLekar = @Id";
 
-        public string Prikaz => $"{Ime} {Prezime}";
+        public string DisplayValue => $"{Ime} {Prezime}";
 
         public string JoinTableName =>
             "lekar l " +
@@ -42,6 +42,12 @@ namespace Common.Domain
         {
             var conditions = new List<string>();
             var parameters = new List<SqlParameter>();
+
+            if (Id > 0)
+            {
+                conditions.Add("l.idLekar = @Id");
+                parameters.Add(new SqlParameter("@Id", Id));
+            }
 
             if (!string.IsNullOrWhiteSpace(Ime))
             {
@@ -138,6 +144,6 @@ namespace Common.Domain
             };
         }
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

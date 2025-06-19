@@ -12,8 +12,9 @@ namespace Client.GuiController.Services
         protected override Operation DeleteOperation => Operation.ObrisiSertifikat;
         protected override Operation SearchOperation => Operation.PretraziSertifikat;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviSertifikat;
-        protected override FrmSertifikat GetSearchForm() => FormManager.Instance.Get<FrmSertifikat>() ?? new FrmSertifikat();
-        protected override FrmSertifikatCRUD GetCrudForm() => FormManager.Instance.Get<FrmSertifikatCRUD>() ?? FormManager.Instance.Open<FrmSertifikatCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
+        protected override FrmSertifikat GetForm() => FormManager.Instance.Get<FrmSertifikat>() ?? new FrmSertifikat();
+        protected override FrmSertifikatCRUD GetCrudForm() => FormManager.Instance.Get<FrmSertifikatCRUD>() ?? FormManager.Instance.Open<FrmSertifikatCRUD>(form => form.FormClosed += (s, e) => FetchListAll(), true);
+        protected override void CloseCrudForm() => FormManager.Instance.Close<FrmSertifikatCRUD>();
 
         protected override Sertifikat CreateEntityFromForm(FrmSertifikatCRUD form) => new()
         {
@@ -23,7 +24,7 @@ namespace Client.GuiController.Services
 
         protected override void FillFormWithEntity(FrmSertifikatCRUD form, Sertifikat entity)
         {
-            form.PrikaziDetalje(entity);
+            form.ShowDetails(entity);
         }
 
         protected override void BindSearchResults(FrmSertifikat form, List<Sertifikat> results)
@@ -31,9 +32,7 @@ namespace Client.GuiController.Services
             form.dgvSertifikati.DataSource = results;
 
             foreach (DataGridViewColumn column in form.dgvSertifikati.Columns)
-            {
                 column.Visible = column.Name == nameof(Sertifikat.Id) || column.Name == nameof(Sertifikat.Opis);
-            }
         }
 
         protected override List<Sertifikat> BuildListResults(FrmSertifikat form)

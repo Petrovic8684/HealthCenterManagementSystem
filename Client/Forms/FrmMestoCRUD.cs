@@ -12,16 +12,16 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) => Controller.Instance.Mesta.Zapamti();
-            btnObrisi.Click += (s, e) => Controller.Instance.Mesta.Obrisi();
+            btnZapamti.Click += (s, e) => Controller.Instance.Mesta.Save();
+            btnObrisi.Click += (s, e) => Controller.Instance.Mesta.Delete();
             btnOdustani.Click += (s, e) =>
             {
-                if (Mesto == null) Controller.Instance.Mesta.Obrisi();
+                if (Mesto == null) Controller.Instance.Mesta.Delete();
                 else FormManager.Instance.Close<FrmMestoCRUD>();
             };
         }
 
-        public void PrikaziDetalje(Mesto mesto)
+        public void ShowDetails(Mesto mesto)
         {
             Mesto = mesto;
 
@@ -34,7 +34,16 @@ namespace Client
 
         public bool Validation()
         {
-            return FormValidator.ValidateTextFields(tbNaziv, tbPostanskiBroj);
+            bool basicValid = FormValidator.Instance.ValidateTextFields(tbNaziv, tbPostanskiBroj);
+
+            if (!basicValid)
+                return false;
+
+            FormValidator.Instance.ValidateWithRulesOrThrow(
+                (tbPostanskiBroj, text => FormValidator.Instance.IsExactLength(text, 5), "Poštanski broj mora imati tačno 5 karaktera.")
+            );
+
+            return true;
         }
     }
 }

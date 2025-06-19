@@ -9,8 +9,8 @@ namespace Common.Domain
         public string Opis { get; set; }
 
         public string TableName => "sertifikat";
-        public string ImeKlaseAkuzativJednine => "sertifikat";
-        public string ImeKlaseAkuzativMnozine => "sertifikate";
+        public string ClassNameAccusativeSingular => "sertifikat";
+        public string ClassNameAccusativePlural => "sertifikate";
 
         public string Columns => "opis";
 
@@ -22,12 +22,18 @@ namespace Common.Domain
 
         public string PrimaryKeyCondition => "idSertifikat = @Id";
 
-        public string Prikaz => Opis;
+        public string DisplayValue => Opis;
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
             var conditions = new List<string>();
             var parameters = new List<SqlParameter>();
+
+            if (Id > 0)
+            {
+                conditions.Add("idSertifikat = @Id");
+                parameters.Add(new SqlParameter("@Id", Id));
+            }
 
             if (!string.IsNullOrWhiteSpace(Opis))
             {
@@ -69,6 +75,6 @@ namespace Common.Domain
             };
         }
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

@@ -10,20 +10,20 @@ namespace Server.SystemOperations.MestoSO
 {
     internal class VratiListuMestoSO : SystemOperationBase
     {
-        private readonly Mesto kriterijumi;
+        private readonly Mesto criteria;
         private List<Mesto> list;
         internal List<Mesto> Result { get; private set; }
 
-        internal VratiListuMestoSO(Mesto kriterijumi, List<Mesto> list)
+        internal VratiListuMestoSO(Mesto criteria, List<Mesto> list)
         {
-            this.kriterijumi = kriterijumi;
+            this.criteria = criteria;
             this.list = list;
             Result = new List<Mesto>();
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            list = broker.GetByCondition(kriterijumi).Cast<Mesto>().ToList();
+            list = broker.GetByCondition(criteria).Cast<Mesto>().ToList();
             Result = list;
         }
     }

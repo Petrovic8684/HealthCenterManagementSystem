@@ -15,20 +15,20 @@ namespace Server.SystemOperations.PacijentSO
 
         protected override void ExecuteConcreteOperation()
         {
-            int validnoMestoId = broker.GetFirstId(new Mesto());
+            int validMestoId = broker.GetFirstId(new Mesto());
 
-            if (validnoMestoId == -1)
-                throw new Exception("Morate kreirati bar jedno mesto pre kreiranja pacijenta.");
+            if (validMestoId == -1)
+                throw new Exception("Mora postojati bar jedno mesto pre kreiranja pacijenta.");
 
-            var prazanPacijent = new Pacijent
+            var blankEntity = new Pacijent
             {
                 Ime = "",
                 Prezime = "",
                 Email = "placeholder@example.com",
-                Mesto = new Mesto { Id = validnoMestoId }
+                Mesto = new Mesto { Id = validMestoId }
             };
 
-            int id = broker.AddWithReturnId(prazanPacijent);
+            int id = broker.AddWithReturnId(blankEntity);
             Result = new Pacijent { Id = id };
         }
     }

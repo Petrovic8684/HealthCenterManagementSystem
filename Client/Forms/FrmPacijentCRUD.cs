@@ -12,24 +12,24 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) => Controller.Instance.Pacijenti.Zapamti();
-            btnObrisi.Click += (s, e) => Controller.Instance.Pacijenti.Obrisi();
+            btnZapamti.Click += (s, e) => Controller.Instance.Pacijenti.Save();
+            btnObrisi.Click += (s, e) => Controller.Instance.Pacijenti.Delete();
             btnOdustani.Click += (s, e) =>
             {
-                if (Pacijent == null) Controller.Instance.Pacijenti.Obrisi();
+                if (Pacijent == null) Controller.Instance.Pacijenti.Delete();
                 else FormManager.Instance.Close<FrmPacijentCRUD>();
             };
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbMesta,
-                Controller.Instance.Mesta.VratiListuSvi().Cast<Mesto>(),
+                Controller.Instance.Mesta.FetchListAll(false).Cast<Mesto>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Mesto { Id = -1, Naziv = "-- Bez izbora --" }
             );
         }
 
-        public void PrikaziDetalje(Pacijent pacijent)
+        public void ShowDetails(Pacijent pacijent)
         {
             Pacijent = pacijent;
 
@@ -46,9 +46,17 @@ namespace Client
 
         public bool Validation()
         {
-            bool validTextFields = FormValidator.ValidateTextFields(tbIme, tbPrezime, tbEmail);
-            bool validComboBoxes = FormValidator.ValidateComboBoxes(cbMesta);
-            return validTextFields && validComboBoxes;
+            bool validTextFields = FormValidator.Instance.ValidateTextFields(tbIme, tbPrezime, tbEmail);
+            bool validComboBoxes = FormValidator.Instance.ValidateComboBoxes(cbMesta);
+
+            if (!validTextFields || !validComboBoxes)
+                return false;
+
+            FormValidator.Instance.ValidateWithRulesOrThrow(
+                (tbEmail, FormValidator.Instance.IsValidEmail, "Email mora biti u validnom formatu (example@gmail.com).")
+            );
+
+            return true;
         }
     }
 }

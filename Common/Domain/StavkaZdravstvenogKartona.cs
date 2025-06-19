@@ -19,7 +19,7 @@ namespace Common.Domain
         public string SetClause => "datumUpisa=@DatumUpisa, ponder=@Ponder, idDijagnoza=@IdDijagnoza";
         public string PrimaryKey => "idZdravstveniKarton, rb";
         public string PrimaryKeyCondition => "idZdravstveniKarton = @IdZdravstveniKarton AND rb = @RedniBroj";
-        public string Prikaz => $"{Dijagnoza?.Naziv} | {Ponder}";
+        public string DisplayValue => $"{Dijagnoza?.Naziv} | {Ponder}";
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
@@ -69,6 +69,6 @@ namespace Common.Domain
             new SqlParameter("@RedniBroj", RedniBroj)
         };
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

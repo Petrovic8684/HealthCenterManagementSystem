@@ -14,8 +14,8 @@ namespace Server.SystemOperations.SertifikatSO
 
         protected override void ExecuteConcreteOperation()
         {
-            var kriterijum = new Sertifikat { Id = sertifikat.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<Sertifikat>().FirstOrDefault();
+            var criterion = new Sertifikat { Id = sertifikat.Id };
+            Result = broker.GetByCondition(criterion).OfType<Sertifikat>().FirstOrDefault();
         }
     }
 }

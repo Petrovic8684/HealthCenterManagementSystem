@@ -16,8 +16,8 @@ namespace Server.SystemOperations.MestoSO
         {
             broker.Update(mesto);
 
-            var kriterijum = new Mesto { Id = mesto.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<Mesto>().FirstOrDefault();
+            var criterion = new Mesto { Id = mesto.Id };
+            Result = broker.GetByCondition(criterion).OfType<Mesto>().FirstOrDefault();
         }
     }
 }

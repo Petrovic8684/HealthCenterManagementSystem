@@ -14,37 +14,25 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
 
         protected override void ExecuteConcreteOperation()
         {
-            /*int generatedId = broker.AddWithReturnId(zdravstveniKarton);
-            zdravstveniKarton.Id = generatedId;
+            int validLekarId = broker.GetFirstId(new Lekar());
 
-            foreach (var stavka in zdravstveniKarton.Stavke)
-                stavka.ZdravstveniKarton.Id = generatedId;
+            if (validLekarId == -1)
+                throw new Exception("Mora postojati bar jedan lekar pre kreiranja zdravstvenog kartona.");
 
-            foreach (var stavka in zdravstveniKarton.Stavke)
-                broker.Add(stavka);
+            int validPacijentId = broker.GetFirstId(new Pacijent());
 
-            var kriterijum = new ZdravstveniKarton { Id = generatedId };
-            Result = broker.GetByCondition(kriterijum).OfType<ZdravstveniKarton>().FirstOrDefault();*/
+            if (validPacijentId == -1)
+                throw new Exception("Mora postojati bar jedan pacijent pre kreiranja zdravstvenog kartona.");
 
-            int validanLekarId = broker.GetFirstId(new Lekar());
-
-            if (validanLekarId == -1)
-                throw new Exception("Morate kreirati bar jedng lekara pre kreiranja zdravstvenog kartona.");
-
-            int validanPacijentId = broker.GetFirstId(new Pacijent());
-
-            if (validanPacijentId == -1)
-                throw new Exception("Morate kreirati bar jedng pacijenta pre kreiranja zdravstvenog kartona.");
-
-            var prazanZdravstveniKarton = new ZdravstveniKarton
+            var blankEntity = new ZdravstveniKarton
             {
                 DatumOtvaranja = DateTime.Now.Date,
                 Napomena = "",
-                Lekar = new Lekar { Id = validanLekarId },
-                Pacijent = new Pacijent { Id = validanPacijentId },
+                Lekar = new Lekar { Id = validLekarId },
+                Pacijent = new Pacijent { Id = validPacijentId },
             };
 
-            int id = broker.AddWithReturnId(prazanZdravstveniKarton);
+            int id = broker.AddWithReturnId(blankEntity);
             Result = new ZdravstveniKarton { Id = id };
         }
     }

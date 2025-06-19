@@ -14,14 +14,14 @@ namespace Server.SystemOperations.DijagnozaSO
 
         protected override void ExecuteConcreteOperation()
         {
-            var praznaDijagnoza = new Dijagnoza
+            var blankEntity = new Dijagnoza
             {
                 Naziv = "",
                 Opis = "",
                 BazniSkor = 1
             };
 
-            int id = broker.AddWithReturnId(praznaDijagnoza);
+            int id = broker.AddWithReturnId(blankEntity);
             Result = new Dijagnoza { Id = id };
         }
     }

@@ -12,8 +12,9 @@ namespace Client.GuiController.Services
         protected override Operation DeleteOperation => Operation.ObrisiMesto;
         protected override Operation SearchOperation => Operation.PretraziMesto;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviMesto;
-        protected override FrmMesto GetSearchForm() => FormManager.Instance.Get<FrmMesto>() ?? new FrmMesto();
-        protected override FrmMestoCRUD GetCrudForm() => FormManager.Instance.Get<FrmMestoCRUD>() ?? FormManager.Instance.Open<FrmMestoCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
+        protected override FrmMesto GetForm() => FormManager.Instance.Get<FrmMesto>() ?? new FrmMesto();
+        protected override FrmMestoCRUD GetCrudForm() => FormManager.Instance.Get<FrmMestoCRUD>() ?? FormManager.Instance.Open<FrmMestoCRUD>(form => form.FormClosed += (s, e) => FetchListAll(), true);
+        protected override void CloseCrudForm() => FormManager.Instance.Close<FrmMestoCRUD>();
 
         protected override Mesto CreateEntityFromForm(FrmMestoCRUD form) => new()
         {
@@ -24,7 +25,7 @@ namespace Client.GuiController.Services
 
         protected override void FillFormWithEntity(FrmMestoCRUD form, Mesto entity)
         {
-            form.PrikaziDetalje(entity);
+            form.ShowDetails(entity);
         }
 
         protected override void BindSearchResults(FrmMesto form, List<Mesto> results)

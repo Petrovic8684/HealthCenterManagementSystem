@@ -1,12 +1,12 @@
-﻿using Client.GuiController;
-using Client;
+﻿using Client;
 using Common.Communication;
 using Client.Forms;
 using System.Windows.Forms;
+using Client.GuiController;
 
 internal abstract class BaseEntityService<T, TForm, TCrudForm>
     where T : class, ICrudEntity, new()
-    where TForm : Form, IForm<T>, new()
+    where TForm : Form, new()
     where TCrudForm : Form, ICrudForm<T>, new()
 {
     protected abstract Operation CreateOperation { get; }
@@ -16,33 +16,59 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
     protected abstract Operation RetreiveAllListOperation { get; }
 
     protected abstract TCrudForm GetCrudForm();
+    protected abstract void CloseCrudForm();
     protected abstract List<T> BuildListResults(TForm form);
-    protected abstract TForm GetSearchForm();
+    protected abstract TForm GetForm();
     protected abstract T CreateEntityFromForm(TCrudForm form);
     protected abstract void FillFormWithEntity(TCrudForm form, T entity);
     protected abstract void BindSearchResults(TForm form, List<T> results);
 
-    public void Kreiraj()
+    public void Create()
     {
+        ICrudEntity? createdEntity = null;
+
         try
         {
-            var form = GetCrudForm();
             var entity = new T();
-
-            var response = Communication.Instance.SendRequest<T, T>(entity, CreateOperation);
+            var response = Communication.Instance.SendRequestGetObject<T, T>(entity, CreateOperation);
             CheckResponse(response);
 
-            form.Tag = ((ICrudEntity)response.Result);
+            createdEntity = (ICrudEntity)response.Result;
 
-            MessageBox.Show("Sistem je kreirao " + new T().ImeKlaseAkuzativJednine + ".");
+            ShowMessage("Sistem je kreirao " + createdEntity.ClassNameAccusativeSingular + ".");
+
+            FormManager.Instance.Open<TCrudForm>(form =>
+            {
+                form.Tag = createdEntity;
+                form.FormClosed += (s, e) => FetchListAll();
+            }, true);
         }
         catch (Exception ex)
         {
-            ShowError("Sistem ne može da kreira " + new T().ImeKlaseAkuzativJednine + ".", ex);
+            ShowMessage("Sistem ne može da kreira " + new T().ClassNameAccusativeSingular + ".\n\n" + ex.Message, "Greška");
+
+            if (createdEntity != null)
+            {
+                try
+                {
+                    Communication.Instance.SendRequestGetObject<T, T>(
+                        (T)new T { Id = createdEntity.Id },
+                        DeleteOperation
+                    );
+
+                    ShowMessage("Sistem je obrisao neuspešno kreirani entitet " + new T().ClassNameAccusativeSingular + ".");
+                }
+                catch (Exception deleteEx)
+                {
+                    ShowMessage("Sistem ne može da obriše neuspešno kreirani entitet." + new T().ClassNameAccusativeSingular + " Molimo obrišite entitet ručno.\n\n" + deleteEx.Message, "Greška");
+                }
+            }
+
+            CloseCrudForm();
         }
     }
 
-    public void Zapamti()
+    public void Save()
     {
         try
         {
@@ -55,19 +81,19 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
 
             entity.Id = ((ICrudEntity)form.Tag).Id;
 
-            var response = Communication.Instance.SendRequest<T, T>(entity, UpdateOperation);
+            var response = Communication.Instance.SendRequestGetObject<T, T>(entity, UpdateOperation);
             CheckResponse(response);
 
-            MessageBox.Show("Sistem je zapamtio " + new T().ImeKlaseAkuzativJednine + ".");
-            FormManager.Instance.Close<TCrudForm>();
+            ShowMessage("Sistem je zapamtio " + new T().ClassNameAccusativeSingular + ".");
+            CloseCrudForm();
         }
         catch (Exception ex)
         {
-            ShowError("Sistem ne može da zapamti " + new T().ImeKlaseAkuzativJednine + ".", ex);
+            ShowMessage("Sistem ne može da zapamti " + new T().ClassNameAccusativeSingular + ".\n\n" + ex.Message, "Greška");
         }
     }
 
-    public void Obrisi()
+    public void Delete()
     {
         try
         {
@@ -76,56 +102,61 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
 
             //ValidateBeforeOperation(entity);
 
-            var response = Communication.Instance.SendRequest<T, T>(entity, DeleteOperation);
+            var response = Communication.Instance.SendRequestGetObject<T, T>(entity, DeleteOperation);
             CheckResponse(response);
 
-            MessageBox.Show("Sistem je obrisao " + new T().ImeKlaseAkuzativJednine + ".");
-            FormManager.Instance.Close<TCrudForm>();
+            ShowMessage("Sistem je obrisao " + new T().ClassNameAccusativeSingular + ".");
         }
         catch (Exception ex)
         {
-            ShowError("Sistem ne može da obriše " + new T().ImeKlaseAkuzativJednine + ".", ex);
+            ShowMessage("Sistem ne može da obriše " + new T().ClassNameAccusativeSingular + ".\n\n" + ex.Message, "Greška");
+        }
+        finally
+        {
+            CloseCrudForm();
         }
     }
 
-    public void Pretrazi()
+    public void Read()
     {
         try
         {
-            var form = GetSearchForm();
+            var form = GetForm();
             var selected = GetSelectedEntity(form);
 
-            var response = Communication.Instance.SendRequest<T, T>(selected, SearchOperation);
+            var response = Communication.Instance.SendRequestGetObject<T, T>(selected, SearchOperation);
             CheckResponse(response);
 
             var result = response.Result as T;
 
-            MessageBox.Show("Sistem je pronašao " + result.ImeKlaseAkuzativJednine + ".");
+            ShowMessage("Sistem je pronašao " + result.ClassNameAccusativeSingular + ".");
 
             FormManager.Instance.Open<TCrudForm>(form =>
             {
                 form.Tag = selected;
                 FillFormWithEntity(form, selected);
-                form.FormClosed += (s, e) => VratiListuSvi();
-            });
+                form.FormClosed += (s, e) => FetchListAll();
+            }, true);
         }
         catch (Exception ex)
         {
-            ShowError("Sistem ne može da nađe " + new T().ImeKlaseAkuzativJednine + ".", ex);
+            ShowMessage("Sistem ne može da pronađe " + new T().ClassNameAccusativeSingular + ".\n\n" + ex.Message, "Greška");
         }
     }
 
-    public virtual List<T> VratiListuSvi()
+    public virtual List<T> FetchListAll(bool shouldBind = true)
     {
         try
         {
-            var form = GetSearchForm();
+            var form = GetForm();
 
-            var response = Communication.Instance.SendRequestList<object, T>(null, RetreiveAllListOperation);
+            var response = Communication.Instance.SendRequestGetList<object, T>(null, RetreiveAllListOperation);
             CheckResponse(response);
 
             var result = response.Result as List<T>;
-            BindSearchResults(form, result);
+            
+            if(shouldBind == true)
+                BindSearchResults(form, result);
 
             return result;
         }
@@ -135,19 +166,17 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         }
     }
 
-    public List<T> VratiListu(bool showMessages = true)
+    public List<T> FetchList(bool showMessages = true)
     {
         try
         {
-            var form = GetSearchForm();
+            var form = GetForm();
             var results = BuildListResults(form);
 
             if (showMessages)
             {
-                if (results == null || results.Count == 0)
-                    MessageBox.Show("Sistem ne može da nađe " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.");
-                else
-                    MessageBox.Show("Sistem je našao " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.");
+                if (results == null || results.Count == 0) ShowMessage("Sistem ne može da nađe " + new T().ClassNameAccusativePlural + " po zadatim kriterijumima.");
+                else ShowMessage("Sistem je našao " + new T().ClassNameAccusativePlural + " po zadatim kriterijumima.");
             }
 
             BindSearchResults(form, results);
@@ -155,8 +184,7 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
         }
         catch (Exception ex)
         {
-            if (showMessages)
-                ShowError("Sistem ne može da nađe " + new T().ImeKlaseAkuzativMnozine + " po zadatim kriterijumima.", ex);
+            if (showMessages) ShowMessage("Sistem ne može da nađe " + new T().ClassNameAccusativePlural + " po zadatim kriterijumima." + "\n\n" + ex.Message, "Greška");
             return null;
         }
     }
@@ -169,7 +197,7 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
     {
         var dgv = form.Controls.OfType<DataGridView>().FirstOrDefault();
         if (dgv == null || dgv.SelectedRows.Count == 0)
-            throw new Exception("Morate selektovati red.");
+            throw new Exception("Niste izabrali nijedan red.");
 
         return dgv.SelectedRows[0].DataBoundItem as T ?? throw new Exception("Greška u izboru reda.");
     }
@@ -180,8 +208,26 @@ internal abstract class BaseEntityService<T, TForm, TCrudForm>
             throw new Exception(response.ExceptionMessage);
     }
 
-    protected virtual void ShowError(string message, Exception ex)
+    protected virtual void ShowMessage(string message, string title = null, Form owner = null)
     {
-        MessageBox.Show($"{message}\n\n({ex.Message})", "Greška");
+        if (owner != null && title != null)
+        {
+            MessageBox.Show(owner, message, title);
+            return;
+        }
+
+        if (owner != null)
+        {
+            MessageBox.Show(owner, message);
+            return;
+        }
+
+        if (title != null)
+        {
+            MessageBox.Show(message, title);
+            return;
+        }
+
+        MessageBox.Show(message);
     }
 }

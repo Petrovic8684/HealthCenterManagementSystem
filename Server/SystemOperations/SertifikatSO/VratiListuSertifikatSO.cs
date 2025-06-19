@@ -10,20 +10,20 @@ namespace Server.SystemOperations.SertifikatSO
 {
     internal class VratiListuSertifikatSO : SystemOperationBase
     {
-        private readonly Sertifikat kriterijumi;
+        private readonly Sertifikat criteria;
         private List<Sertifikat> list;
         internal List<Sertifikat> Result { get; private set; }
 
-        internal VratiListuSertifikatSO(Sertifikat kriterijumi, List<Sertifikat> list)
+        internal VratiListuSertifikatSO(Sertifikat criteria, List<Sertifikat> list)
         {
-            this.kriterijumi = kriterijumi;
+            this.criteria = criteria;
             this.list = list;
             Result = new List<Sertifikat>();
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            list = broker.GetByCondition(kriterijumi).Cast<Sertifikat>().ToList();
+            list = broker.GetByCondition(criteria).Cast<Sertifikat>().ToList();
             Result = list;
         }
     }

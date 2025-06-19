@@ -14,17 +14,12 @@ namespace Server.SystemOperations.SertifikatSO
 
         protected override void ExecuteConcreteOperation()
         {
-            /*int id = broker.AddWithReturnId(sertifikat);
-
-            var kriterijum = new Sertifikat { Id = id };
-            Result = broker.GetByCondition(kriterijum).OfType<Sertifikat>().FirstOrDefault();*/
-
-            var prazanSertifikat = new Sertifikat
+            var blankEntity = new Sertifikat
             {
                 Opis = ""
             };
 
-            int id = broker.AddWithReturnId(prazanSertifikat);
+            int id = broker.AddWithReturnId(blankEntity);
             Result = new Sertifikat { Id = id };
         }
     }

@@ -12,43 +12,44 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Zapamti();
+            btnZapamti.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Save();
+            btnObrisi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Delete();
             btnOdustani.Click += (s, e) =>
             {
-                if (ZdravstveniKarton == null) Controller.Instance.ZdravstveniKartoni.Obrisi();
+                if (ZdravstveniKarton == null) Controller.Instance.ZdravstveniKartoni.Delete();
                 else FormManager.Instance.Close<FrmZdravstveniKartonCRUD>();
             };
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbDijagnoze,
-                Controller.Instance.Dijagnoze.VratiListuSvi().Cast<Dijagnoza>(),
+                Controller.Instance.Dijagnoze.FetchListAll(false).Cast<Dijagnoza>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Dijagnoza { Id = -1, Naziv = "-- Bez izbora --" }
             );
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbLekari,
-                Controller.Instance.Lekari.VratiListuSvi().Cast<Lekar>(),
+                Controller.Instance.Lekari.FetchListAll(false).Cast<Lekar>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Lekar { Id = -1, Ime = "-- Bez izbora --" }
             );
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbPacijenti,
-                Controller.Instance.Pacijenti.VratiListuSvi().Cast<Pacijent>(),
+                Controller.Instance.Pacijenti.FetchListAll(false).Cast<Pacijent>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Pacijent { Id = -1, Ime = "-- Bez izbora --" }
             );
 
 
-            btnPlus.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.DodajStavku();
-            btnMinus.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.OduzmiStavku();
+            btnPlus.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.AddStavka();
+            btnMinus.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.RemoveStavka();
         }
 
-        public void PrikaziDetalje(ZdravstveniKarton zdravstveniKarton)
+        public void ShowDetails(ZdravstveniKarton zdravstveniKarton)
         {
             ZdravstveniKarton = zdravstveniKarton;
 
@@ -59,12 +60,15 @@ namespace Client
             tbNapomena.Text = zdravstveniKarton.Napomena;
 
             lbStavke.DataSource = zdravstveniKarton.Stavke;
+
+            btnObrisi.Enabled = true;
         }
 
         public bool Validation()
         {
-            bool validText = FormValidator.ValidateTextFields(tbNapomena);
-            bool validCombos = FormValidator.ValidateComboBoxes(cbLekari, cbPacijenti);
+            bool validText = FormValidator.Instance.ValidateTextFields(tbNapomena);
+            bool validCombos = FormValidator.Instance.ValidateComboBoxes(cbLekari, cbPacijenti);
+
             return validText && validCombos;
         }
     }

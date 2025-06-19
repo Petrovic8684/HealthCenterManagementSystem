@@ -1,14 +1,21 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using System.Drawing;
+using System.Text.RegularExpressions;
 
 namespace Client.Forms
 {
-    internal static class FormValidator
+    internal class FormValidator
     {
-        private static readonly Color DefaultColor = Color.White;
-        private static readonly Color ErrorColor = Color.FromArgb(255, 220, 220);
+        private static FormValidator instance;
+        internal static FormValidator Instance => instance ??= new FormValidator();
 
-        internal static bool ValidateTextFields(params TextBox[] fields)
+        private FormValidator() { }
+
+        private readonly Color DefaultColor = Color.White;
+        private readonly Color ErrorColor = Color.FromArgb(255, 220, 220);
+
+        internal bool ValidateTextFields(params TextBox[] fields)
         {
             bool isValid = true;
 
@@ -26,7 +33,7 @@ namespace Client.Forms
             return isValid;
         }
 
-        internal static bool ValidateComboBoxes(params ComboBox[] boxes)
+        internal bool ValidateComboBoxes(params ComboBox[] boxes)
         {
             bool isValid = true;
 
@@ -43,5 +50,31 @@ namespace Client.Forms
 
             return isValid;
         }
+
+        internal void ValidateWithRulesOrThrow(params (TextBox textBox, Func<string, bool> rule, string errorMessage)[] validations)
+        {
+            foreach (var (textBox, rule, errorMessage) in validations)
+            {
+                textBox.BackColor = DefaultColor;
+
+                if (!rule(textBox.Text))
+                {
+                    textBox.BackColor = ErrorColor;
+                    throw new ArgumentException(errorMessage);
+                }
+            }
+        }
+
+        internal bool IsValidEmail(string input) =>
+            Regex.IsMatch(input, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+
+        internal bool HasMinLength(string input, int minLength) =>
+            !string.IsNullOrWhiteSpace(input) && input.Length >= minLength;
+
+        internal bool IsExactLength(string input, int length) =>
+            input?.Length == length;
+
+        internal bool IsValidDoubleGreaterThanZero(string input) =>
+            double.TryParse(input, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out double value) && value > 0;
     }
 }

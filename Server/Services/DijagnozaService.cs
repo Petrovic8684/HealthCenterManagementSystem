@@ -6,42 +6,42 @@ namespace Server.Services
 {
     internal class DijagnozaService : IEntityService<Dijagnoza>
     {
-        public Dijagnoza Kreiraj(Dijagnoza entity)
+        public Dijagnoza Create(Dijagnoza entity)
         {
             var so = new KreirajDijagnozaSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Dijagnoza Pretrazi(Dijagnoza entity)
+        public Dijagnoza Read(Dijagnoza entity)
         {
             var so = new PretraziDijagnozaSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Dijagnoza Promeni(Dijagnoza entity)
+        public Dijagnoza Update(Dijagnoza entity)
         {
             var so = new PromeniDijagnozaSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Dijagnoza Obrisi(Dijagnoza entity)
+        public Dijagnoza Delete(Dijagnoza entity)
         {
             var so = new ObrisiDijagnozaSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public List<Dijagnoza> VratiListuSvi()
+        public List<Dijagnoza> FetchListAll()
         {
             var so = new VratiListuSviDijagnozaSO(new List<Dijagnoza>());
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public List<Dijagnoza> VratiListu(IEntity criterion)
+        public List<Dijagnoza> FetchList(IEntity criterion)
         {
             if (criterion is not Dijagnoza dijagnozaCriterion)
                 throw new ArgumentException("Kriterijum mora biti tipa Dijagnoza.");

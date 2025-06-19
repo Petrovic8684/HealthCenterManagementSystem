@@ -10,44 +10,44 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
 {
     internal class VratiListuZdravstveniKartonSO : SystemOperationBase
     {
-        private readonly IEntity kriterijumi;
+        private readonly IEntity criteria;
         private List<ZdravstveniKarton> list;
         internal List<ZdravstveniKarton> Result { get; private set; }
 
-        internal VratiListuZdravstveniKartonSO(IEntity kriterijumi, List<ZdravstveniKarton> list)
+        internal VratiListuZdravstveniKartonSO(IEntity criteria, List<ZdravstveniKarton> list)
         {
-            this.kriterijumi = kriterijumi;
+            this.criteria = criteria;
             this.list = list;
             Result = new List<ZdravstveniKarton>();
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            ZdravstveniKarton kriterijumKarton;
+            ZdravstveniKarton criterionZdravstveniKarton;
 
-            switch (kriterijumi)
+            switch (criteria)
             {
                 case ZdravstveniKarton karton:
-                    kriterijumKarton = karton;
+                    criterionZdravstveniKarton = karton;
                     break;
 
                 case Pacijent pacijent:
                     MessageBox.Show(pacijent.Ime);
-                    kriterijumKarton = new ZdravstveniKarton
+                    criterionZdravstveniKarton = new ZdravstveniKarton
                     {
                         Pacijent = pacijent
                     };
                     break;
 
                 case Lekar lekar:
-                    kriterijumKarton = new ZdravstveniKarton
+                    criterionZdravstveniKarton = new ZdravstveniKarton
                     {
                         Lekar = lekar
                     };
                     break;
 
                 case Dijagnoza dijagnoza:
-                    kriterijumKarton = new ZdravstveniKarton
+                    criterionZdravstveniKarton = new ZdravstveniKarton
                     {
                         Stavke = new List<StavkaZdravstvenogKartona>
                         {
@@ -63,7 +63,7 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
                     throw new ArgumentException("Kriterijum mora biti tipa ZdravstveniKarton, Pacijent, Lekar ili Dijagnoza.");
             }
 
-            list = broker.GetByCondition(kriterijumKarton).Cast<ZdravstveniKarton>().ToList();
+            list = broker.GetByCondition(criterionZdravstveniKarton).Cast<ZdravstveniKarton>().ToList();
             Result = list;
         }
     }

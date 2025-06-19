@@ -4,20 +4,20 @@ namespace Server.SystemOperations.DijagnozaSO
 {
     internal class VratiListuDijagnozaSO : SystemOperationBase
     {
-        private readonly Dijagnoza kriterijumi;
+        private readonly Dijagnoza criteria;
         private List<Dijagnoza> list;
         internal List<Dijagnoza> Result { get; private set; }
 
-        internal VratiListuDijagnozaSO(Dijagnoza kriterijumi, List<Dijagnoza> list)
+        internal VratiListuDijagnozaSO(Dijagnoza criteria, List<Dijagnoza> list)
         {
-            this.kriterijumi = kriterijumi;
+            this.criteria = criteria;
             this.list = list;
             Result = new List<Dijagnoza>();
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            list = broker.GetByCondition(kriterijumi).Cast<Dijagnoza>().ToList();
+            list = broker.GetByCondition(criteria).Cast<Dijagnoza>().ToList();
             Result = list;
         }
     }

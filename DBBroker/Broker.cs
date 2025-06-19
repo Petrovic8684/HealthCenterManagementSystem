@@ -93,7 +93,6 @@ namespace DBBroker
             cmd.Dispose();
         }
 
-
         public List<IEntity> GetAll(IEntity entity)
         {
             using SqlCommand cmd = connection.CreateCommand();

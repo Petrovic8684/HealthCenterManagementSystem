@@ -16,8 +16,8 @@ namespace Server.SystemOperations.ZdravstveniKartonSO
 
         protected override void ExecuteConcreteOperation()
         {
-            var kriterijum = new ZdravstveniKarton { Id = zdravstveniKarton.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<ZdravstveniKarton>().FirstOrDefault();
+            var criterion = new ZdravstveniKarton { Id = zdravstveniKarton.Id };
+            Result = broker.GetByCondition(criterion).OfType<ZdravstveniKarton>().FirstOrDefault();
         }
     }
 }

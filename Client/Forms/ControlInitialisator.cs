@@ -2,9 +2,14 @@
 
 namespace Client.Forms
 {
-    internal static class ControlInitialisator
+    internal class ControlInitialisator
     {
-        internal static void InitComboBox<T>(
+        private static ControlInitialisator instance;
+        internal static ControlInitialisator Instance => instance ??= new ControlInitialisator();
+
+        private ControlInitialisator() { }
+
+        internal void InitComboBox<T>(
             ComboBox comboBox,
             IEnumerable<T> items,
             string valueMember,

@@ -5,21 +5,21 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmZdravstveniKarton : Form, IForm<ZdravstveniKarton>
+    internal partial class FrmZdravstveniKarton : Form
     {
         public FrmZdravstveniKarton()
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.VratiListu();
-            btnKreirajNovi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Kreiraj();
-            btnDetalji.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.FetchList();
+            btnKreirajNovi.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Create();
+            btnDetalji.Click += (s, e) => Controller.Instance.ZdravstveniKartoni.Read();
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbDijagnoze,
-                Controller.Instance.Dijagnoze.VratiListuSvi().Cast<Dijagnoza>(),
+                Controller.Instance.Dijagnoze.FetchListAll(false).Cast<Dijagnoza>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Dijagnoza { Id = -1, Naziv = "-- Bez izbora --" }
             );
         }

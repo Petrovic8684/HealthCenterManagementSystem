@@ -17,8 +17,8 @@ namespace Server.SystemOperations.DijagnozaSO
         {
             broker.Update(dijagnoza);
 
-            var kriterijum = new Dijagnoza { Id = dijagnoza.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<Dijagnoza>().FirstOrDefault();
+            var criterion = new Dijagnoza { Id = dijagnoza.Id };
+            Result = broker.GetByCondition(criterion).OfType<Dijagnoza>().FirstOrDefault();
         }
     }
 }

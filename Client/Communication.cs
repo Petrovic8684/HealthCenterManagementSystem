@@ -1,6 +1,5 @@
 ﻿
 using Client.Forms;
-using Client.GuiController;
 using Common.Communication;
 using Common.Config;
 using Common.Domain;
@@ -54,7 +53,7 @@ namespace Client
                 MessageBox.Show("Došlo je do greške prilikom prekidanja konekcije sa serverom.", "Greška");
             }
         }
-        internal Response SendRequest<TRequest, TResponse>(TRequest argument, Operation operation)
+        internal Response SendRequestGetObject<TRequest, TResponse>(TRequest argument, Operation operation)
             where TResponse : class, IEntity
         {
             try
@@ -77,7 +76,7 @@ namespace Client
             }
         }
 
-        internal Response SendRequestList<TRequest, TResponse>(TRequest argument, Operation operation)
+        internal Response SendRequestGetList<TRequest, TResponse>(TRequest argument, Operation operation)
             where TResponse : class, IEntity, new()
         {
             try

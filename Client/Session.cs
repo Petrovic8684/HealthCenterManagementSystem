@@ -1,12 +1,18 @@
-﻿using Common.Domain;
+﻿using Client.GuiController;
+using Common.Domain;
 
 namespace Client
 {
-    internal static class Session
+    internal class Session
     {
-        internal static Lekar CurrentLekar { get; set; }
+        private static Session instance;
+        internal static Session Instance => instance ??= new Session();
 
-        internal static void Clear()
+        private Session() { }
+
+        internal Lekar CurrentLekar { get; set; }
+
+        internal void Clear()
         {
             CurrentLekar = null;
         }

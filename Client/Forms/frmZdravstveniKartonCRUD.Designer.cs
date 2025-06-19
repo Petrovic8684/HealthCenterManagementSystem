@@ -44,6 +44,7 @@
             cbPacijenti = new ComboBox();
             cbDijagnoze = new ComboBox();
             lblZdravstveniKartonId = new Label();
+            btnObrisi = new Button();
             SuspendLayout();
             // 
             // btnZapamti
@@ -222,6 +223,23 @@
             lblZdravstveniKartonId.TabIndex = 51;
             lblZdravstveniKartonId.Text = "Unos novog zdravstvenog kartona";
             // 
+            // btnObrisi
+            // 
+            btnObrisi.BackColor = Color.White;
+            btnObrisi.Cursor = Cursors.Hand;
+            btnObrisi.Enabled = false;
+            btnObrisi.FlatAppearance.BorderSize = 0;
+            btnObrisi.FlatAppearance.MouseDownBackColor = Color.FromArgb(128, 128, 255);
+            btnObrisi.FlatAppearance.MouseOverBackColor = Color.FromArgb(192, 192, 255);
+            btnObrisi.FlatStyle = FlatStyle.Flat;
+            btnObrisi.ForeColor = SystemColors.ControlText;
+            btnObrisi.Location = new Point(246, 391);
+            btnObrisi.Name = "btnObrisi";
+            btnObrisi.Size = new Size(113, 38);
+            btnObrisi.TabIndex = 52;
+            btnObrisi.Text = "Obriši";
+            btnObrisi.UseVisualStyleBackColor = false;
+            // 
             // FrmZdravstveniKartonCRUD
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -229,6 +247,7 @@
             BackColor = Color.White;
             ClientSize = new Size(763, 490);
             ControlBox = false;
+            Controls.Add(btnObrisi);
             Controls.Add(lblZdravstveniKartonId);
             Controls.Add(cbDijagnoze);
             Controls.Add(cbPacijenti);
@@ -271,5 +290,6 @@
         internal ComboBox cbPacijenti;
         internal ComboBox cbDijagnoze;
         private Label lblZdravstveniKartonId;
+        internal Button btnObrisi;
     }
 }

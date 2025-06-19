@@ -7,7 +7,6 @@ namespace Server.SystemOperations.MestoSO
         private readonly Mesto mesto;
         internal Mesto Result { get; private set; }
 
-
         internal ObrisiMestoSO(Mesto mesto)
         {
             this.mesto = mesto;

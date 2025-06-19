@@ -11,7 +11,7 @@ public interface IEntity
     string PrimaryKeyCondition { get; }
     string? JoinTableName => null;
     string? SelectClause => null;
-    string Prikaz { get; }
+    string DisplayValue { get; }
     (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters();
 
     List<IEntity> GetReaderList(SqlDataReader reader);
@@ -22,6 +22,6 @@ public interface IEntity
 public interface ICrudEntity : IEntity
 {
     int Id { get; set; }
-    string ImeKlaseAkuzativJednine { get; }
-    string ImeKlaseAkuzativMnozine { get; }
+    string ClassNameAccusativeSingular { get; }
+    string ClassNameAccusativePlural { get; }
 }

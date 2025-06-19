@@ -1,4 +1,5 @@
-﻿using Client.GuiController.Criteria;
+﻿using Client.Forms;
+using Client.GuiController.Criteria;
 using Common.Communication;
 using Common.Domain;
 
@@ -11,8 +12,9 @@ namespace Client.GuiController.Services
         protected override Operation DeleteOperation => Operation.ObrisiLekar;
         protected override Operation SearchOperation => Operation.PretraziLekar;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviLekar;
-        protected override FrmLekar GetSearchForm() => FormManager.Instance.Get<FrmLekar>() ?? new FrmLekar();
-        protected override FrmLekarCRUD GetCrudForm() => FormManager.Instance.Get<FrmLekarCRUD>() ?? FormManager.Instance.Open<FrmLekarCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
+        protected override FrmLekar GetForm() => FormManager.Instance.Get<FrmLekar>() ?? new FrmLekar();
+        protected override FrmLekarCRUD GetCrudForm() => FormManager.Instance.Get<FrmLekarCRUD>() ?? FormManager.Instance.Open<FrmLekarCRUD>(form => form.FormClosed += (s, e) => FetchListAll(), true);
+        protected override void CloseCrudForm() => FormManager.Instance.Close<FrmLekarCRUD>();
 
         protected override Lekar CreateEntityFromForm(FrmLekarCRUD form) => new Lekar
         {
@@ -27,7 +29,7 @@ namespace Client.GuiController.Services
 
         protected override void FillFormWithEntity(FrmLekarCRUD form, Lekar entity)
         {
-            form.PrikaziDetalje(entity);
+            form.ShowDetails(entity);
         }
 
         protected override void BindSearchResults(FrmLekar form, List<Lekar> results)
@@ -44,7 +46,7 @@ namespace Client.GuiController.Services
             }
         }
 
-        internal void Prijavi()
+        internal void Login()
         {
             try
             {
@@ -62,7 +64,7 @@ namespace Client.GuiController.Services
                     Sifra = frm.tbSifra.Text.Trim(),
                 };
 
-                Response response = Communication.Instance.SendRequest<Lekar, Lekar>(lekar, Operation.PrijaviLekar);
+                Response response = Communication.Instance.SendRequestGetObject<Lekar, Lekar>(lekar, Operation.PrijaviLekar);
 
                 if (response.ExceptionType != null)
                 {
@@ -75,7 +77,7 @@ namespace Client.GuiController.Services
                     }
                 }
 
-                Session.CurrentLekar = response.Result as Lekar;
+                Session.Instance.CurrentLekar = response.Result as Lekar;
                 MessageBox.Show("Korisničko ime i šifra su ispravni.");
 
                 FormManager.Instance.Open<FrmMenu>();
@@ -93,13 +95,13 @@ namespace Client.GuiController.Services
 
         protected override void ValidateBeforeOperation(Lekar entity)
         {
-            if (Session.CurrentLekar != null && Session.CurrentLekar.Id == entity.Id)
+            if (Session.Instance.CurrentLekar != null && Session.Instance.CurrentLekar.Id == entity.Id)
                 return;
 
             throw new UnauthorizedAccessException("Ne možete izvesti ovu operaciju nad drugim lekarom.");
         }
 
-        internal void DodajSertifikat()
+        internal void AddSertifikat()
         {
             try
             {
@@ -108,16 +110,16 @@ namespace Client.GuiController.Services
                 if (frm.cbSertifikati.SelectedItem == null || frm.cbSertifikati.SelectedIndex == 0)
                     throw new Exception("Greška pri odabiru sertifikata.");
 
-                Sertifikat novi = (Sertifikat)frm.cbSertifikati.SelectedItem;
+                Sertifikat newSertifikat = (Sertifikat)frm.cbSertifikati.SelectedItem;
 
-                var lista = GetSertifikatiList(frm.lbSertifikati);
+                var list = GetSertifikatList(frm.lbSertifikati);
 
-                if (lista.Any(s => s.Id == novi.Id))
+                if (list.Any(s => s.Id == newSertifikat.Id))
                     throw new Exception("Taj sertifikat je već dodat.");
 
-                lista.Add(novi);
+                list.Add(newSertifikat);
                 frm.lbSertifikati.DataSource = null;
-                frm.lbSertifikati.DataSource = lista;
+                frm.lbSertifikati.DataSource = list;
             }
             catch (Exception ex)
             {
@@ -125,7 +127,7 @@ namespace Client.GuiController.Services
             }
         }
 
-        internal void OduzmiSertifikat()
+        internal void RemoveSertifikat()
         {
             try
             {
@@ -134,13 +136,13 @@ namespace Client.GuiController.Services
                 if (frm.lbSertifikati.SelectedItem == null)
                     throw new Exception("Greška pri odabiru sertifikata.");
 
-                Sertifikat izabrani = (Sertifikat)frm.lbSertifikati.SelectedItem;
+                Sertifikat selected = (Sertifikat)frm.lbSertifikati.SelectedItem;
 
-                var lista = GetSertifikatiList(frm.lbSertifikati);
-                lista = lista.Where(s => s.Id != izabrani.Id).ToList();
+                var list = GetSertifikatList(frm.lbSertifikati);
+                list = list.Where(s => s.Id != selected.Id).ToList();
 
                 frm.lbSertifikati.DataSource = null;
-                frm.lbSertifikati.DataSource = lista;
+                frm.lbSertifikati.DataSource = list;
             }
             catch (Exception ex)
             {
@@ -148,7 +150,7 @@ namespace Client.GuiController.Services
             }
         }
 
-        private List<Sertifikat> GetSertifikatiList(ListBox lb)
+        private List<Sertifikat> GetSertifikatList(ListBox lb)
         {
             return lb.DataSource as List<Sertifikat> ?? lb.Items.OfType<Sertifikat>().ToList();
         }

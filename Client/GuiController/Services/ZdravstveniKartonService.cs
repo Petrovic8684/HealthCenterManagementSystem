@@ -1,8 +1,8 @@
-﻿using Client.GuiController;
-using Client;
+﻿using Client;
 using Common.Domain;
 using Common.Communication;
 using Client.GuiController.Criteria;
+using Client.Forms;
 
 internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, FrmZdravstveniKarton, FrmZdravstveniKartonCRUD>
 {
@@ -11,8 +11,9 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
     protected override Operation DeleteOperation => Operation.ObrisiZdravstveniKarton;
     protected override Operation SearchOperation => Operation.PretraziZdravstveniKarton;
     protected override Operation RetreiveAllListOperation => Operation.None;
-    protected override FrmZdravstveniKarton GetSearchForm() => FormManager.Instance.Get<FrmZdravstveniKarton>() ?? new FrmZdravstveniKarton();
-    protected override FrmZdravstveniKartonCRUD GetCrudForm() => FormManager.Instance.Get<FrmZdravstveniKartonCRUD>() ?? FormManager.Instance.Open<FrmZdravstveniKartonCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
+    protected override FrmZdravstveniKarton GetForm() => FormManager.Instance.Get<FrmZdravstveniKarton>() ?? new FrmZdravstveniKarton();
+    protected override FrmZdravstveniKartonCRUD GetCrudForm() => FormManager.Instance.Get<FrmZdravstveniKartonCRUD>() ?? FormManager.Instance.Open<FrmZdravstveniKartonCRUD>(form => form.FormClosed += (s, e) => FetchListAll(), true);
+    protected override void CloseCrudForm() => FormManager.Instance.Close<FrmZdravstveniKartonCRUD>();
 
     protected override ZdravstveniKarton CreateEntityFromForm(FrmZdravstveniKartonCRUD form) => new ZdravstveniKarton
     {
@@ -26,7 +27,7 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
 
     protected override void FillFormWithEntity(FrmZdravstveniKartonCRUD form, ZdravstveniKarton entity)
     {
-        form.PrikaziDetalje(entity);
+        form.ShowDetails(entity);
     }
 
     protected override void BindSearchResults(FrmZdravstveniKarton form, List<ZdravstveniKarton> results)
@@ -34,7 +35,6 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
         form.dgvZdravstveniKartoni.DataSource = results;
 
         foreach (DataGridViewColumn col in form.dgvZdravstveniKartoni.Columns)
-        {
             col.Visible = col.Name == nameof(ZdravstveniKarton.Id)
                        || col.Name == nameof(ZdravstveniKarton.DatumOtvaranja)
                        || col.Name == nameof(ZdravstveniKarton.Napomena)
@@ -42,20 +42,16 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
                        || col.Name == nameof(ZdravstveniKarton.Stanje)
                        || col.Name == nameof(ZdravstveniKarton.Lekar)
                        || col.Name == nameof(ZdravstveniKarton.Pacijent);
-        }
     }
 
-    private List<StavkaZdravstvenogKartona> GetStavkeList(ListBox lb)
+    private List<StavkaZdravstvenogKartona> GetStavkaList(ListBox lb)
     {
         return lb.DataSource as List<StavkaZdravstvenogKartona> ?? lb.Items.OfType<StavkaZdravstvenogKartona>().ToList();
     }
 
-    public override List<ZdravstveniKarton> VratiListuSvi()
-    {
-        return VratiListu(false);
-    }
+    public override List<ZdravstveniKarton> FetchListAll(bool shouldBind = true) => FetchList(false);
 
-    internal void DodajStavku()
+    internal void AddStavka()
     {
         try
         {
@@ -64,11 +60,14 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
             if (frm.cbDijagnoze.SelectedItem == null || frm.cbDijagnoze.SelectedIndex == 0)
                 throw new Exception("Greška pri odabiru dijagnoze.");
 
+            if (!FormValidator.Instance.IsValidDoubleGreaterThanZero(frm.tbPonder.Text.Trim()))
+                throw new Exception("Ponder mora biti decimalni broj veći od 0.");
+
             Dijagnoza dijagnoza = (Dijagnoza)frm.cbDijagnoze.SelectedItem;
 
-            var lista = GetStavkeList(frm.lbStavke);
+            var list = GetStavkaList(frm.lbStavke);
 
-            if (lista.Any(s => s.Dijagnoza.Id == dijagnoza.Id))
+            if (list.Any(s => s.Dijagnoza.Id == dijagnoza.Id))
                 throw new Exception("Ta dijagnoza je već dodata.");
 
             StavkaZdravstvenogKartona stavka = new StavkaZdravstvenogKartona
@@ -82,9 +81,9 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
                 Dijagnoza = dijagnoza,
             };
 
-            lista.Add(stavka);
+            list.Add(stavka);
             frm.lbStavke.DataSource = null;
-            frm.lbStavke.DataSource = lista;
+            frm.lbStavke.DataSource = list;
         }
         catch (Exception ex)
         {
@@ -92,7 +91,7 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
         }
     }
 
-    internal void OduzmiStavku()
+    internal void RemoveStavka()
     {
         try
         {
@@ -103,11 +102,11 @@ internal class ZdravstveniKartonService : BaseEntityService<ZdravstveniKarton, F
 
             StavkaZdravstvenogKartona stavka = (StavkaZdravstvenogKartona)frm.lbStavke.SelectedItem;
 
-            var lista = GetStavkeList(frm.lbStavke);
-            lista = lista.Where(s => s.Dijagnoza.Id != stavka.Dijagnoza.Id).ToList();
+            var list = GetStavkaList(frm.lbStavke);
+            list = list.Where(s => s.Dijagnoza.Id != stavka.Dijagnoza.Id).ToList();
 
             frm.lbStavke.DataSource = null;
-            frm.lbStavke.DataSource = lista;
+            frm.lbStavke.DataSource = list;
         }
         catch (Exception ex)
         {

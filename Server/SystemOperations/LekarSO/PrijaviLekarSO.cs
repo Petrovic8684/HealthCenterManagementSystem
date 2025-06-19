@@ -1,4 +1,5 @@
-﻿using Common.Domain;
+﻿using Common.Config;
+using Common.Domain;
 
 namespace Server.SystemOperations.LekarSO
 {
@@ -16,16 +17,19 @@ namespace Server.SystemOperations.LekarSO
 
         protected override void ExecuteConcreteOperation()
         {
-            Lekar kriterijum = new Lekar
+            Lekar criterion = new Lekar
             {
                 KorisnickoIme = korisnickoIme
             };
 
-            List<IEntity> lista = broker.GetByCondition(kriterijum);
+            List<IEntity> lista = broker.GetByCondition(criterion);
 
             Result = lista.Cast<Lekar>().FirstOrDefault();
 
             if (Result == null)
+                throw new UnauthorizedAccessException();
+
+            if (!PasswordUtility.VerifyPassword(sifra, Result.Sifra))
                 throw new UnauthorizedAccessException();
         }
     }

@@ -10,33 +10,33 @@ namespace Server.SystemOperations.LekarSO
 {
     internal class VratiListuLekarSO : SystemOperationBase
     {
-        private readonly IEntity kriterijumi;
+        private readonly IEntity criteria;
         private List<Lekar> list;
         internal List<Lekar> Result { get; private set; }
 
-        internal VratiListuLekarSO(IEntity kriterijumi, List<Lekar> list)
+        internal VratiListuLekarSO(IEntity criteria, List<Lekar> list)
         {
-            this.kriterijumi = kriterijumi;
+            this.criteria = criteria;
             this.list = list;
             Result = new List<Lekar>();
         }
 
         protected override void ExecuteConcreteOperation()
         {
-            Lekar kriterijumLekar;
+            Lekar criteriaLekar;
 
-            if (kriterijumi is Lekar lekar)
-                kriterijumLekar = lekar;
+            if (criteria is Lekar lekar)
+                criteriaLekar = lekar;
             
-            else if (kriterijumi is Sertifikat sertifikat)
+            else if (criteria is Sertifikat sertifikat)
             {
-                kriterijumLekar = new();
-                kriterijumLekar.Sertifikati = new List<Sertifikat> { sertifikat };
+                criteriaLekar = new();
+                criteriaLekar.Sertifikati = new List<Sertifikat> { sertifikat };
             }
             
             else throw new ArgumentException("Kriterijum mora biti tipa Lekar ili Sertifikat.");
 
-            list = broker.GetByCondition(kriterijumLekar).Cast<Lekar>().ToList();
+            list = broker.GetByCondition(criteriaLekar).Cast<Lekar>().ToList();
             Result = list;
         }
     }

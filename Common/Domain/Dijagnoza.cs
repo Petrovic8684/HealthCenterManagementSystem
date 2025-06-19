@@ -11,8 +11,8 @@ namespace Common.Domain
         public Double BazniSkor {  get; set; }
 
         public string TableName => "dijagnoza";
-        public string ImeKlaseAkuzativJednine => "dijagnozu";
-        public string ImeKlaseAkuzativMnozine => "dijagnoze";
+        public string ClassNameAccusativeSingular => "dijagnozu";
+        public string ClassNameAccusativePlural => "dijagnoze";
 
         public string Columns => "naziv, opis, bazniSkor";
 
@@ -24,12 +24,18 @@ namespace Common.Domain
 
         public string PrimaryKeyCondition => "idDijagnoza = @Id";
 
-        public string Prikaz => Naziv;
+        public string DisplayValue => Naziv;
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
             var conditions = new List<string>();
             var parameters = new List<SqlParameter>();
+
+            if(Id > 0)
+            {
+                conditions.Add("idDijagnoza = @Id");
+                parameters.Add(new SqlParameter("@Id", Id));
+            }
 
             if (!string.IsNullOrWhiteSpace(Naziv))
             {
@@ -81,6 +87,6 @@ namespace Common.Domain
             };
         }
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

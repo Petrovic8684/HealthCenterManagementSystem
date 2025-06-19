@@ -12,8 +12,9 @@ namespace Client.GuiController.Services
         protected override Operation DeleteOperation => Operation.ObrisiPacijent;
         protected override Operation SearchOperation => Operation.PretraziPacijent;
         protected override Operation RetreiveAllListOperation => Operation.VratiListuSviPacijent;
-        protected override FrmPacijent GetSearchForm() => FormManager.Instance.Get<FrmPacijent>() ?? new FrmPacijent();
-        protected override FrmPacijentCRUD GetCrudForm() => FormManager.Instance.Get<FrmPacijentCRUD>() ?? FormManager.Instance.Open<FrmPacijentCRUD>(form => form.FormClosed += (s, e) => VratiListuSvi());
+        protected override FrmPacijent GetForm() => FormManager.Instance.Get<FrmPacijent>() ?? new FrmPacijent();
+        protected override FrmPacijentCRUD GetCrudForm() => FormManager.Instance.Get<FrmPacijentCRUD>() ?? FormManager.Instance.Open<FrmPacijentCRUD>(form => form.FormClosed += (s, e) => FetchListAll(), true);
+        protected override void CloseCrudForm() => FormManager.Instance.Close<FrmPacijentCRUD>();
 
         protected override Pacijent CreateEntityFromForm(FrmPacijentCRUD form) => new()
         {
@@ -26,7 +27,7 @@ namespace Client.GuiController.Services
 
         protected override void FillFormWithEntity(FrmPacijentCRUD form, Pacijent entity)
         {
-            form.PrikaziDetalje(entity);
+            form.ShowDetails(entity);
         }
 
         protected override void BindSearchResults(FrmPacijent form, List<Pacijent> results)

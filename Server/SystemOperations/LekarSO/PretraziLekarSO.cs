@@ -14,8 +14,8 @@ namespace Server.SystemOperations.LekarSO
 
         protected override void ExecuteConcreteOperation()
         {
-            var kriterijum = new Lekar { Id = lekar.Id };
-            Result = broker.GetByCondition(kriterijum).OfType<Lekar>().FirstOrDefault();
+            var criterion = new Lekar { Id = lekar.Id };
+            Result = broker.GetByCondition(criterion).OfType<Lekar>().FirstOrDefault();
         }
     }
 }

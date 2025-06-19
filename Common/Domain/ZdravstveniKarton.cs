@@ -17,8 +17,8 @@ namespace Common.Domain
 
         public string TableName => "ZdravstveniKarton";
 
-        public string ImeKlaseAkuzativJednine => "zdravstveni karton";
-        public string ImeKlaseAkuzativMnozine => "zdravstvene kartone";
+        public string ClassNameAccusativeSingular => "zdravstveni karton";
+        public string ClassNameAccusativePlural => "zdravstvene kartone";
 
         public string JoinTableName =>
             @"ZdravstveniKarton zk
@@ -46,12 +46,18 @@ namespace Common.Domain
 
         public string PrimaryKeyCondition => "idZdravstveniKarton = @Id";
 
-        public string Prikaz => $"ZK #{Id} - {Stanje}";
+        public string DisplayValue => $"ZK #{Id} - {Stanje}";
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
             var conditions = new List<string>();
             var parameters = new List<SqlParameter>();
+
+            if(Id > 0)
+            {
+                conditions.Add("zk.idZdravstveniKarton = @Id");
+                parameters.Add(new SqlParameter("@Id", Id));
+            }
 
             if (Pacijent?.Ime is not null)
             {
@@ -158,6 +164,6 @@ namespace Common.Domain
         public List<SqlParameter> GetPrimaryKeyParameters() =>
             new() { new SqlParameter("@Id", Id) };
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

@@ -21,10 +21,10 @@ namespace Client.Forms
             tbIpAdresa.Text = ConfigManager.ServerIP;
             tbBrojPorta.Text = ConfigManager.ServerPort.ToString();
 
-            btnPoveziSe.Click += (s, e) => PoveziSe();
+            btnPoveziSe.Click += (s, e) => Connect();
         }
 
-        private void PoveziSe()
+        private void Connect()
         {
             if (!int.TryParse(tbBrojPorta.Text, out int port) || port < 1 || port > 65535)
             {

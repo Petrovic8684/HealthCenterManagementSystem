@@ -1,55 +1,39 @@
-﻿using Client;
-using Client.GuiController.Criteria;
+﻿using Common.Domain;
 using Common.Communication;
-using Common.Domain;
+using Client.GuiController.Criteria;
+using Client;
 
-public class MestoCriteriaBuilder : ICriteriaBuilder<Mesto>
+internal class MestoCriteriaBuilder : CriteriaBuilderBase<Mesto>
 {
-    private readonly List<Func<List<Mesto>>> _criteriaFetchers = new();
-
-    public MestoCriteriaBuilder WithNaziv(string naziv)
+    internal MestoCriteriaBuilder WithNaziv(string naziv)
     {
         if (!string.IsNullOrWhiteSpace(naziv))
         {
-            _criteriaFetchers.Add(() =>
+            AddCriteriaFetcher(() =>
             {
-                var kriterijum = new Mesto { Naziv = naziv.Trim() };
-                var response = Communication.Instance.SendRequestList<Mesto, Mesto>(kriterijum, Operation.VratiListuMestoPoMestu);
+                var criterion = new Mesto { Naziv = naziv.Trim() };
+                var response = Communication.Instance.SendRequestGetList<Mesto, Mesto>(
+                    criterion, Operation.VratiListuMestoPoMestu);
                 return response.Result as List<Mesto>;
             });
         }
         return this;
     }
 
-    public MestoCriteriaBuilder WithPostanskiBroj(string postanskiBroj)
+    internal MestoCriteriaBuilder WithPostanskiBroj(string postanskiBroj)
     {
         if (!string.IsNullOrWhiteSpace(postanskiBroj))
         {
-            _criteriaFetchers.Add(() =>
+            AddCriteriaFetcher(() =>
             {
-                var kriterijum = new Mesto { PostanskiBroj = postanskiBroj.Trim() };
-                var response = Communication.Instance.SendRequestList<Mesto, Mesto>(kriterijum, Operation.VratiListuMestoPoMestu);
+                var criterion = new Mesto { PostanskiBroj = postanskiBroj.Trim() };
+                var response = Communication.Instance.SendRequestGetList<Mesto, Mesto>(
+                    criterion, Operation.VratiListuMestoPoMestu);
                 return response.Result as List<Mesto>;
             });
         }
         return this;
     }
 
-    public List<Mesto> Build()
-    {
-        if (_criteriaFetchers.Count == 0)
-        {
-            var response = Communication.Instance.SendRequestList<object, Mesto>(null, Operation.VratiListuSviMesto);
-            return response.Result as List<Mesto>;
-        }
-
-        var resultSets = _criteriaFetchers.Select(fetch => fetch()).ToList();
-        return resultSets.Aggregate((prev, next) => prev.Intersect(next, new MestoComparer()).ToList());
-    }
-
-    private class MestoComparer : IEqualityComparer<Mesto>
-    {
-        public bool Equals(Mesto x, Mesto y) => x.Id == y.Id;
-        public int GetHashCode(Mesto obj) => obj.Id.GetHashCode();
-    }
+    protected override Operation GetAllOperation() => Operation.VratiListuSviMesto;
 }

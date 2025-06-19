@@ -111,7 +111,7 @@
             btnMinus.Location = new Point(593, 116);
             btnMinus.Name = "btnMinus";
             btnMinus.Size = new Size(28, 28);
-            btnMinus.TabIndex = 6;
+            btnMinus.TabIndex = 7;
             btnMinus.Text = "-";
             btnMinus.UseVisualStyleBackColor = false;
             // 
@@ -128,7 +128,7 @@
             btnPlus.Location = new Point(593, 82);
             btnPlus.Name = "btnPlus";
             btnPlus.Size = new Size(28, 28);
-            btnPlus.TabIndex = 5;
+            btnPlus.TabIndex = 6;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = false;
             // 
@@ -149,7 +149,7 @@
             cbSertifikati.Location = new Point(361, 82);
             cbSertifikati.Name = "cbSertifikati";
             cbSertifikati.Size = new Size(226, 28);
-            cbSertifikati.TabIndex = 4;
+            cbSertifikati.TabIndex = 5;
             // 
             // lblSertifikati
             // 
@@ -172,7 +172,7 @@
             btnOdustani.Location = new Point(474, 454);
             btnOdustani.Name = "btnOdustani";
             btnOdustani.Size = new Size(113, 38);
-            btnOdustani.TabIndex = 9;
+            btnOdustani.TabIndex = 10;
             btnOdustani.Text = "Odustani";
             btnOdustani.UseVisualStyleBackColor = false;
             // 
@@ -188,7 +188,7 @@
             btnZapamti.Location = new Point(76, 454);
             btnZapamti.Name = "btnZapamti";
             btnZapamti.Size = new Size(113, 38);
-            btnZapamti.TabIndex = 7;
+            btnZapamti.TabIndex = 8;
             btnZapamti.Text = "Zapamti";
             btnZapamti.UseVisualStyleBackColor = false;
             // 
@@ -205,7 +205,7 @@
             btnObrisi.Location = new Point(207, 454);
             btnObrisi.Name = "btnObrisi";
             btnObrisi.Size = new Size(113, 38);
-            btnObrisi.TabIndex = 8;
+            btnObrisi.TabIndex = 9;
             btnObrisi.Text = "Obriši";
             btnObrisi.UseVisualStyleBackColor = false;
             // 
@@ -233,7 +233,7 @@
             tbSifra.Location = new Point(76, 370);
             tbSifra.Name = "tbSifra";
             tbSifra.Size = new Size(220, 27);
-            tbSifra.TabIndex = 3;
+            tbSifra.TabIndex = 4;
             tbSifra.UseSystemPasswordChar = true;
             // 
             // tbKorisnickoIme
@@ -241,7 +241,7 @@
             tbKorisnickoIme.Location = new Point(76, 299);
             tbKorisnickoIme.Name = "tbKorisnickoIme";
             tbKorisnickoIme.Size = new Size(220, 27);
-            tbKorisnickoIme.TabIndex = 52;
+            tbKorisnickoIme.TabIndex = 3;
             // 
             // lblKorisnickoIme
             // 

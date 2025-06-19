@@ -4,21 +4,21 @@ using Common.Domain;
 
 namespace Client
 {
-    internal partial class FrmPacijent : Form, IForm<Pacijent>
+    internal partial class FrmPacijent : Form
     {
         public FrmPacijent()
         {
             InitializeComponent();
 
-            btnPretrazi.Click += (s, e) => Controller.Instance.Pacijenti.VratiListu();
-            btnKreirajNovog.Click += (s, e) => Controller.Instance.Pacijenti.Kreiraj();
-            btnDetalji.Click += (s, e) => Controller.Instance.Pacijenti.Pretrazi();
+            btnPretrazi.Click += (s, e) => Controller.Instance.Pacijenti.FetchList();
+            btnKreirajNovog.Click += (s, e) => Controller.Instance.Pacijenti.Create();
+            btnDetalji.Click += (s, e) => Controller.Instance.Pacijenti.Read();
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbMesta,
-                Controller.Instance.Mesta.VratiListuSvi().Cast<Mesto>(),
+                Controller.Instance.Mesta.FetchListAll(false).Cast<Mesto>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Mesto { Id = -1, Naziv = "-- Bez izbora --" }
             );
         }

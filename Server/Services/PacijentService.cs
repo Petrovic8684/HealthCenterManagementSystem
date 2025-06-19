@@ -6,42 +6,42 @@ namespace Server.Services
 {
     internal class PacijentService : IEntityService<Pacijent>
     {
-        public Pacijent Kreiraj(Pacijent entity)
+        public Pacijent Create(Pacijent entity)
         {
             var so = new KreirajPacijentSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Pacijent Pretrazi(Pacijent entity)
+        public Pacijent Read(Pacijent entity)
         {
             var so = new PretraziPacijentSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Pacijent Promeni(Pacijent entity)
+        public Pacijent Update(Pacijent entity)
         {
             var so = new PromeniPacijentSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Pacijent Obrisi(Pacijent entity)
+        public Pacijent Delete(Pacijent entity)
         {
             var so = new ObrisiPacijentSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public List<Pacijent> VratiListuSvi()
+        public List<Pacijent> FetchListAll()
         {
             var so = new VratiListuSviPacijentSO(new List<Pacijent>());
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public List<Pacijent> VratiListu(IEntity criterion)
+        public List<Pacijent> FetchList(IEntity criterion)
         {
             var so = new VratiListuPacijentSO(criterion, new List<Pacijent>());
             so.ExecuteTemplate();

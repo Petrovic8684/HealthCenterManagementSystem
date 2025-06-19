@@ -1,4 +1,4 @@
-﻿namespace Client.GuiController
+﻿namespace Client.Forms
 {
     internal sealed class FormManager
     {
@@ -9,7 +9,7 @@
 
         private FormManager() { }
 
-        public T? Open<T>() where T : Form, new()
+        public T? Open<T>(bool asDialog = false) where T : Form, new()
         {
             Type formType = typeof(T);
 
@@ -18,7 +18,7 @@
                 if (existing.IsDisposed)
                 {
                     openForms.Remove(formType);
-                    return Open<T>();
+                    return Open<T>(asDialog);
                 }
                 else
                 {
@@ -28,7 +28,7 @@
                 }
             }
 
-            Form form = new T();
+            T form = new T();
             form.FormClosed += (s, e) =>
             {
                 openForms.Remove(formType);
@@ -36,12 +36,14 @@
             };
 
             openForms[formType] = form;
-            form.Show();
 
-            return (T)form;
+            if (asDialog) form.ShowDialog();
+            else form.Show();
+
+            return form;
         }
 
-        public T? Open<T>(Action<T> initializer) where T : Form, new()
+        public T? Open<T>(Action<T> initializer, bool asDialog = false) where T : Form, new()
         {
             Type formType = typeof(T);
 
@@ -50,7 +52,7 @@
                 if (existing.IsDisposed)
                 {
                     openForms.Remove(formType);
-                    return Open(initializer);
+                    return Open(initializer, asDialog);
                 }
                 else
                 {
@@ -70,7 +72,9 @@
             };
 
             openForms[formType] = form;
-            form.Show();
+
+            if (asDialog) form.ShowDialog();
+            else form.Show();
 
             return form;
         }

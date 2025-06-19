@@ -10,8 +10,8 @@ namespace Common.Domain
         public string PostanskiBroj { get; set; }
 
         public string TableName => "mesto";
-        public string ImeKlaseAkuzativJednine => "mesto";
-        public string ImeKlaseAkuzativMnozine => "mesta";
+        public string ClassNameAccusativeSingular => "mesto";
+        public string ClassNameAccusativePlural => "mesta";
 
         public string Columns => "naziv, postanskiBroj";
 
@@ -23,12 +23,18 @@ namespace Common.Domain
 
         public string PrimaryKeyCondition => "idMesto = @Id";
 
-        public string Prikaz => $"{Naziv}";
+        public string DisplayValue => $"{Naziv}";
 
         public (string whereClause, List<SqlParameter> parameters) GetWhereClauseWithParameters()
         {
             var conditions = new List<string>();
             var parameters = new List<SqlParameter>();
+
+            if (Id > 0)
+            {
+                conditions.Add("idMesto = @Id");
+                parameters.Add(new SqlParameter("@Id", Id));
+            }
 
             if (!string.IsNullOrWhiteSpace(Naziv))
             {
@@ -78,6 +84,6 @@ namespace Common.Domain
             };
         }
 
-        public override string ToString() => Prikaz;
+        public override string ToString() => DisplayValue;
     }
 }

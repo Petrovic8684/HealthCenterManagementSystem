@@ -7,7 +7,6 @@ namespace Server.SystemOperations.LekarSO
         private readonly Lekar lekar;
         internal Lekar Result { get; private set; }
 
-
         internal ObrisiLekarSO(Lekar lekar)
         {
             this.lekar = lekar;
@@ -17,12 +16,12 @@ namespace Server.SystemOperations.LekarSO
         {
             Result = lekar;
 
-            LeS kriterijum = new LeS
+            LeS criterion = new LeS
             {
                 IdLekar = lekar.Id
             };
 
-            List<LeS> lesLista = broker.GetByCondition(kriterijum).Cast<LeS>().ToList();
+            List<LeS> lesLista = broker.GetByCondition(criterion).Cast<LeS>().ToList();
 
             foreach (LeS les in lesLista)
                 broker.Delete(les);

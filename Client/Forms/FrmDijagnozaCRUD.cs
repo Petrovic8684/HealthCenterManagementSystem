@@ -12,16 +12,16 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) => Controller.Instance.Dijagnoze.Zapamti();
-            btnObrisi.Click += (s, e) => Controller.Instance.Dijagnoze.Obrisi();
+            btnZapamti.Click += (s, e) => Controller.Instance.Dijagnoze.Save();
+            btnObrisi.Click += (s, e) => Controller.Instance.Dijagnoze.Delete();
             btnOdustani.Click += (s, e) =>
             {
-                if (Dijagnoza == null) Controller.Instance.Dijagnoze.Obrisi();
+                if (Dijagnoza == null) Controller.Instance.Dijagnoze.Delete();
                 else FormManager.Instance.Close<FrmDijagnozaCRUD>();
             };
         }
 
-        public void PrikaziDetalje(Dijagnoza dijagnoza)
+        public void ShowDetails(Dijagnoza dijagnoza)
         {
             Dijagnoza = dijagnoza;
 
@@ -34,9 +34,6 @@ namespace Client
             btnObrisi.Enabled = true;
         }
 
-        public bool Validation()
-        {
-            return FormValidator.ValidateTextFields(tbNaziv, tbOpis, tbBazniSkor);
-        }
+        public bool Validation() => FormValidator.Instance.ValidateTextFields(tbNaziv, tbOpis, tbBazniSkor);
     }
 }

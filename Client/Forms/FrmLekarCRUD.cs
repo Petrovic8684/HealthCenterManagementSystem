@@ -12,27 +12,27 @@ namespace Client
         {
             InitializeComponent();
 
-            btnZapamti.Click += (s, e) => Controller.Instance.Lekari.Zapamti();
-            btnObrisi.Click += (s, e) => Controller.Instance.Lekari.Obrisi();
+            btnZapamti.Click += (s, e) => Controller.Instance.Lekari.Save();
+            btnObrisi.Click += (s, e) => Controller.Instance.Lekari.Delete();
             btnOdustani.Click += (s, e) =>
             {
-                if (Lekar == null) Controller.Instance.Lekari.Obrisi();
+                if (Lekar == null) Controller.Instance.Lekari.Delete();
                 else FormManager.Instance.Close<FrmLekarCRUD>();
             };
 
-            ControlInitialisator.InitComboBox(
+            ControlInitialisator.Instance.InitComboBox(
                 cbSertifikati,
-                Controller.Instance.Sertifikati.VratiListuSvi().Cast<Sertifikat>(),
+                Controller.Instance.Sertifikati.FetchListAll(false).Cast<Sertifikat>(),
                 "Id",
-                "Prikaz",
+                "DisplayValue",
                 new Sertifikat { Id = -1, Opis = "-- Bez izbora --" }
             );
 
-            btnPlus.Click += (s, e) => Controller.Instance.Lekari.DodajSertifikat();
-            btnMinus.Click += (s, e) => Controller.Instance.Lekari.OduzmiSertifikat();
+            btnPlus.Click += (s, e) => Controller.Instance.Lekari.AddSertifikat();
+            btnMinus.Click += (s, e) => Controller.Instance.Lekari.RemoveSertifikat();
         }
 
-        public void PrikaziDetalje(Lekar lekar)
+        public void ShowDetails(Lekar lekar)
         {
             Lekar = lekar;
 
@@ -41,7 +41,7 @@ namespace Client
             tbIme.Text = lekar.Ime;
             tbPrezime.Text = lekar.Prezime;
             tbEmail.Text = lekar.Email;
-            tbSifra.Text = lekar.Sifra;
+            tbSifra.Text = "";
             tbKorisnickoIme.Text = lekar.KorisnickoIme;
             lbSertifikati.DataSource = lekar.Sertifikati;
 
@@ -50,7 +50,17 @@ namespace Client
 
         public bool Validation()
         {
-            return FormValidator.ValidateTextFields(tbIme, tbPrezime, tbEmail, tbSifra);
+            bool basicValid = FormValidator.Instance.ValidateTextFields(tbIme, tbPrezime);
+
+            if (!basicValid)
+                return false;
+
+            FormValidator.Instance.ValidateWithRulesOrThrow(
+                (tbEmail, FormValidator.Instance.IsValidEmail, "Email mora biti u validnom formatu (example@gmail.com)."),
+                (tbSifra, text => FormValidator.Instance.HasMinLength(text, 6), "Šifra mora imati najmanje 6 karaktera.")
+            );
+
+            return true;
         }
     }
 }

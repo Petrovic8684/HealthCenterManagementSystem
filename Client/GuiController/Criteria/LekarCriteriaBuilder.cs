@@ -1,68 +1,50 @@
-﻿using Client;
-using Client.GuiController.Criteria;
+﻿using Common.Domain;
 using Common.Communication;
-using Common.Domain;
+using Client.GuiController.Criteria;
+using Client;
 
-public class LekarCriteriaBuilder : ICriteriaBuilder<Lekar>
+internal class LekarCriteriaBuilder : CriteriaBuilderBase<Lekar>
 {
-    private readonly List<Func<List<Lekar>>> _criteriaFetchers = new();
-
-    public LekarCriteriaBuilder WithIme(string ime)
+    internal LekarCriteriaBuilder WithIme(string ime)
     {
         if (!string.IsNullOrWhiteSpace(ime))
         {
-            _criteriaFetchers.Add(() =>
+            AddCriteriaFetcher(() =>
             {
-                var kriterijum = new Lekar { Ime = ime.Trim() };
-                var response = Communication.Instance.SendRequestList<Lekar, Lekar>(kriterijum, Operation.VratiListuLekarPoLekaru);
+                var criterion = new Lekar { Ime = ime.Trim() };
+                var response = Communication.Instance.SendRequestGetList<Lekar, Lekar>(criterion, Operation.VratiListuLekarPoLekaru);
                 return response.Result as List<Lekar>;
             });
         }
         return this;
     }
 
-    public LekarCriteriaBuilder WithPrezime(string prezime)
+    internal LekarCriteriaBuilder WithPrezime(string prezime)
     {
         if (!string.IsNullOrWhiteSpace(prezime))
         {
-            _criteriaFetchers.Add(() =>
+            AddCriteriaFetcher(() =>
             {
-                var kriterijum = new Lekar { Prezime = prezime.Trim() };
-                var response = Communication.Instance.SendRequestList<Lekar, Lekar>(kriterijum, Operation.VratiListuLekarPoLekaru);
+                var criterion = new Lekar { Prezime = prezime.Trim() };
+                var response = Communication.Instance.SendRequestGetList<Lekar, Lekar>(criterion, Operation.VratiListuLekarPoLekaru);
                 return response.Result as List<Lekar>;
             });
         }
         return this;
     }
 
-    public LekarCriteriaBuilder WithSertifikat(Sertifikat sertifikat)
+    internal LekarCriteriaBuilder WithSertifikat(Sertifikat sertifikat)
     {
         if (sertifikat != null && sertifikat.Id != -1)
         {
-            _criteriaFetchers.Add(() =>
+            AddCriteriaFetcher(() =>
             {
-                var response = Communication.Instance.SendRequestList<Sertifikat, Lekar>(sertifikat, Operation.VratiListuLekarPoSertifikatu);
+                var response = Communication.Instance.SendRequestGetList<Sertifikat, Lekar>(sertifikat, Operation.VratiListuLekarPoSertifikatu);
                 return response.Result as List<Lekar>;
             });
         }
         return this;
     }
 
-    public List<Lekar> Build()
-    {
-        if (_criteriaFetchers.Count == 0)
-        {
-            var response = Communication.Instance.SendRequestList<object, Lekar>(null, Operation.VratiListuSviLekar);
-            return response.Result as List<Lekar>;
-        }
-
-        var resultSets = _criteriaFetchers.Select(fetch => fetch()).ToList();
-        return resultSets.Aggregate((prev, next) => prev.Intersect(next, new LekarComparer()).ToList());
-    }
-
-    private class LekarComparer : IEqualityComparer<Lekar>
-    {
-        public bool Equals(Lekar x, Lekar y) => x.Id == y.Id;
-        public int GetHashCode(Lekar obj) => obj.Id.GetHashCode();
-    }
+    protected override Operation GetAllOperation() => Operation.VratiListuSviLekar;
 }

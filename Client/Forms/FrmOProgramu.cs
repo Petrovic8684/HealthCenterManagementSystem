@@ -15,10 +15,12 @@ namespace Client
         public FrmOProgramu()
         {
             InitializeComponent();
+
             linkLblUndraw.Links.Add(0, linkLblUndraw.Text.Length, "https://undraw.co/");
+            linkLblUndraw.LinkClicked += (s, e) => OpenLink(e);
         }
 
-        private void linkLblUndraw_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void OpenLink(LinkLabelLinkClickedEventArgs e)
         {
             try
             {

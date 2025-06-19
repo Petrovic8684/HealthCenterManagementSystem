@@ -11,55 +11,45 @@ namespace Server.Services
         {
             var so = new PrijaviLekarSO(entity.KorisnickoIme, entity.Sifra);
             so.ExecuteTemplate();
-
-            var lekar = so.Result;
-            if (lekar == null)
-                throw new UnauthorizedAccessException();
-
-            if (!PasswordUtility.VerifyPassword(entity.Sifra, lekar.Sifra))
-                throw new UnauthorizedAccessException("Pogrešna lozinka.");
-
-            return lekar;
+            return so.Result;
         }
 
-        public Lekar Kreiraj(Lekar entity)
+        public Lekar Create(Lekar entity)
         {
             var so = new KreirajLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Lekar Pretrazi(Lekar entity)
+        public Lekar Read(Lekar entity)
         {
             var so = new PretraziLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Lekar Promeni(Lekar entity)
+        public Lekar Update(Lekar entity)
         {
-            entity.Sifra = PasswordUtility.HashPassword(entity.Sifra);
-
             var so = new PromeniLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public Lekar Obrisi(Lekar entity)
+        public Lekar Delete(Lekar entity)
         {
             var so = new ObrisiLekarSO(entity);
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public List<Lekar> VratiListuSvi()
+        public List<Lekar> FetchListAll()
         {
             var so = new VratiListuSviLekarSO(new List<Lekar>());
             so.ExecuteTemplate();
             return so.Result;
         }
 
-        public List<Lekar> VratiListu(IEntity criterion)
+        public List<Lekar> FetchList(IEntity criterion)
         {
             var so = new VratiListuLekarSO(criterion, new List<Lekar>());
             so.ExecuteTemplate();
