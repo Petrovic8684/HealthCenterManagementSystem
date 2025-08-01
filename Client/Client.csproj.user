@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Forms\FrmDijagnoza.cs">
+    <Compile Update="Forms\Dijagnoza\FrmDijagnoza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmDijagnozaCRUD.cs">
+    <Compile Update="Forms\Dijagnoza\FrmDijagnozaCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmLekar.cs">
+    <Compile Update="Forms\Lekar\FrmLekar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmLekarCRUD.cs">
+    <Compile Update="Forms\Lekar\FrmLekarCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FrmLogin.cs">
@@ -19,34 +19,34 @@
     <Compile Update="Forms\FrmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmMesto.cs">
+    <Compile Update="Forms\Mesto\FrmMesto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmMestoCRUD.cs">
+    <Compile Update="Forms\Mesto\FrmMestoCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FrmOProgramu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmPacijent.cs">
+    <Compile Update="Forms\Pacijent\FrmPacijent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmPacijentCRUD.cs">
+    <Compile Update="Forms\Pacijent\FrmPacijentCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Forms\FrmPodesavanja.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmSertifikat.cs">
+    <Compile Update="Forms\Sertifikat\FrmSertifikat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmSertifikatCRUD.cs">
+    <Compile Update="Forms\Sertifikat\FrmSertifikatCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmZdravstveniKarton.cs">
+    <Compile Update="Forms\ZdravstveniKarton\FrmZdravstveniKarton.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\FrmZdravstveniKartonCRUD.cs">
+    <Compile Update="Forms\ZdravstveniKarton\FrmZdravstveniKartonCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmMain.cs">
@@ -54,13 +54,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Forms\frmDijagnoza.resx">
+    <EmbeddedResource Update="Forms\Dijagnoza\frmDijagnoza.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="Forms\frmDijagnozaCRUD.resx">
+    <EmbeddedResource Update="Forms\Dijagnoza\frmDijagnozaCRUD.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="Forms\frmLekar.resx">
+    <EmbeddedResource Update="Forms\Lekar\frmLekar.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

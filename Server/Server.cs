@@ -6,14 +6,18 @@ namespace Server
 {
     internal class Server
     {
+        private volatile bool isRunning = false;
+
         private Socket socket;
         private List<ClientHandler> handlers = new List<ClientHandler>();
 
         internal event Action<int>? ClientsCountChanged;
+        private object _lock = new object();
 
         private void OnClientsCountChanged()
         {
-            ClientsCountChanged?.Invoke(handlers.Count);
+            var handler = ClientsCountChanged;
+            handler?.Invoke(handlers.Count);
         }
 
         internal Server()
@@ -23,6 +27,9 @@ namespace Server
 
         internal void Start()
         {
+            if (isRunning) return;
+            isRunning = true;
+
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, ConfigManager.Port);
 
             socket.Bind(endPoint);
@@ -36,7 +43,7 @@ namespace Server
         {
             try
             {
-                while (true)
+                while (isRunning)
                 {
                     Socket clientSocket = socket.Accept();
                     ClientHandler handler = new ClientHandler(clientSocket, this);
@@ -53,15 +60,24 @@ namespace Server
 
         internal void Stop()
         {
-            List<ClientHandler> copy = new List<ClientHandler>(handlers); 
+            if (!isRunning) return;
+            isRunning = false;
+
+            List<ClientHandler> copy;
+            lock (_lock)
+            {
+                copy = new List<ClientHandler>(handlers);
+                handlers.Clear();
+            }
+
             foreach (ClientHandler handler in copy)
             {
                 handler.CloseSocket();
             }
-            handlers.Clear();
-            socket.Close();
+
+            socket?.Close();
+            socket = null;
         }
-        private object _lock = new object();
 
         internal void AddClient(ClientHandler clientHandler)
         {

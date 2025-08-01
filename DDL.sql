@@ -2,7 +2,8 @@ CREATE TABLE Lekar (
     idLekar INT IDENTITY(1,1) PRIMARY KEY,
     ime NVARCHAR(100) NOT NULL,
     prezime NVARCHAR(100) NOT NULL,
-    email NVARCHAR(100) NOT NULL CHECK (email LIKE '%@%'),
+    email NVARCHAR(100) NOT NULL CHECK (email LIKE '_%@_%._%'),
+	korisnickoIme NVARCHAR(100) NOT NULL,
 	sifra CHAR(64) NOT NULL
 );
 
@@ -28,7 +29,7 @@ CREATE TABLE Pacijent (
     idPacijent INT IDENTITY(1,1) PRIMARY KEY,
     ime NVARCHAR(100) NOT NULL,
     prezime NVARCHAR(100) NOT NULL,
-    email NVARCHAR(100) NOT NULL CHECK (email LIKE '%@%'),
+    email NVARCHAR(100) NOT NULL CHECK (email LIKE '_%@_%._%'),
     idMesto INT NOT NULL CHECK (idMesto > 0),
     FOREIGN KEY (idMesto) REFERENCES Mesto(idMesto) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
@@ -47,7 +48,7 @@ CREATE TABLE ZdravstveniKarton (
 
 CREATE TABLE StavkaZdravstvenogKartona (
     idZdravstveniKarton INT NOT NULL CHECK (idZdravstveniKarton > 0),
-    rb INT IDENTITY(0,1),
+    rb INT IDENTITY(1,1),
     datumUpisa DATE NOT NULL,
     ponder FLOAT NOT NULL DEFAULT 1 CHECK (ponder > 0),
 	skor FLOAT NOT NULL DEFAULT 0,

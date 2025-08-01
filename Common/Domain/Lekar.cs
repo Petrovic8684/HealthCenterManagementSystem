@@ -21,7 +21,7 @@ namespace Common.Domain
 
         public string ValuesClause => "@Ime, @Prezime, @Email, @Sifra, @KorisnickoIme";
 
-        public string SetClause => "ime = @Ime, prezime = @Prezime, email = @Email, sifra = @Sifra, korisnickoIme = @KorisnickoIme";
+        public string SetClause => "ime = @Ime, prezime = @Prezime, email = @Email";
 
         public string PrimaryKey => "idLekar";
 

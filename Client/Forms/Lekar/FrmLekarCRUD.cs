@@ -38,6 +38,11 @@ namespace Client
 
             lblLekarId.Text = "Lekar ID: " + lekar.Id.ToString();
 
+            tbSifra.Visible = false;
+            tbKorisnickoIme.Visible = false;
+            lblSifra.Visible = false;
+            lblKorisnickoIme.Visible = false;
+
             tbIme.Text = lekar.Ime;
             tbPrezime.Text = lekar.Prezime;
             tbEmail.Text = lekar.Email;
@@ -55,12 +60,19 @@ namespace Client
             if (!basicValid)
                 return false;
 
-            FormValidator.Instance.ValidateWithRulesOrThrow(
-                (tbEmail, FormValidator.Instance.IsValidEmail, "Email mora biti u validnom formatu (example@gmail.com)."),
-                (tbSifra, text => FormValidator.Instance.HasMinLength(text, 6), "Šifra mora imati najmanje 6 karaktera.")
-            );
+            var rules = new List<(TextBox, Func<string, bool>, string)>
+            {
+                (tbEmail, FormValidator.Instance.IsValidEmail, "Email mora biti u validnom formatu (example@gmail.com).")
+            };
 
+            if (Lekar == null)
+                rules.Add(
+                    (tbSifra, text => FormValidator.Instance.HasMinLength(text, 6), "Šifra mora imati najmanje 6 karaktera.")
+                );
+
+            FormValidator.Instance.ValidateWithRulesOrThrow(rules.ToArray());
             return true;
         }
+
     }
 }

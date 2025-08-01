@@ -6303,11 +6303,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\Server.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Seminarski\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\Server.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Server\\Server.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Server\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Server\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6324,11 +6324,11 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj"
+            "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj"
             },
-            "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\DBBroker\\DBBroker.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\DBBroker\\DBBroker.csproj"
+            "C:\\Users\\HP\\Desktop\\Seminarski\\DBBroker\\DBBroker.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\Seminarski\\DBBroker\\DBBroker.csproj"
             }
           }
         }

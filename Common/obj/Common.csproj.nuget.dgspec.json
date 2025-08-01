@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj": {}
+    "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj": {
+    "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\obj\\",
+        "outputPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",

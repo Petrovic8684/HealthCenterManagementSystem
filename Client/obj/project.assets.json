@@ -6283,11 +6283,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\Client.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Desktop\\Seminarski\\Client\\Client.csproj",
       "projectName": "Client",
-      "projectPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\Client.csproj",
+      "projectPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Client\\Client.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Client\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Client\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6304,8 +6304,8 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "projectReferences": {
-            "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\HP\\Desktop\\Fakultet\\Projektovanje softvera\\Seminarski\\Common\\Common.csproj"
+            "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\HP\\Desktop\\Seminarski\\Common\\Common.csproj"
             }
           }
         }

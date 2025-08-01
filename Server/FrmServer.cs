@@ -7,9 +7,12 @@ namespace Server
         public FrmServer()
         {
             InitializeComponent();
+
+            btnTogglujStatus.Click += (s, e) => ToggleStatus();
+            FormClosed += (s, e) => Quit();
         }
 
-        private void btnTogglujStatus_Click(object sender, EventArgs e)
+        private void ToggleStatus()
         {
             if (server == null)
             {
@@ -52,9 +55,14 @@ namespace Server
         }
 
 
-        private void FrmServer_FormClosed(object sender, FormClosedEventArgs e)
+        private void Quit()
         {
-            server.Stop();
+            if (server != null)
+            {
+                server.ClientsCountChanged -= HandleClientCountChanged;
+                server.Stop();
+            }
+
             Application.Exit();
         }
     }

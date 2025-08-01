@@ -75,7 +75,6 @@
             btnTogglujStatus.TabIndex = 6;
             btnTogglujStatus.Text = "Pokreni server";
             btnTogglujStatus.UseVisualStyleBackColor = false;
-            btnTogglujStatus.Click += btnTogglujStatus_Click;
             // 
             // pbServer
             // 
