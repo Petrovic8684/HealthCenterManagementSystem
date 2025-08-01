@@ -2,7 +2,7 @@
 
 A desktop-based, client-server software system developed for efficient tracking and management of health center operations. The system enables centralized handling of data related to patients, doctors, diagnoses, health records, and medical certificates.
 
-![Image](img/login.png)
+![Image](Img/login.png)
 
 ---
 
