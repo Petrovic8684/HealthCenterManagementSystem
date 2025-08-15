@@ -2,9 +2,7 @@
 
 A desktop-based, client-server software system developed for efficient tracking and management of health center operations. The system enables centralized handling of data related to patients, doctors, diagnoses, health records, and medical certificates.
 
-![Image](Img/login.png)
-
----
+<img src="Img/login.png" alt="image" width="40%">
 
 ## ⚙️ Architecture
 
@@ -15,8 +13,6 @@ This project is built as a **three-tier application**:
 - 🧠 **Application Logic** (C#/.NET)
 
 - 🗄️ **Database Layer** (relational model)
-
----
 
 ## 🔄 Development Methodology
 
@@ -32,8 +28,6 @@ The system follows a simplified **Larman method**, with the following phases:
 
 5. 🧪 **Testing** – Verifying functionality, performance, and reliability
 
----
-
 ## ✅ Key Features
 
 - 👨‍⚕️ Patient & doctor management
@@ -46,8 +40,8 @@ The system follows a simplified **Larman method**, with the following phases:
 
 - 🛠️ Maintainable, extensible architecture
 
----
-
 ## 🧠 Final Thoughts
 
 This project demonstrates a robust and scalable software solution for healthcare institutions. Designed with clear separation of concerns and proven design patterns, it provides a reliable and usable platform for real-world scenarios.
+
+_Happy coding!_ 🚀
